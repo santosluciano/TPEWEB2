@@ -36,13 +36,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">INICIO <span class="sr-only">(current)</span></a></li>
-            <li><a href="#"  class="fa fa-mobile fa-2x"></a></li>
+            <li class="active partial"><a href="">INICIO <span class="sr-only">(current)</span></a></li>
+            <li><a href=""  class="partial fa fa-mobile fa-2x"></a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARCAS <span class="caret"></span></a>
+              <a href="prueba" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARCAS <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 {foreach from=$marcas item=marca}
-                <li><a class="celulares" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
+                <li><a class="celulares partial" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
                 {/foreach}
               </ul>
             </li>
