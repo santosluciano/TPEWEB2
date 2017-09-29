@@ -16,7 +16,7 @@
     }
     function borrarMarca($id_marca){
       $sentencia = $this->db->prepare( "delete from marca where id_marca=?");
-      $sentencia->execute([$id_tarea]);
+      $sentencia->execute([$id_marca]);
     }
     function cargarMarca($nombre, $descripcion){
       $sentencia = $this->db->prepare('INSERT INTO tarea(nombre,descripcion) VALUES(?,?)');
