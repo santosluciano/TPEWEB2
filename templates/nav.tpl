@@ -20,7 +20,7 @@
           <a href="prueba" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARCAS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             {foreach from=$marcas item=marca}
-            <li><a class="celulares partial" href="" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
+            <li><a class="celulares partial" href="home" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
             {/foreach}
           </ul>
         </li>
