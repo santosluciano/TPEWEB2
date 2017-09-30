@@ -16,6 +16,10 @@
       $marcas = $this->model->getMarcas();
       $this->view->mostrar_marcas($marcas);
     }
+    public function inicio()
+    {
+      $this->view->mostrar_inicio();
+    }
   }
 
  ?>
