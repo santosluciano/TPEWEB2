@@ -35,24 +35,7 @@
         <li><a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"></a></li>
         <li><a href="https://www.instagram.com/?hl=es" class="fa fa-instagram" target="_blank"></a></li>
         <li><a href="https://www.youtube.com/" class="fa fa-youtube" target="_blank"></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle fa fa-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
-          <ul class="dropdown-menu iniciosesion">
-            <div class="container-fluid">
-              <form>
-                <div class="form-group">
-                  <label for="nombreusuario">Nombre de Usuario</label>
-                  <input type="text" class="form-control" id="nombreusuario" placeholder="Juan123">
-                </div>
-                <div class="form-group">
-                  <label for="pass">Password</label>
-                  <input type="password" class="form-control" id="pass" placeholder="Contraseña">
-                </div>
-                <button type="submit" class="btn btn-default">Iniciar Sesion</button>
-              </form>
-            </div>
-          </ul>
-        </li>
+        <li><a href="login" class="fa fa-facebook">Ingresar</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

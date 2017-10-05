@@ -11,15 +11,6 @@
       $this->view = new MarcasView();
       $this->model = new MarcasModel();
     }
-    public function index()
-    {
-      $marcas = $this->model->getMarcas();
-      $this->view->mostrar_marcas($marcas);
-    }
-    public function inicio()
-    {
-      $this->view->mostrar_inicio();
-    }
   }
 
  ?>

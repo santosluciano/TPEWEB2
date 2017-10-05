@@ -20,4 +20,3 @@
     <![endif]-->
   </head>
   <body>
-    {include file="nav.tpl"}
