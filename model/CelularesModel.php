@@ -39,6 +39,11 @@ class CelularesModel extends Model
     $sentencia->execute([$id_marca]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
+  function buscarCelular($nombre){
+    $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ?");
+    $sentencia->execute(["%$nombre%"]);
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
 
  ?>

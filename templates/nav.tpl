@@ -20,16 +20,16 @@
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARCAS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             {foreach from=$marcas item=marca}
-            <li><a class="celulares partial" href="home" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
+            <li><a class="celulares partial" href="celulares/{$marca['id_marca']}" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
             {/foreach}
           </ul>
         </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Modelo Celular">
+          <input type="text" class="form-control key" placeholder="Modelo Celular">
         </div>
-        <button type="submit" class="btn btn-default">BUSCAR</button>
+        <button type="submit" class="btn btn-default partialSearch" href="celulares/buscar">BUSCAR</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"></a></li>

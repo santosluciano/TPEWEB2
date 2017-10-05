@@ -18,17 +18,21 @@
       $marcas = $this->modelMarcas->getMarcas();
       $this->view->mostrarIndex($marcas);
     }
-    public function inicio($params)
+    public function inicio()
     {
-      if ((isset($params[0]))&&($params[0]=="partial")){
         $this->view->mostrar_inicio();
-      }else {
-        $this->index();
-      }
     }
     public function showCelulares($params)
     {
-      $celulares = $this->modelCelulares->getCelulares();
+      if (isset($params[0])){
+        if ($params[0] == "buscar"){
+          $celulares = $this->modelCelulares->buscarCelular($params[1]);
+        }else{
+          $celulares = $this->modelCelulares->getCelularesMarca($params[0]);
+        }
+      }else{
+        $celulares = $this->modelCelulares->getCelulares();
+      }
       $this->view->mostrarCelulares($celulares);
     }
     public function showCelular()
