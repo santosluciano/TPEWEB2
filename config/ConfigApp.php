@@ -9,7 +9,8 @@ class ConfigApp{
     'celulares' => 'NavigationController#showCelulares',
     'login' => 'LoginController#index',
     'verificarUsuario' => 'LoginController#verify',
-    'logout' => 'LoginController#destroy'
+    'logout' => 'LoginController#destroy',
+    'admin' => 'AdminController#index'
   ];
 }
 
