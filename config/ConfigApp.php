@@ -5,7 +5,8 @@ class ConfigApp{
   public static $PARAMS = "params";
   public static $ACTIONS = [
     ''=> 'MarcasController#index',
-    'home'=> 'NavigationController#inicio'
+    'home'=> 'NavigationController#inicio',
+    'celulares' => 'NavigationController#showCelulares'
   ];
 }
 

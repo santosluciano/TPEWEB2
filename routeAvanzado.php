@@ -29,7 +29,7 @@ if(isset($_GET['action'])){
             echo $controller->$metodo($params);
         }
         else{
-            echo $controller->$metodo();
+            echo $controller->$metodo($params[0] = "");
         }
     }
 }
