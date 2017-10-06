@@ -1,4 +1,7 @@
 {include file="../header.tpl"}
-  <a href="">Gestionar Marcas</a>
-  <a href="">Gestionar Celulares</a>
+  <div class="container-fluid">
+    <a href="adminMarcas">MARCAS</a>
+    <a href="">CELULARES</a>
+    <a href="logout">CERRAR SESION</a>
+  </div>
 {include file="../footer.tpl"}

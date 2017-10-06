@@ -1,4 +1,6 @@
 <?php
+define('HOMEMARCAS', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminMarcas');
+define('HOMECELULARES', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminCelulares');
 
 class SecuredController extends Controller
 {
