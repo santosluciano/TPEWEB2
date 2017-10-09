@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2017 a las 15:31:39
+-- Tiempo de generación: 10-10-2017 a las 01:51:18
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.8
 
@@ -41,9 +41,11 @@ CREATE TABLE `celular` (
 --
 
 INSERT INTO `celular` (`id_celular`, `nombre`, `caracteristicas`, `precio`, `id_marca`) VALUES
-(9, 'lumia', 'Celular lumia', 24, 8),
-(10, 'lumia 420', 'Lumia 420', 250, 8),
-(11, 'motorola', 'Hello moto!', 2500, 9);
+(1, 'Vibe K5', 'El Lenovo Vibe K5 cuenta en sus características con una pantalla HD de 5 pulgadas, procesador octa-core Snapdragon 415 a 1.4GHz, 2GB de RAM, 16GB de almacenamiento interno expandible, cámara principal de 13 megapixels, cámara frontal de 5 megapixels, conectividad LTE, sonido Dolby Atmos, y batería de 2750 mAh.', 4800, 3),
+(2, 'Moto G5', 'El Moto G5 es el quinto sucesor de la serie Moto G, esta vez con un chasis metálico e incorporando lector de huellas dactilares en la gama media de Moto. El Moto G5 cuenta entre sus características destacadas con una pantalla Full HD de 5 pulgadas, procesador octa-core Snapdragon 430 a 1.4GHz, 2GB o 3GB de RAM, 16GB o 32GB de almacenamiento interno expandible, cámara principal de 13 megapixels, cámara frontal de 5 megapixels, batería de 2800 mAh y corre Android 7.0 Nougat.', 6500, 3),
+(3, 'Galaxy S8', 'El Samsung Galaxy S8 es el nuevo flagship de Samsung que apuesta fuerte en un frente sin bordes de pantalla. Entre sus características se destaca la pantalla Infinity Super AMOLED dual-edge de 5.8 pulgadas y resolución QHD+, procesador Snapdragon 835 o Exynos 8895, 4GB de RAM, 64GB de almacenamiento interno, resistencia al agua IP68, carga inalámbrica, cámara Dual Pixel de 12 megapixels, cámara frontal de 8 megapixels, lector de huellas dactilares, lector de iris y Android 7.0 Nougat.', 20000, 4),
+(4, 'G Flex2', 'El LG G Flex2 es el sucesor del G Flex del año pasado, esta vez acentuando su diseño curvo en cuatro puntos estratégicos a lo largo del smartphone. Por dentro, se trata de una verdadera bestia, con un procesador Snapdragon 810 quad-core de 64 bits, pantalla 1080p de 5.5 pulgadas, panel trasero autorreparable, y batería de 3000 mAh de carga rápida.', 10699, 1),
+(5, 'P10', 'El Huawei P10 es el sucesor del Huawei P9, manteniendo muchas de las características. El P10 cuenta con una pantalla Full HD de 5.1 pulgadas, procesador octa-core Kirin 960, 4GB de RAM, 64GB de almacenamiento interno expandible, cámara dual Leica de dos sensores: 13 MP y 20 MP monocromático, mientras que al frente cuenta con una cámara de 8 megapixels. El Huawei P10 también tiene una batería de 3200 mAh con carga rápida Super Charge, y corre Android 7.0 Nougat con la interfaz EMUI 5.1.', 13999, 2);
 
 -- --------------------------------------------------------
 
@@ -62,10 +64,10 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id_marca`, `nombre`, `descripcion`) VALUES
-(8, 'NOKIAAAA', 'Celulares nokias'),
-(9, 'MOTOROLA', 'Marca de celulares motorola'),
-(20, 'HUAWEI', 'Celular chino'),
-(22, 'LG', 'Marca lg');
+(1, 'LG', 'LG pone a su disposición los Smartphone más delgados y ligeros del mundo con Android o Windows, que ofrecen una experiencia completa de comunicación. Con los Smartphone con internet LG estarás siempre conectado.\r\n'),
+(2, 'HUAWEI', 'Huawei es una empresa privada multinacional china de alta tecnología. Líder global en telecomunicaciones.'),
+(3, 'LENOVO', 'Marca china fabricante de productos tecnológicos, que con la adquisición de Motorola se sumergió de lleno en el mundo de los teléfonos celulares. '),
+(4, 'SAMSUNG', 'Empresa multinacional con sede en Seúl. Sus dispositivos son uno de los mas demandados en el mercado actual.');
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ INSERT INTO `marca` (`id_marca`, `nombre`, `descripcion`) VALUES
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
+  `nombre` varchar(40) NOT NULL,
   `password` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -84,7 +86,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`) VALUES
-(1, 'root', '$2y$10$sK5HR/W7XlYCdY36JILAPOI604dlqLoLgII6JBzF1JmOgV9pkmfye');
+(1, 'root', '$2a$06$f.ma9glTC0dpoEjExJwDcus3rBtnIxlYOOzI3ixUhC5RdD4caKxX2');
 
 --
 -- Índices para tablas volcadas
@@ -117,12 +119,12 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `celular`
 --
 ALTER TABLE `celular`
-  MODIFY `id_celular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_celular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
