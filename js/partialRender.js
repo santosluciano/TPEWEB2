@@ -3,7 +3,7 @@ $(document).ready(function () {
     event.preventDefault();
     let accion = $(this).attr("href");
     $.ajax({
-      url:"http://localhost:8080/Proyectos/TPEWEB2/"+accion,
+      url:document.location.href+accion,
       success: function(result) {
         $(".cuerpo").html(result);
       }
@@ -14,7 +14,7 @@ $(document).ready(function () {
     let accion = $(this).attr("href");
     let key = $(".key").val();
     $.ajax({
-      url:"http://localhost:8080/Proyectos/TPEWEB2/"+accion+"/"+key,
+      url:document.location.href+accion+"/"+key,
       success: function(result) {
         $(".cuerpo").html(result);
       }
