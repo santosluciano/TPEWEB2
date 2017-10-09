@@ -1,11 +1,34 @@
+<h1>Nuestros Celulares</h1>
 <div class="container">
-  <p>Aca estan los celulares</p>
-  {foreach from=$celulares item=celular}
-  <p>Nombre: {$celular['nombre']}</p>
-  <p>Caracteristicas: {$celular['caracteristicas']}</p>
-  <p>Precio: {$celular['precio']}</p>
-  <p>ID Marca: {$celular['id_marca']}</p>
-  <button type="button" name="button" href="celulare" class="partial">Mostrar Celular</button>
-  <p>-------------------------------------</p>
-  {/foreach}
+    <div class="row">
+    	<div class="col-md-12">
+        {foreach from=$celulares item=celular}
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail" >
+				<h4 class="text-center"><span class="label label-info">{$celular['id_marca']}</span></h4>
+          			<div class="contieneCelular">
+					<img src="images/celuMovimiento2.jpg" alt="celular">
+          			</div>
+				<div class="caption">
+					<div class="row">
+						<div class="col-md-6 col-xs-6">
+							<h3>{$celular['nombre']}</h3>
+						</div>
+						<div class="col-md-6 col-xs-6 price">
+							<h3><label>${$celular['precio']}</label></h3>
+						</div>
+              					<div class="col-md-6">
+							<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+						</div>
+              					<div class="col-md-6">
+							<button type="button" name="button" href="celulare" class="partial">Mostrar Celular</button>
+						</div>
+					</div>
+					<p>{$celular['caracteristicas']}</p>
+				</div>
+			</div>
+		</div>
+      {/foreach}
+    </div>
+  </div>
 </div>
