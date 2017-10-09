@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-09-2017 a las 15:36:57
+-- Tiempo de generación: 09-10-2017 a las 15:31:39
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.8
 
@@ -41,8 +41,9 @@ CREATE TABLE `celular` (
 --
 
 INSERT INTO `celular` (`id_celular`, `nombre`, `caracteristicas`, `precio`, `id_marca`) VALUES
-(5, 'lumia', 'asdasda', 25, 8),
-(6, 'moto', 'kadsjsakljdslsajk', 25, 9);
+(9, 'lumia', 'Celular lumia', 24, 8),
+(10, 'lumia 420', 'Lumia 420', 250, 8),
+(11, 'motorola', 'Hello moto!', 2500, 9);
 
 -- --------------------------------------------------------
 
@@ -61,8 +62,29 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`id_marca`, `nombre`, `descripcion`) VALUES
-(8, 'NOKIA', 'Celulares nokia'),
-(9, 'MOTOROLA', 'Marca de celulares motorola');
+(8, 'NOKIAAAA', 'Celulares nokias'),
+(9, 'MOTOROLA', 'Marca de celulares motorola'),
+(20, 'HUAWEI', 'Celular chino'),
+(22, 'LG', 'Marca lg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `password` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`) VALUES
+(1, 'root', '$2y$10$sK5HR/W7XlYCdY36JILAPOI604dlqLoLgII6JBzF1JmOgV9pkmfye');
 
 --
 -- Índices para tablas volcadas
@@ -82,6 +104,12 @@ ALTER TABLE `marca`
   ADD PRIMARY KEY (`id_marca`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -89,12 +117,17 @@ ALTER TABLE `marca`
 -- AUTO_INCREMENT de la tabla `celular`
 --
 ALTER TABLE `celular`
-  MODIFY `id_celular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_celular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
