@@ -35,7 +35,7 @@
         <li><a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"></a></li>
         <li><a href="https://www.instagram.com/?hl=es" class="fa fa-instagram" target="_blank"></a></li>
         <li><a href="https://www.youtube.com/" class="fa fa-youtube" target="_blank"></a></li>
-        <li><a href="login" class="fa fa-facebook">Ingresar</a></li>
+        <li><a href="admin" class="fa fa-user-circle-o"></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

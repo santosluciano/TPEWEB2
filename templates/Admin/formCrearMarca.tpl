@@ -4,7 +4,7 @@
     {if isset($error) }
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
-    <form action="guardarMarca" method="post">
+    <form action="crearMarca" method="post">
       <div class="form-group">
         <label for="titulo">Nombre</label>
         <input type="text" class="form-control" id="titulo" name="nombre"  value="{$nombre}" placeholder="Nombre de la marca">

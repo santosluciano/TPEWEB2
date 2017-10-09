@@ -19,7 +19,7 @@ class CelularesModel extends Model
     $sentencia->execute([$id_celular]);
   }
   function cargarCelular($id_marca,$nombre,$caracteristicas,$precio){
-    $sentencia = $this->db->prepare('INSERT INTO tarea(nombre,caracteristicas,precio,id_marca) VALUES(?,?,?,?)');
+    $sentencia = $this->db->prepare('INSERT INTO celular(nombre,caracteristicas,precio,id_marca) VALUES(?,?,?,?)');
     $sentencia->execute([$nombre,$caracteristicas,$precio,$id_marca]);
   }
   function setNombreCelular($id_celular,$nombre){

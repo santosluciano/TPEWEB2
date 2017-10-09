@@ -9,6 +9,8 @@ include_once 'controller/Controller.php';
 include_once 'controller/SecuredController.php';
 include_once 'controller/NavigationController.php';
 include_once 'controller/AdminController.php';
+include_once 'controller/MarcasController.php';
+include_once 'controller/CelularesController.php';
 include_once 'controller/LoginController.php';
 
 

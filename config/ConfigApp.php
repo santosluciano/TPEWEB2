@@ -11,10 +11,15 @@ class ConfigApp{
     'verificarUsuario' => 'LoginController#verify',
     'logout' => 'LoginController#destroy',
     'admin' => 'AdminController#index',
-    'adminMarcas' => 'AdminController#Marcas',
-    'eliminarMarca' => 'AdminController#destroy',
-    'crearMarca' => 'AdminController#create',
-    'guardarMarca' => 'AdminController#store'
+    'adminMarcas' => 'MarcasController#index',
+    'eliminarMarca' => 'MarcasController#destroy',
+    'crearMarca' => 'MarcasController#create',
+    'guardarMarca' => 'MarcasController#store',
+    'modificarMarca' => 'MarcasController#update',
+    'adminCelulares' => 'CelularesController#index',
+    'eliminarCelular' => 'CelularesController#destroy',
+    'crearCelular' => 'CelularesController#create',
+    'guardarCelular' => 'CelularesController#store'
   ];
 }
 
