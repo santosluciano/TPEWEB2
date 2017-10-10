@@ -3,11 +3,13 @@
   {
     function mostrarCelulares($celulares){
       $this->smarty->assign('celulares',$celulares);
+      $this->smarty->assign('encabezado','Listado de Celulares');
       $this->smarty->display('templates/Admin/celulares.tpl');
     }
     function mostrarCrearCelular($marcas){
       $this->assignarForm();
       $this->smarty->assign('marcas',$marcas);
+      $this->smarty->assign('encabezado','Crear nuevo celular');
       $this->smarty->display('templates/Admin/formCrearCelular.tpl');
     }
     private function assignarForm($nombre='',$caracteristicas='',$precio=''){
@@ -19,6 +21,7 @@
       $this->assignarForm($nombre,$caracteristicas,$precio);
       $this->smarty->assign('error', $error);
       $this->smarty->assign('marcas',$marcas);
+      $this->smarty->assign('encabezado','Crear nuevo celular');
       $this->smarty->display('templates/Admin/formCrearCelular.tpl');
     }
   }

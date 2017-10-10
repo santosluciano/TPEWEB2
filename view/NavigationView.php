@@ -17,7 +17,8 @@
       return $this->smarty->display('templates/partial/celular.tpl');
     }
     function mostrarPanelAdmin(){
-      return $this->smarty->display('templates/Admin/index.tpl');
+      $this->smarty->assign('encabezado','Panel de Administrador');
+      $this->smarty->display('templates/Admin/index.tpl');
     }
   }
 
