@@ -44,6 +44,11 @@ class CelularesModel extends Model
     $sentencia->execute(["%$nombre%"]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
+  function getCelularesOrdenados(){
+    $sentencia = $this->db->prepare( "select * from celular ORDER BY celular.id_marca ASC");
+    $sentencia->execute();
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
 
  ?>
