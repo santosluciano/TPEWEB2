@@ -10,7 +10,7 @@ class ConfigApp{
     'login' => 'LoginController#index',
     'verificarUsuario' => 'LoginController#verify',
     'logout' => 'LoginController#destroy',
-    'admin' => 'AdminController#index',
+    'admin' => 'NavigationController#admin',
     'adminMarcas' => 'MarcasController#index',
     'eliminarMarca' => 'MarcasController#destroy',
     'crearMarca' => 'MarcasController#create',

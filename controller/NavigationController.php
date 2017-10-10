@@ -5,7 +5,7 @@
   /**
    *
    */
-  class NavigationController extends Controller
+ class NavigationController extends SecuredController
   {
     function __construct()
     {
@@ -39,6 +39,11 @@
     {
       $celular = $this->modelCelular->getCelular($idCelular);
       $this->view->mostrarCelulares($celular);
+    }
+    public function admin()
+    {
+      parent::__construct();
+      $this->view->mostrarPanelAdmin();
     }
   }
 

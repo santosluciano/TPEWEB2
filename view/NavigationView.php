@@ -16,6 +16,9 @@
       $this->smarty->assign('celular',$celular);
       return $this->smarty->display('templates/partial/celular.tpl');
     }
+    function mostrarPanelAdmin(){
+      return $this->smarty->display('templates/Admin/index.tpl');
+    }
   }
 
  ?>
