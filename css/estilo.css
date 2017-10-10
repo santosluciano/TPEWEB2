@@ -39,3 +39,14 @@ h1{
   color: white;
   text-align: center;
 }
+
+.nav-admin{
+  top:100px;
+  position: relative;
+}
+.nav-stacked{
+  text-align: center;
+}
+.panel-admin{
+  background-color: white;
+}
