@@ -28,6 +28,7 @@
           </select>
         </div>
         <button type="submit" class="btn btn-primary">Crear Celular</button>
+        <a href="adminCelulares" type="button" class="btn btn-success btn-sm">Volver</a>
       </form>
     </div>
   </div>

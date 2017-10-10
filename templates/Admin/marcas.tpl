@@ -24,6 +24,7 @@
         </table>
       </div>
       <a href="crearMarca" type="button" class="btn btn-primary btn-sm">Crear nueva marca</a>
+      <a href="admin" type="button" class="btn btn-success btn-sm">Volver</a>
     </div>
   </div>
 </div>

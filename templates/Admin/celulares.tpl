@@ -26,6 +26,7 @@
         </table>
       </div>
       <a href="crearCelular" type="button" class="btn btn-primary btn-sm">Crear nuevo celular</a>
+      <a href="admin" type="button" class="btn btn-success btn-sm">Volver</a>
     </div>
   </div>
 </div>

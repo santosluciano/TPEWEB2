@@ -7,6 +7,7 @@ class ConfigApp{
     ''=> 'NavigationController#index',
     'home'=> 'NavigationController#inicio',
     'celulares' => 'NavigationController#showCelulares',
+    'celular' => 'NavigationController#showCelular',
     'login' => 'LoginController#index',
     'verificarUsuario' => 'LoginController#verify',
     'logout' => 'LoginController#destroy',

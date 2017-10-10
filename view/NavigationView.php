@@ -6,15 +6,15 @@
       $this->smarty->display('templates/index.tpl');
     }
     function mostrar_inicio(){
-      return $this->smarty->display('templates/partial/inicio.tpl');
+      return $this->smarty->display('templates/inicio.tpl');
     }
     function mostrarCelulares($celulares){
       $this->smarty->assign('celulares',$celulares);
-      return $this->smarty->display('templates/partial/celulares.tpl');
+      return $this->smarty->display('templates/celulares.tpl');
     }
     function mostrarCelular($celular){
       $this->smarty->assign('celular',$celular);
-      return $this->smarty->display('templates/partial/celular.tpl');
+      return $this->smarty->display('templates/celular.tpl');
     }
     function mostrarPanelAdmin(){
       $this->smarty->assign('encabezado','Panel de Administrador');

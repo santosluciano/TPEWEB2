@@ -20,8 +20,8 @@
               					<div class="col-md-6">
 							<a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
 						</div>
-              					<div class="col-md-6">
-							<button type="button" name="button" href="celulare" class="partial">Mostrar Celular</button>
+              <div class="col-md-6">          
+							<a class="partial" href="celular/{$celular['id_celular']}">Mostrar Celular</a>
 						</div>
 					</div>
 					<p>{$celular['caracteristicas']}</p>

@@ -35,9 +35,10 @@
       }
       $this->view->mostrarCelulares($celulares);
     }
-    public function showCelular()
+    public function showCelular($params)
     {
-      $celular = $this->modelCelular->getCelular($idCelular);
+      $idCelular = $params[0];
+      $celular = $this->modelCelulares->getCelular($idCelular);
       $this->view->mostrarCelulares($celular);
     }
     public function admin()
