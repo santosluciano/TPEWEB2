@@ -39,7 +39,7 @@
     {
       $idCelular = $params[0];
       $celular = $this->modelCelulares->getCelular($idCelular);
-      $this->view->mostrarCelulares($celular);
+      $this->view->mostrarCelular($celular);
     }
     public function admin()
     {
