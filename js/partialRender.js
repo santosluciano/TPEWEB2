@@ -12,6 +12,12 @@ $(document).ready(function () {
     llamada_ajax(accion);
     $(".cuerpo").html("Cargando...");
   });
+  $(document).on('click','.partialContain',function(event){
+    event.preventDefault();
+    let accion = this.href;
+    llamada_ajax(accion);
+    $(".cuerpo").html("Cargando...");
+  });
   $('.partialSearch').on('submit',function(event){
     event.preventDefault();
     let accion = this.action;

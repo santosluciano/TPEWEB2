@@ -6,7 +6,7 @@
                </div>
                <div class="col-xs-12 col-md-7" style="border:0px solid gray">
                    <!-- Datos del vendedor y titulo del producto -->
-                   <h3><a class="partial" href="celulares/{$marca[0]['id_marca']}">{$marca[0]['nombre']|upper}</a> {$celular[0]['nombre']|upper}</h3>
+                   <h3><a class="partialContain" href="celulares/{$marca[0]['id_marca']}">{$marca[0]['nombre']|upper}</a> {$celular[0]['nombre']|upper}</h3>
                    <h5 style="color:#337ab7">vendido por <a href="#">{$celular[0]['id_marca']}</a> · <small style="color:#337ab7">(5054 ventas)</small></h5>
 
                    <!-- Precios -->
