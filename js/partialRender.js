@@ -1,5 +1,5 @@
 $(document).ready(function () {
-//  llamada_ajax("home");
+  llamada_ajax("home");
   $(document).on('click','.partial',function(event){
     event.preventDefault();
     let accion = this.href;
