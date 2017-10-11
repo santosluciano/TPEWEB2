@@ -6,7 +6,7 @@
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
     <div class="thumbnail">
-      <form action="guardarMarca" method="post">
+      <form action="{$action}" method="post">
         <div class="form-group">
           <label for="titulo">Nombre</label>
           <input type="text" class="form-control" id="titulo" name="nombre"  value="{$nombre}" placeholder="Nombre de la marca">
@@ -15,7 +15,7 @@
           <label for="descripcion">Descripcion</label>
           <textarea name="descripcion" id="descripcion" name="descripcion" rows="8" cols="50">{$descripcion}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Crear Marca</button>
+        <button type="submit" class="btn btn-primary">{$accion}</button>
         <a href="adminMarcas" type="button" class="btn btn-success btn-sm">Volver</a>
       </form>
     </div>

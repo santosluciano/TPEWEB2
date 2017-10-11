@@ -17,6 +17,7 @@ class ConfigApp{
     'crearMarca' => 'MarcasController#create',
     'guardarMarca' => 'MarcasController#store',
     'modificarMarca' => 'MarcasController#update',
+    'setMarca' => 'MarcasController#set',
     'adminCelulares' => 'CelularesController#index',
     'eliminarCelular' => 'CelularesController#destroy',
     'crearCelular' => 'CelularesController#create',

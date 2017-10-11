@@ -23,9 +23,12 @@
           </tbody>
         </table>
       </div>
-      <a href="crearMarca" type="button" class="btn btn-primary btn-sm">Crear nueva marca</a>
+      <a class="btn btn-primary btn-sm" href="crearMarca">Crear nueva marca</a>
       <a href="admin" type="button" class="btn btn-success btn-sm">Volver</a>
     </div>
+  </div>
+  <div class="cuerpo">
+
   </div>
 </div>
 {include file="../footer.tpl"}

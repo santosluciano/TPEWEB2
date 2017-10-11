@@ -36,26 +36,29 @@
         header('Location: '.HOMEMARCAS);
       }
       else{
-        $this->view->errorCrearMarca("El nombre es requerido", $nombre, $descripcion);
+        $this->view->errorCrearMarca("El nombre es requerido", $nombre, $descripcion,"Crear");
       }
     }
     public function update($params)
     {
-      $marca = $this->model->getMarca($params[0]);
+      $id_marca = $params[0];
+      $marca = $this->model->getMarca($id_marca);
       $nombre = $marca[0]['nombre'];
       $descripcion = $marca[0]['descripcion'];
-      $this->view->mostrarActualizarMarca($nombre,$descripcion);
+      $this->view->mostrarActualizarMarca($nombre,$descripcion,$id_marca);
     }
-    public function set()
+    public function set($params)
     {
+      $id_marca = $params[0];
       $nombre = $_POST['nombre'];
       $descripcion = $_POST['descripcion'];
       if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-        $this->model->cargarMarca($nombre,$descripcion);
+        $this->model->setNombreMarca($id_marca,$nombre);
+        $this->model->setDescripcionMarca($id_marca,$descripcion);
         header('Location: '.HOMEMARCAS);
       }
       else{
-        $this->view->errorCrearMarca("El nombre es requerido", $nombre, $descripcion);
+        $this->view->errorCrearMarca("El nombre es requerido", $nombre, $descripcion,"Modificar");
       }
     }
   }
