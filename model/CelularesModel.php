@@ -18,9 +18,9 @@ class CelularesModel extends Model
     $sentencia = $this->db->prepare( "delete from celular where id_celular=?");
     $sentencia->execute([$id_celular]);
   }
-  function store($id_marca,$nombre,$caracteristicas,$precio){
-    $sentencia = $this->db->prepare('INSERT INTO celular(nombre,caracteristicas,precio,id_marca) VALUES(?,?,?,?)');
-    $sentencia->execute([$nombre,$caracteristicas,$precio,$id_marca]);
+  function store($id_marca,$nombre,$caracteristicas,$precio,$url){
+    $sentencia = $this->db->prepare('INSERT INTO celular(nombre,caracteristicas,precio,url_img,id_marca) VALUES(?,?,?,?,?)');
+    $sentencia->execute([$nombre,$caracteristicas,$precio,$url,$id_marca]);
   }
   function setNombre($id_celular,$nombre){
     $sentencia = $this->db->prepare( "update celular set nombre=? where id_celular=?");

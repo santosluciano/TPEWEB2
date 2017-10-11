@@ -16,6 +16,7 @@
               <div class="alert alert-danger" role="alert">{$error}</div>
             {/if}
             <button type="submit" class="btn btn-default">Ingresar</button>
+            <a href="" class="btn btn-default">Volver al sitio</a>
           </form>
         </div>
       </div>
