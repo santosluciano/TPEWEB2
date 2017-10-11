@@ -3,21 +3,20 @@ $(document).ready(function () {
     event.preventDefault();
     let accion = $(this).attr("href");
     $.ajax({
-      url:document.location.href+accion,
+      url:accion,
       success: function(result) {
         $(".cuerpo").html(result);
       }
     });
+    $(".cuerpo").html("Cargando...");
   });
-  $('.partialSearch').on('click',function(event){
+  $('.partialSearch').on('submit',function(event){
     event.preventDefault();
-    let accion = $(this).attr("href");
-    let key = $(".key").val();
-    $.ajax({
-      url:document.location.href+accion+"/"+key,
-      success: function(result) {
-        $(".cuerpo").html(result);
-      }
+    let accion = $(this).attr("action");
+    let serializedData = $(this).serialize();
+    $.post(accion, serializedData,
+                 function(response) {
+			      		$(".cuerpo").html(response);
     });
   });
 });

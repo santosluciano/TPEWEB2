@@ -1,4 +1,5 @@
 {include file="../header.tpl"}
+  <h1>Iniciar Sesion</h1>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
 

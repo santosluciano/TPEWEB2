@@ -24,9 +24,10 @@
     }
     public function showCelulares($params)
     {
+      echo "pase";
       if (isset($params[0])){
         if ($params[0] == "buscar"){
-          $celulares = $this->modelCelulares->searchByName($params[1]);
+          $celulares = $this->modelCelulares->searchByName($_POST['key']);
         }else{
           $celulares = $this->modelCelulares->getAllFromMarca($params[0]);
         }
