@@ -36,7 +36,7 @@
         header('Location: '.HOMEMARCAS);
       }
       else{
-        $this->view->errorCrearMarca("El nombre es requerido", $nombre, $descripcion,"Crear");
+        $this->view->errorFormMarca("El nombre es requerido",$nombre,$descripcion,'guardarMarca','Crear','Crear nueva marca');
       }
     }
     public function update($params)
@@ -58,7 +58,7 @@
         header('Location: '.HOMEMARCAS);
       }
       else{
-        $this->view->errorCrearMarca("El nombre es requerido", $nombre, $descripcion,"Modificar");
+        $this->view->errorFormMarca("El nombre es requerido",$nombre, $descripcion,"setMarca/$id_marca",'Modificar','Modificar marca');
       }
     }
   }

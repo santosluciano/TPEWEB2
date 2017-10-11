@@ -15,18 +15,18 @@
     }
     public function index()
     {
-      $celulares = $this->modelCelular->getCelulares();
+      $celulares = $this->modelCelular->getAll();
       $this->view->mostrarCelulares($celulares);
     }
     public function destroy($params)
     {
       $id_celular = $params[0];
-      $this->modelCelular->borrarCelular($id_celular);
+      $this->modelCelular->delete($id_celular);
       header('Location: '.HOMECELULARES);
     }
     public function create()
     {
-      $marcas = $this->modelMarca->getMarcas();
+      $marcas = $this->modelMarca->getAll();
       $this->view->mostrarCrearCelular($marcas);
     }
     public function store()
@@ -36,11 +36,11 @@
       $precio = $_POST['precio'];
       $id_marca = $_POST['marca'];
       echo $id_marca;
-      $marcas = $this->modelMarca->getMarcas();
+      $marcas = $this->modelMarca->getAll();
       if(isset($_POST['marca']) && !empty($_POST['marca'])){
         if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
           if(isset($_POST['precio']) && !empty($_POST['precio'])){
-            $this->modelCelular->cargarCelular($id_marca,$nombre,$caracteristicas,$precio);
+            $this->modelCelular->store($id_marca,$nombre,$caracteristicas,$precio);
             header('Location: '.HOMECELULARES);
           }else{
             $this->view->errorCrearCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$marcas);

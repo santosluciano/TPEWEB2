@@ -8,28 +8,27 @@
     }
     function mostrarCrearMarca(){
       $this->assignarForm();
-      $this->smarty->assign('encabezado','Crear nueva marca');
-      $this->smarty->assign('action','guardarMarca');
-      $this->smarty->assign('accion','Crear');
+      $this->assignarAcciones('guardarMarca','Crear','Crear nueva marca');
       $this->smarty->display('templates/Admin/formCrearMarca.tpl');
+    }
+    private function assignarAcciones($action,$accion,$encabezado){
+      $this->smarty->assign('action',$action);
+      $this->smarty->assign('accion',$accion);
+      $this->smarty->assign('encabezado',$encabezado);
     }
     private function assignarForm($nombre='', $descripcion=''){
       $this->smarty->assign('nombre', $nombre);
       $this->smarty->assign('descripcion', $descripcion);
     }
-    function errorCrearMarca($error, $nombre, $descripcion, $accion){
+    function errorFormMarca($error,$nombre,$descripcion,$action,$accion,$encabezado){
       $this->assignarForm($nombre, $descripcion);
       $this->smarty->assign('error', $error);
-      $this->smarty->assign('accion',$accion);
-      $this->smarty->assign('encabezado','Crear nueva marca');
-      $this->smarty->assign('action','guardarMarca');
+      $this->assignarAcciones($action,$accion,$encabezado);
       $this->smarty->display('templates/Admin/formCrearMarca.tpl');
     }
-    function mostrarActualizarMarca($nombre,$descripcion,$id_celular){
+    function mostrarActualizarMarca($nombre,$descripcion,$id_marca){
       $this->assignarForm($nombre,$descripcion);
-      $this->smarty->assign('action',"setMarca/$id_celular");
-      $this->smarty->assign('accion','Modificar');
-      $this->smarty->assign('encabezado','Modificar marca');
+      $this->assignarAcciones("setMarca/$id_marca",'Modificar','Modificar marca');
       $this->smarty->display('templates/Admin/formCrearMarca.tpl');
     }
   }

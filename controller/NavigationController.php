@@ -26,19 +26,19 @@
     {
       if (isset($params[0])){
         if ($params[0] == "buscar"){
-          $celulares = $this->modelCelulares->buscarCelular($params[1]);
+          $celulares = $this->modelCelulares->searchByName($params[1]);
         }else{
-          $celulares = $this->modelCelulares->getCelularesMarca($params[0]);
+          $celulares = $this->modelCelulares->getAllFromMarca($params[0]);
         }
       }else{
-        $celulares = $this->modelCelulares->getCelulares();
+        $celulares = $this->modelCelulares->getAll();
       }
       $this->view->mostrarCelulares($celulares);
     }
     public function showCelular($params)
     {
       $idCelular = $params[0];
-      $celular = $this->modelCelulares->getCelular($idCelular);
+      $celular = $this->modelCelulares->get($idCelular);
       $this->view->mostrarCelular($celular);
     }
     public function admin()
