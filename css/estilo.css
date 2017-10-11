@@ -25,6 +25,35 @@ h1{
   text-shadow: 3px 3px 2px grey;
 }
 
+<<<<<<< HEAD
+=======
+.contieneCelular{
+  background-color: grey;
+  text-align: center;
+}
+
+.attr2{
+  color: white;
+}
+
+.attr2 p{
+  background-color: grey;
+  text-shadow: 5px 5px 4px black;
+}
+
+#topcel{
+  margin-top: 10px;
+  height: 430px;
+  width: 350px;
+}
+
+#tarjetas{
+  margin-top: 65px;
+  height: 80px;
+  width: 1200px;
+}
+
+>>>>>>> b84c41703f580fee019c97c0e89b3b5204a26d54
 .footer{
   background-color: grey;
   position: fixed;
