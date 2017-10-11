@@ -4,29 +4,29 @@
  */
   class MarcasModel extends Model
   {
-    function getMarcas(){
+    function getAll(){
       $sentencia = $this->db->prepare( "select * from marca");
       $sentencia->execute();
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
-    function getMarca($id_marca){
+    function get($id_marca){
       $sentencia = $this->db->prepare( "select * from marca where id_marca = ? limit 1");
       $sentencia->execute([$id_marca]);
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
-    function borrarMarca($id_marca){
+    function delete($id_marca){
       $sentencia = $this->db->prepare( "delete from marca where id_marca=?");
       return $sentencia->execute([$id_marca]);
     }
-    function cargarMarca($nombre, $descripcion){
+    function store($nombre, $descripcion){
       $sentencia = $this->db->prepare('INSERT INTO marca(nombre,descripcion) VALUES(?,?)');
       $sentencia->execute([$nombre,$descripcion]);
     }
-    function setNombreMarca($id_marca,$nombre){
+    function setNombre($id_marca,$nombre){
       $sentencia = $this->db->prepare( "update marca set nombre=? where id_marca=?");
       $sentencia->execute([$nombre,$id_marca]);
     }
-    function setDescripcionMarca($id_marca,$descripcion){
+    function setDescripcion($id_marca,$descripcion){
       $sentencia = $this->db->prepare( "update marca set descripcion=? where id_marca=?");
       $sentencia->execute([$descripcion,$id_marca]);
     }

@@ -10,12 +10,10 @@ class LoginController extends Controller
     $this->view = new LoginView();
     $this->model = new LoginModel();
   }
-
   public function index()
   {
     $this->view->mostrarLogin();
   }
-
   public function verify()
   {
       $userName = $_POST['usuario'];
@@ -33,7 +31,6 @@ class LoginController extends Controller
         }
       }
   }
-
   public function destroy()
   {
     session_start();

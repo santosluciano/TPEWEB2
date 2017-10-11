@@ -15,7 +15,7 @@
     }
     public function index()
     {
-      $marcas = $this->modelMarcas->getMarcas();
+      $marcas = $this->modelMarcas->getAll();
       $this->view->mostrarIndex($marcas);
     }
     public function inicio()

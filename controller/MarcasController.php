@@ -14,13 +14,13 @@
     }
     public function index()
     {
-      $marcas = $this->model->getMarcas();
+      $marcas = $this->model->getAll();
       $this->view->mostrarMarcas($marcas);
     }
     public function destroy($params)
     {
       $id_marca = $params[0];
-      $this->model->borrarMarca($id_marca);
+      $this->model->delete($id_marca);
       header('Location: '.HOMEMARCAS);
     }
     public function create()
@@ -32,7 +32,7 @@
       $nombre = $_POST['nombre'];
       $descripcion = $_POST['descripcion'];
       if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-        $this->model->cargarMarca($nombre,$descripcion);
+        $this->model->store($nombre,$descripcion);
         header('Location: '.HOMEMARCAS);
       }
       else{
@@ -42,7 +42,7 @@
     public function update($params)
     {
       $id_marca = $params[0];
-      $marca = $this->model->getMarca($id_marca);
+      $marca = $this->model->get($id_marca);
       $nombre = $marca[0]['nombre'];
       $descripcion = $marca[0]['descripcion'];
       $this->view->mostrarActualizarMarca($nombre,$descripcion,$id_marca);
@@ -53,8 +53,8 @@
       $nombre = $_POST['nombre'];
       $descripcion = $_POST['descripcion'];
       if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-        $this->model->setNombreMarca($id_marca,$nombre);
-        $this->model->setDescripcionMarca($id_marca,$descripcion);
+        $this->model->setNombre($id_marca,$nombre);
+        $this->model->setDescripcion($id_marca,$descripcion);
         header('Location: '.HOMEMARCAS);
       }
       else{
