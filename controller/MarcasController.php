@@ -30,13 +30,13 @@
     public function store()
     {
       $nombre = $_POST['nombre'];
-      $descripcion = $_POST['descripcion'];
+      $url = $_POST['url'];
       if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-        $this->model->store($nombre,$descripcion);
+        $this->model->store($nombre,$url);
         header('Location: '.HOMEMARCAS);
       }
       else{
-        $this->view->errorFormMarca("El nombre es requerido",$nombre,$descripcion,'guardarMarca','Crear','Crear nueva marca');
+        $this->view->errorFormMarca("El nombre es requerido",$nombre,$url,'guardarMarca','Crear','Crear nueva marca');
       }
     }
     public function update($params)
@@ -44,21 +44,21 @@
       $id_marca = $params[0];
       $marca = $this->model->get($id_marca);
       $nombre = $marca[0]['nombre'];
-      $descripcion = $marca[0]['descripcion'];
-      $this->view->mostrarActualizarMarca($nombre,$descripcion,$id_marca);
+      $url = $marca[0]['url_img'];
+      $this->view->mostrarActualizarMarca($nombre,$url,$id_marca);
     }
     public function set($params)
     {
       $id_marca = $params[0];
       $nombre = $_POST['nombre'];
-      $descripcion = $_POST['descripcion'];
+      $url = $_POST['url'];
       if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
         $this->model->setNombre($id_marca,$nombre);
-        $this->model->setDescripcion($id_marca,$descripcion);
+        $this->model->setUrl_img($id_marca,$url);
         header('Location: '.HOMEMARCAS);
       }
       else{
-        $this->view->errorFormMarca("El nombre es requerido",$nombre, $descripcion,"setMarca/$id_marca",'Modificar','Modificar marca');
+        $this->view->errorFormMarca("El nombre es requerido",$nombre, $url,"setMarca/$id_marca",'Modificar','Modificar marca');
       }
     }
   }

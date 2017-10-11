@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2017 a las 20:52:36
+-- Tiempo de generación: 11-10-2017 a las 22:47:53
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.8
 
@@ -57,18 +57,18 @@ INSERT INTO `celular` (`id_celular`, `nombre`, `caracteristicas`, `precio`, `url
 CREATE TABLE `marca` (
   `id_marca` int(11) NOT NULL,
   `nombre` varchar(20) NOT NULL,
-  `descripcion` text NOT NULL
+  `url_img` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `marca`
 --
 
-INSERT INTO `marca` (`id_marca`, `nombre`, `descripcion`) VALUES
-(1, 'LG', 'LG pone a su disposición los Smartphone más delgados y ligeros del mundo con Android o Windows, que ofrecen una experiencia completa de comunicación. Con los Smartphone con internet LG estarás siempre conectado.\r\n'),
-(2, 'HUAWEI', 'Huawei es una empresa privada multinacional china de alta tecnología. Líder global en telecomunicaciones.'),
-(3, 'LENOVO', 'Marca china fabricante de productos tecnológicos, que con la adquisición de Motorola se sumergió de lleno en el mundo de los teléfonos celulares. '),
-(4, 'SAMSUNG', 'Empresa multinacional con sede en Seúl. Sus dispositivos son uno de los mas demandados en el mercado actual.');
+INSERT INTO `marca` (`id_marca`, `nombre`, `url_img`) VALUES
+(1, 'LG', 'http://img.fenixzone.net/i/hbs16iI.png'),
+(2, 'HUAWEI', 'http://img.fenixzone.net/i/y8DOLN4.png'),
+(3, 'LENOVO', 'http://img.fenixzone.net/i/IkRtW5g.png'),
+(4, 'SAMSUNG', 'http://img.fenixzone.net/i/xd8qPD2.png');
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,7 @@ ALTER TABLE `celular`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --

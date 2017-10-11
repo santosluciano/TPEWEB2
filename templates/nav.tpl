@@ -20,11 +20,7 @@
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARCAS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             {foreach from=$marcas item=marca}
-<<<<<<< HEAD
             <li><a class="celulares partial" id="desplegable" href="celulares/{$marca['id_marca']}">{$marca['nombre']}</a></li>
-=======
-            <li><a class="celulares partial" id="desplegable" href="celulares/{$marca['id_marca']}" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
->>>>>>> 0138ada835d3ad230284bd2789be78d5c9fdb93c
             {/foreach}
           </ul>
         </li>

@@ -8,14 +8,14 @@
           <thead>
             <tr>
               <th>Nombre</th>
-              <th>Descripcion</th>
+              <th>Img</th>
             </tr>
           </thead>
           <tbody>
             {foreach from=$marcas item=marca}
             <tr>
               <td>{$marca['nombre']}</td>
-              <td>{$marca['descripcion']}</td>
+              <td><img src="{$marca['url_img']}" class="img-responsive" alt="{$marca['nombre']}"></td>
               <td><a href="modificarMarca/{$marca['id_marca']}" class="fa fa-pencil"></a></td>
               <td><a href="eliminarMarca/{$marca['id_marca']}" class="fa fa-trash-o"></a></td>
             </tr>

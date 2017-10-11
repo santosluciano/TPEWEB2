@@ -16,18 +16,18 @@
       $this->smarty->assign('accion',$accion);
       $this->smarty->assign('encabezado',$encabezado);
     }
-    private function assignarForm($nombre='', $descripcion=''){
+    private function assignarForm($nombre='', $url=''){
       $this->smarty->assign('nombre', $nombre);
-      $this->smarty->assign('descripcion', $descripcion);
+      $this->smarty->assign('url', $url);
     }
-    function errorFormMarca($error,$nombre,$descripcion,$action,$accion,$encabezado){
-      $this->assignarForm($nombre, $descripcion);
+    function errorFormMarca($error,$nombre,$url,$action,$accion,$encabezado){
+      $this->assignarForm($nombre, $url);
       $this->smarty->assign('error', $error);
       $this->assignarAcciones($action,$accion,$encabezado);
       $this->smarty->display('templates/Admin/formMarca.tpl');
     }
-    function mostrarActualizarMarca($nombre,$descripcion,$id_marca){
-      $this->assignarForm($nombre,$descripcion);
+    function mostrarActualizarMarca($nombre,$url,$id_marca){
+      $this->assignarForm($nombre,$url);
       $this->assignarAcciones("setMarca/$id_marca",'Modificar','Modificar marca');
       $this->smarty->display('templates/Admin/formMarca.tpl');
     }

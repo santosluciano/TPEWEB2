@@ -12,8 +12,8 @@
           <input type="text" class="form-control" id="titulo" name="nombre"  value="{$nombre}" placeholder="Nombre de la marca">
         </div>
         <div class="form-group">
-          <label for="descripcion">Descripcion</label>
-          <textarea name="descripcion" id="descripcion" name="descripcion" rows="8" cols="50">{$descripcion}</textarea>
+          <label for="url">Url del logo</label>
+          <input type="text" class="form-control" id="url" name="url"  value="{$url}" placeholder="www.imagenes.com/imagen">
         </div>
         <button type="submit" class="btn btn-primary">{$accion}</button>
         <a href="adminMarcas" type="button" class="btn btn-success btn-sm">Volver</a>
