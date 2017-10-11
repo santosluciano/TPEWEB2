@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.partial').on('click',function(event){
+  $(document).on('click','.partial',function(event){
     event.preventDefault();
     let accion = this.href;
     $.ajax({
