@@ -24,9 +24,8 @@
     }
     public function showCelulares($params)
     {
-      echo "pase";
       if (isset($params[0])){
-        if ($params[0] == "buscar"){
+        if ($params[0] == "buscar" && isset($_POST['key'])){
           $celulares = $this->modelCelulares->searchByName($_POST['key']);
         }else{
           $celulares = $this->modelCelulares->getAllFromMarca($params[0]);
@@ -34,7 +33,11 @@
       }else{
         $celulares = $this->modelCelulares->getAll();
       }
-      $this->view->mostrarCelulares($celulares);
+      if (!empty($celulares)){
+        $this->view->mostrarCelulares($celulares);
+      }else{
+        $this->view->mostrarError("No se encontraron celulares");
+      }
     }
     public function showCelular($params)
     {

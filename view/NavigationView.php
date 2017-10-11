@@ -20,6 +20,10 @@
       $this->smarty->assign('encabezado','Panel de Administrador');
       $this->smarty->display('templates/Admin/index.tpl');
     }
+    function mostrarError($error){
+      $this->smarty->assign('error',$error);
+      return $this->smarty->display('templates/error.tpl');
+    }
   }
 
  ?>

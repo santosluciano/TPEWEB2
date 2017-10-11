@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $('.partial').on('click',function(event){
     event.preventDefault();
-    let accion = $(this).attr("href");
+    let accion = this.href;
     $.ajax({
       url:accion,
       success: function(result) {
@@ -12,7 +12,7 @@ $(document).ready(function () {
   });
   $('.partialSearch').on('submit',function(event){
     event.preventDefault();
-    let accion = $(this).attr("action");
+    let accion = this.action;
     let serializedData = $(this).serialize();
     $.post(accion, serializedData,
                  function(response) {
