@@ -18,8 +18,8 @@
               <td>{$celular['nombre']}</td>
               <td>{$celular['caracteristicas']}</td>
               <td>$ {$celular['precio']}</td>
-              <td><a href="modificarCelular/{$celular['id_celular']}" class="fa fa-pencil">Modificar</a></td>
-              <td><a href="eliminarCelular/{$celular['id_celular']}" class="fa fa-trash-o">Eliminar</a></td>
+              <td><a href="modificarCelular/{$celular['id_celular']}" class="fa fa-pencil"></a></td>
+              <td><a href="eliminarCelular/{$celular['id_celular']}" class="fa fa-trash-o"></a></td>
             </tr>
             {/foreach}
           </tbody>
