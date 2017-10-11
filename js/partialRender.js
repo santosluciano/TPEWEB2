@@ -4,7 +4,7 @@ $(document).ready(function () {
     event.preventDefault();
     let accion = this.href;
     $('.active').removeClass('active');
-    if ($(this).attr('id') === "desplegable"){
+    if ($(this).attr('title') === "desplegable"){
       $('.dropdown-marcas').addClass('active');
     }else{
       $(this).parent().addClass('active');

@@ -1,5 +1,5 @@
   <div class="footer">
-    Copyright© 1995-2017 SAMSUNG Todos los Derechos Reservados.
+    Copyright© 1995-2017 MUNDO CELULAR Todos los Derechos Reservados.
   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-3.2.1.js"></script>

@@ -6,7 +6,8 @@
       $this->smarty->assign('hayConexion',$conectado);
       $this->smarty->display('templates/index.tpl');
     }
-    function mostrar_inicio(){
+    function mostrar_inicio($celulares){
+      $this->smarty->assign('celulares',$celulares);
       return $this->smarty->display('templates/inicio.tpl');
     }
     function mostrarCelulares($celulares,$marcas){

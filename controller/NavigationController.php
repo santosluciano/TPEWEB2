@@ -17,12 +17,12 @@
     {
       $marcas = $this->modelMarcas->getAll();
       $conectado = $this->isConnect();
-
       $this->view->mostrarIndex($marcas,$conectado);
     }
     public function inicio()
     {
-        $this->view->mostrar_inicio();
+      $celulares = $this->modelCelulares->getAll();
+      $this->view->mostrar_inicio($celulares);
     }
     public function showCelulares($params)
     {
