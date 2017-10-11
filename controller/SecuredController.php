@@ -20,6 +20,15 @@ class SecuredController extends Controller
       die();
     }
   }
+  function isConnect(){
+    session_start();
+    if(isset($_SESSION['USER'])){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
 
  ?>

@@ -1,8 +1,9 @@
 <?php
   class NavigationView extends View
   {
-    function mostrarIndex($marcas){
+    function mostrarIndex($marcas,$conectado){
       $this->smarty->assign('marcas',$marcas);
+      $this->smarty->assign('hayConexion',$conectado);
       $this->smarty->display('templates/index.tpl');
     }
     function mostrar_inicio(){

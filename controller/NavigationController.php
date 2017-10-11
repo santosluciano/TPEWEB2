@@ -16,7 +16,9 @@
     public function index()
     {
       $marcas = $this->modelMarcas->getAll();
-      $this->view->mostrarIndex($marcas);
+      $conectado = $this->isConnect();
+
+      $this->view->mostrarIndex($marcas,$conectado);
     }
     public function inicio()
     {
