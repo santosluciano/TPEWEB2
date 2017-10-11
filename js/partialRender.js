@@ -4,9 +4,15 @@ $(document).ready(function () {
     event.preventDefault();
     let accion = this.href;
     $('.active').removeClass('active');
+<<<<<<< HEAD
     if ($(this).attr('id') === "desplegable"){
       $('.dropdown-marcas').addClass('active');
     }else{
+=======
+    if ($(this).attr('id') === "desplegable") {
+      $('.dropdown-marcas').addClass('active');
+    }else {
+>>>>>>> 0138ada835d3ad230284bd2789be78d5c9fdb93c
       $(this).parent().addClass('active');
     }
     llamada_ajax(accion);
