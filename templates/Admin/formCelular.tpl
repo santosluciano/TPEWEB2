@@ -6,7 +6,7 @@
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
     <div class="thumbnail">
-      <form action="guardarCelular" method="post">
+      <form action="{$action}" method="post">
         <div class="form-group">
           <label for="titulo">Nombre</label>
           <input type="text" class="form-control" id="titulo" name="nombre"  value="{$nombre}" placeholder="Nombre del celular">
@@ -27,7 +27,7 @@
             {/foreach}
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Crear Celular</button>
+        <button type="submit" class="btn btn-primary">{$accion}</button>
         <a href="adminCelulares" type="button" class="btn btn-success btn-sm">Volver</a>
       </form>
     </div>

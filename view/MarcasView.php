@@ -9,7 +9,7 @@
     function mostrarCrearMarca(){
       $this->assignarForm();
       $this->assignarAcciones('guardarMarca','Crear','Crear nueva marca');
-      $this->smarty->display('templates/Admin/formCrearMarca.tpl');
+      $this->smarty->display('templates/Admin/formMarca.tpl');
     }
     private function assignarAcciones($action,$accion,$encabezado){
       $this->smarty->assign('action',$action);
@@ -24,12 +24,12 @@
       $this->assignarForm($nombre, $descripcion);
       $this->smarty->assign('error', $error);
       $this->assignarAcciones($action,$accion,$encabezado);
-      $this->smarty->display('templates/Admin/formCrearMarca.tpl');
+      $this->smarty->display('templates/Admin/formMarca.tpl');
     }
     function mostrarActualizarMarca($nombre,$descripcion,$id_marca){
       $this->assignarForm($nombre,$descripcion);
       $this->assignarAcciones("setMarca/$id_marca",'Modificar','Modificar marca');
-      $this->smarty->display('templates/Admin/formCrearMarca.tpl');
+      $this->smarty->display('templates/Admin/formMarca.tpl');
     }
   }
 

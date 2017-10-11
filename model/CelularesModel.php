@@ -26,13 +26,17 @@ class CelularesModel extends Model
     $sentencia = $this->db->prepare( "update celular set nombre=? where id_celular=?");
     $sentencia->execute([$nombre,$id_celular]);
   }
-  function setDescripcion($id_celular,$descripcion){
-    $sentencia = $this->db->prepare( "update celular set descripcion=? where id_celular=?");
-    $sentencia->execute([$descripcion,$id_celular]);
+  function setCaracteristicas($id_celular,$caracteristicas){
+    $sentencia = $this->db->prepare( "update celular set caracteristicas=? where id_celular=?");
+    $sentencia->execute([$caracteristicas,$id_celular]);
   }
   function setPrecio($id_celular,$precio){
     $sentencia = $this->db->prepare( "update celular set precio=? where id_celular=?");
     $sentencia->execute([$precio,$id_celular]);
+  }
+  function setMarca($id_celular,$id_marca){
+    $sentencia = $this->db->prepare( "update celular set id_marca=? where id_celular=?");
+    $sentencia->execute([$id_marca,$id_celular]);
   }
   function getAllFromMarca($id_marca){
     $sentencia = $this->db->prepare( "select * from celular WHERE id_marca=?");

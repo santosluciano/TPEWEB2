@@ -21,7 +21,9 @@ class ConfigApp{
     'adminCelulares' => 'CelularesController#index',
     'eliminarCelular' => 'CelularesController#destroy',
     'crearCelular' => 'CelularesController#create',
-    'guardarCelular' => 'CelularesController#store'
+    'guardarCelular' => 'CelularesController#store',
+    'modificarCelular' => 'CelularesController#update',
+    'setCelular' => 'CelularesController#set'
   ];
 }
 
