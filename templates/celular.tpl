@@ -1,9 +1,6 @@
 <div class="container">
               <div class="thumbnail">
         	<div class="row">
-            <div class="">
-
-            </div>
               <div class="col-xs-12 col-md-4 item-photo">
                    <img class="img-responsive" src="{$celular[0]['url_img']}" />
                </div>
@@ -21,7 +18,7 @@
                            <div class="attr2"><p>{$celular[0]['caracteristicas']}</p></div>
                        </div>
                    </div>
-                   <div class="section" style="padding-bottom:20px;">
+                   <div class="section" style="uepadding-bottom:20px;">
                        <div class="attr2">CANTIDAD</div>
                        <div>
                            <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>

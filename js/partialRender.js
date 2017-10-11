@@ -3,6 +3,12 @@ $(document).ready(function () {
   $(document).on('click','.partial',function(event){
     event.preventDefault();
     let accion = this.href;
+    $('.active').removeClass('active');
+    if ($(this).attr('id') === "desplegable") {
+      $('.dropdown-marcas').addClass('active');
+    }else {
+      $(this).parent().addClass('active');
+    }
     llamada_ajax(accion);
     $(".cuerpo").html("Cargando...");
   });
