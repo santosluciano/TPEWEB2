@@ -34,7 +34,8 @@
         $celulares = $this->modelCelulares->getAll();
       }
       if (!empty($celulares)){
-        $this->view->mostrarCelulares($celulares);
+        $marcas = $this->modelMarcas->getAll();
+        $this->view->mostrarCelulares($celulares,$marcas);
       }else{
         $this->view->mostrarError("No se encontraron celulares");
       }
@@ -43,7 +44,8 @@
     {
       $idCelular = $params[0];
       $celular = $this->modelCelulares->get($idCelular);
-      $this->view->mostrarCelular($celular);
+      $marca = $this->modelMarcas->get($celular[0]['id_marca']);
+      $this->view->mostrarCelular($celular,$marca);
     }
     public function admin()
     {

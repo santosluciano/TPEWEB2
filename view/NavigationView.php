@@ -8,12 +8,14 @@
     function mostrar_inicio(){
       return $this->smarty->display('templates/inicio.tpl');
     }
-    function mostrarCelulares($celulares){
+    function mostrarCelulares($celulares,$marcas){
       $this->smarty->assign('celulares',$celulares);
+      $this->smarty->assign('marcas',$marcas);
       return $this->smarty->display('templates/celulares.tpl');
     }
-    function mostrarCelular($celular){
+    function mostrarCelular($celular,$marca){
       $this->smarty->assign('celular',$celular);
+      $this->smarty->assign('marca',$marca);
       return $this->smarty->display('templates/celular.tpl');
     }
     function mostrarPanelAdmin(){

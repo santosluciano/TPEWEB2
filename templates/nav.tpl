@@ -16,11 +16,11 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="home" class="partial">INICIO <span class="sr-only">(current)</span></a></li>
         <li><a href="celulares"  class="partial fa fa-mobile fa-2x"></a></li>
-        <li class="dropdown">
+        <li class="dropdown-marcas">
           <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MARCAS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             {foreach from=$marcas item=marca}
-            <li><a class="celulares partial" href="celulares/{$marca['id_marca']}" data-value="{$marca['id_marca']}">{$marca['nombre']}</a></li>
+            <li><a class="celulares partial" id="desplegable" href="celulares/{$marca['id_marca']}">{$marca['nombre']}</a></li>
             {/foreach}
           </ul>
         </li>
