@@ -38,6 +38,10 @@ class CelularesModel extends Model
     $sentencia = $this->db->prepare( "update celular set id_marca=? where id_celular=?");
     $sentencia->execute([$id_marca,$id_celular]);
   }
+  function setUrl_img($id_celular,$url){
+    $sentencia = $this->db->prepare( "update celular set url_img=? where id_celular=?");
+    $sentencia->execute([$url,$id_celular]);
+  }
   function getAllFromMarca($id_marca){
     $sentencia = $this->db->prepare( "select * from celular WHERE id_marca=?");
     $sentencia->execute([$id_marca]);

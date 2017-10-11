@@ -34,21 +34,26 @@
       $nombre = $_POST['nombre'];
       $caracteristicas = $_POST['caracteristicas'];
       $precio = $_POST['precio'];
+      $url = $_POST['url'];
       $id_marca = $_POST['marca'];
       $marcas = $this->modelMarca->getAll();
       if(isset($_POST['marca']) && !empty($_POST['marca'])){
         if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
           if(isset($_POST['precio']) && !empty($_POST['precio'])){
-            $this->modelCelular->store($id_marca,$nombre,$caracteristicas,$precio);
-            header('Location: '.HOMECELULARES);
+            if(isset($_POST['url']) && !empty($_POST['url'])){
+              $this->modelCelular->store($id_marca,$nombre,$caracteristicas,$precio);
+              header('Location: '.HOMECELULARES);
+            }else{
+              $this->view->errorFormCelular("La url es requerida", $nombre, $caracteristicas,$precio,$url,$marcas,"guardarCelular",'Crear','Crear celular');
+            }
           }else{
-            $this->view->errorFormCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$marcas,"guardarCelular",'Crear','Crear celular');
+            $this->view->errorFormCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,"guardarCelular",'Crear','Crear celular');
           }
         }else{
-          $this->view->errorFormCelular("El nombre es requerido", $nombre, $caracteristicas,$precio,$marcas,"guardarCelular",'Crear','Crear celular');
+          $this->view->errorFormCelular("El nombre es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,"guardarCelular",'Crear','Crear celular');
         }
       }else{
-        $this->view->errorFormCelular("Imposible crear el celular, no hay marcas cargadas", $nombre, $caracteristicas,$precio,$marcas,"guardarCelular",'Crear','Crear celular');
+        $this->view->errorFormCelular("Imposible crear el celular, no hay marcas cargadas", $nombre, $caracteristicas,$precio,$url,$marcas,"guardarCelular",'Crear','Crear celular');
         }
     }
     public function update($params)
@@ -58,9 +63,10 @@
       $nombre = $celular[0]['nombre'];
       $caracteristicas = $celular[0]['caracteristicas'];
       $precio = $celular[0]['precio'];
+      $url = $celular[0]['url_img'];
       $id_marca = $celular[0]['id_marca'];
       $marcas = $this->modelMarca->getAll();
-      $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$id_celular,$marcas);
+      $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$marcas);
     }
     public function set($params)
     {
@@ -68,24 +74,30 @@
       $nombre = $_POST['nombre'];
       $precio = $_POST['precio'];
       $id_marca = $_POST['marca'];
+      $url = $_POST['url'];
       $caracteristicas = $_POST['caracteristicas'];
       $marcas = $this->modelMarca->getAll();
       if(isset($_POST['marca']) && !empty($_POST['marca'])){
         if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
           if(isset($_POST['precio']) && !empty($_POST['precio'])){
-            $this->modelCelular->setNombre($id_celular,$nombre);
-            $this->modelCelular->setCaracteristicas($id_celular,$caracteristicas);
-            $this->modelCelular->setPrecio($id_celular,$precio);
-            $this->modelCelular->setMarca($id_celular,$id_marca);
-            header('Location: '.HOMECELULARES);
-            }else{
-            $this->view->errorFormCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$marcas,"setCelular/$id_celular",'Modificar','Modificar celular');
+            if(isset($_POST['url']) && !empty($_POST['url'])){
+              $this->modelCelular->setNombre($id_celular,$nombre);
+              $this->modelCelular->setCaracteristicas($id_celular,$caracteristicas);
+              $this->modelCelular->setPrecio($id_celular,$precio);
+              $this->modelCelular->setMarca($id_celular,$id_marca);
+              $this->modelCelular->setUrl_img($id_celular,$url);
+              header('Location: '.HOMECELULARES);
+            }else {
+                $this->view->errorFormCelular("La url es requerida", $nombre, $caracteristicas,$precio,$url,$marcas,"setCelular/$id_celular",'Modificar','Modificar celular');
+            }
+          }else{
+            $this->view->errorFormCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,"setCelular/$id_celular",'Modificar','Modificar celular');
           }
         }else{
-          $this->view->errorFormCelular("El nombre es requerido", $nombre, $caracteristicas,$precio,$marcas,"setCelular/$id_celular",'Modificar','Modificar celular');
+          $this->view->errorFormCelular("El nombre es requerido", $nombre, $caracteristicas,$precio,$marcas,$url,"setCelular/$id_celular",'Modificar','Modificar celular');
       }
       }else{
-      $this->view->errorFormCelular("Imposible moficar el celular, no hay marcas cargadas", $nombre, $caracteristicas,$precio,$marcas,"setCelular/$id_celular",'Modificar','Modificar celular');
+      $this->view->errorFormCelular("Imposible moficar el celular, no hay marcas cargadas", $nombre, $caracteristicas,$precio,$marcas,$url,"setCelular/$id_celular",'Modificar','Modificar celular');
       }
     }
   }

@@ -8,16 +8,20 @@
     <div class="thumbnail">
       <form action="{$action}" method="post">
         <div class="form-group">
-          <label for="titulo">Nombre</label>
-          <input type="text" class="form-control" id="titulo" name="nombre"  value="{$nombre}" placeholder="Nombre del celular">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre"  value="{$nombre}" placeholder="Nombre del celular">
         </div>
         <div class="form-group">
-          <label for="descripcion">Caracteristicas</label>
-          <textarea id="descripcion" name="caracteristicas" rows="8" cols="50">{$caracteristicas}</textarea>
+          <label for="caracteristicas">Caracteristicas</label>
+          <textarea id="caracteristicas" name="caracteristicas" rows="8" cols="50">{$caracteristicas}</textarea>
         </div>
         <div class="form-group">
           <label for="precio">Precio $</label>
           <input type="number" class="form-control" id="precio" name="precio"  value="{$precio}" placeholder="$99.99">
+        </div>
+        <div class="form-group">
+          <label for="url">Url de la imagen</label>
+          <input type="text" class="form-control" id="url" name="url"  value="{$url_img}" placeholder="www.imagenes.com/imagen">
         </div>
         <div class="form-group">
           <label for="precio">Marca</label>
