@@ -43,7 +43,7 @@ class CelularesModel extends Model
     $sentencia->execute([$url,$id_celular]);
   }
   function getAllFromMarca($id_marca){
-    $sentencia = $this->db->prepare( "select * from celular WHERE id_marca=?");
+    $sentencia = $this->db->prepare( "select celular.* from celular, marca WHERE celular.id_marca=marca.id_marca AND marca.id_marca = ?");
     $sentencia->execute([$id_marca]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }

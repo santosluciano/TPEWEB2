@@ -26,6 +26,9 @@
       <a class="btn btn-primary btn-sm" href="crearMarca">Crear nueva marca</a>
       <a href="admin" type="button" class="btn btn-success btn-sm">Volver</a>
     </div>
+    {if !empty($estado) }
+      <div class="alert alert-{$alert}" role="alert">{$estado}</div>
+    {/if}
   </div>
 </div>
 {include file="../footer.tpl"}

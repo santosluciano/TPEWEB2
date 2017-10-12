@@ -35,7 +35,10 @@ h1{
   height: 80px;
   width: 1200px;
 }
-
+.contenedor-celular{
+  position: relative;
+  top: 50px;
+}
 .footer{
   background-color: grey;
   position: fixed;

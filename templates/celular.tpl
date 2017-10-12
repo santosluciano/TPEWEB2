@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container contenedor-celular">
   <div class="thumbnail">
     <div class="row">
       <div class="col-xs-12 col-md-4">

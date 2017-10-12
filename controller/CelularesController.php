@@ -32,73 +32,76 @@
     }
     public function store()
     {
-      $nombre = $_POST['nombre'];
-      $caracteristicas = $_POST['caracteristicas'];
-      $precio = $_POST['precio'];
-      $url = $_POST['url'];
-      $id_marca = $_POST['marca'];
-      $marcas = $this->modelMarca->getAll();
-      if(isset($_POST['marca']) && !empty($_POST['marca'])){
-        if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-          if(isset($_POST['precio']) && !empty($_POST['precio'])){
-            if(isset($_POST['url']) && !empty($_POST['url'])){
-              $this->modelCelular->store($id_marca,$nombre,$caracteristicas,$precio,$url);
-              header('Location: '.HOMECELULARES);
-            }else{
-            }
-            $this->view->errorFormCelular("La url es requerida", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"guardarCelular",'Crear','Crear celular');
-          }else{
-            $this->view->errorFormCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"guardarCelular",'Crear','Crear celular');
-          }
-        }else{
-          $this->view->errorFormCelular("El nombre es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"guardarCelular",'Crear','Crear celular');
+      try {
+        $this->excepcionesIsset();
+        try {
+          $this->excepcionesEmpty();
+          $this->modelCelular->store($_POST['marca'],$_POST['nombre'],$_POST['caracteristicas'],$_POST['precio'],$_POST['url']);
+          header('Location: '.HOMECELULARES);
+        } catch (Exception $e) {
+          $marcas = $this->modelMarca->getAll();
+          $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$_POST['url'],$marcas,$_POST['marca'],"guardarCelular",'Crear','Crear celular');
         }
-      }else{
-        $this->view->errorFormCelular("Imposible crear el celular, no hay marcas cargadas", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"guardarCelular",'Crear','Crear celular');
-        }
+      } catch (Exception $e) {
+        header('Location: '.HOMECELULARES);
+      }
+    }
+    private function excepcionesIsset(){
+      if(!(isset($_POST['marca'])&&isset($_POST['precio'])&&isset($_POST['nombre'])&&isset($_POST['url'])))
+        throw new Exception("Hay variables que no fueron seteadas");
+    }
+    private function excepcionesEmpty()
+    {
+      if(empty($_POST['marca']))
+        throw new Exception("Imposible crear el celular, no hay marcas cargadas");
+      if(empty($_POST['nombre']))
+        throw new Exception("El nombre es requerido");
+      if(empty($_POST['precio']))
+        throw new Exception("El precio es requerido");
+      if(empty($_POST['url']))
+        throw new Exception("La url es requerida");
     }
     public function update($params)
     {
-      $id_celular = $params[0];
-      $celular = $this->modelCelular->get($id_celular);
-      $nombre = $celular[0]['nombre'];
-      $caracteristicas = $celular[0]['caracteristicas'];
-      $precio = $celular[0]['precio'];
-      $url = $celular[0]['url_img'];
-      $id_marca = $celular[0]['id_marca'];
-      $marcas = $this->modelMarca->getAll();
-      $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$id_marca,$marcas);
+      try {
+        if (!isset($params[0]))
+          throw new Exception("No se envio el id del celular a modificar");
+          $id_celular = $params[0];
+          $celular = $this->modelCelular->get($id_celular);
+          $nombre = $celular[0]['nombre'];
+          $caracteristicas = $celular[0]['caracteristicas'];
+          $precio = $celular[0]['precio'];
+          $url = $celular[0]['url_img'];
+          $id_marca = $celular[0]['id_marca'];
+          $marcas = $this->modelMarca->getAll();
+          $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$id_marca,$marcas);
+      } catch (Exception $e) {
+        header('Location: '.HOMECELULARES);
+      }
     }
     public function set($params)
     {
-      $id_celular = $params[0];
-      $nombre = $_POST['nombre'];
-      $precio = $_POST['precio'];
-      $id_marca = $_POST['marca'];
-      $url = $_POST['url'];
-      $caracteristicas = $_POST['caracteristicas'];
-      $marcas = $this->modelMarca->getAll();
-      if(isset($_POST['marca']) && !empty($_POST['marca'])){
-        if(isset($_POST['nombre']) && !empty($_POST['nombre'])){
-          if(isset($_POST['precio']) && !empty($_POST['precio'])){
-            if(isset($_POST['url']) && !empty($_POST['url'])){
-              $this->modelCelular->setNombre($id_celular,$nombre);
-              $this->modelCelular->setCaracteristicas($id_celular,$caracteristicas);
-              $this->modelCelular->setPrecio($id_celular,$precio);
-              $this->modelCelular->setMarca($id_celular,$id_marca);
-              $this->modelCelular->setUrl_img($id_celular,$url);
+      {
+        try {
+          if (!isset($params[0]))
+            throw new Exception("No se envio el id del celular a modificar");
+          $this->excepcionesIsset();
+          $id_celular = $params[0];
+            try {
+              $this->excepcionesEmpty();
+              $this->modelCelular->setNombre($id_celular,$_POST['nombre']);
+              $this->modelCelular->setCaracteristicas($id_celular,$_POST['caracteristicas']);
+              $this->modelCelular->setPrecio($id_celular,$_POST['precio']);
+              $this->modelCelular->setMarca($id_celular,$_POST['marca']);
+              $this->modelCelular->setUrl_img($id_celular,$_POST['url']);
               header('Location: '.HOMECELULARES);
-            }else {
-                $this->view->errorFormCelular("La url es requerida", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"setCelular/$id_celular",'Modificar','Modificar celular');
+            } catch (Exception $e) {
+              $marcas = $this->modelMarca->getAll();
+              $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$_POST['url'],$marcas,$_POST['marca'],"setCelular/$id_celular",'Modificar','Modificar celular');
             }
-          }else{
-            $this->view->errorFormCelular("El precio es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"setCelular/$id_celular",'Modificar','Modificar celular');
-          }
-        }else{
-          $this->view->errorFormCelular("El nombre es requerido", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"setCelular/$id_celular",'Modificar','Modificar celular');
-      }
-      }else{
-      $this->view->errorFormCelular("Imposible moficar el celular, no hay marcas cargadas", $nombre, $caracteristicas,$precio,$url,$marcas,$id_marca,"setCelular/$id_celular",'Modificar','Modificar celular');
+          } catch (Exception $e) {
+          header('Location: '.HOMECELULARES);
+        }
       }
     }
   }

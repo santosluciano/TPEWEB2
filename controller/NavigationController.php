@@ -39,11 +39,16 @@
       }else{
         $celulares = $this->modelCelulares->getAll();
       }
-      if (!empty($celulares)){
+      $this->desplegarCelulares($celulares);
+    }
+    private function desplegarCelulares($celulares){
+      try {
+        if (empty($celulares))
+          throw new Exception('No se encontraron celulares');
         $marcas = $this->modelMarcas->getAll();
         $this->view->mostrarCelulares($celulares,$marcas);
-      }else{
-        $this->view->mostrarError("No se encontraron celulares");
+      } catch (Exception $e) {
+        $this->view->mostrarError($e->getMessage());
       }
     }
     public function showCelular($params)

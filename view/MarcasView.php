@@ -2,9 +2,21 @@
   class MarcasView extends View
   {
     function mostrarMarcas($marcas){
-      $this->smarty->assign('marcas',$marcas);
-      $this->smarty->assign('encabezado','Listado de Marcas');
+      $this->assignarIndex($marcas,'','info');
       $this->smarty->display('templates/Admin/marcas.tpl');
+    }
+    function mostrarEstado($marcas,$estado,$alert){
+      $this->assignarIndex($marcas,$estado,$alert);
+      $this->smarty->display('templates/Admin/marcas.tpl');
+    }
+    private function assignarIndex($marcas,$estado,$alert){
+      $this->smarty->assign('encabezado','Listado de Marcas');
+      $this->smarty->assign('marcas',$marcas);
+      $this->assignarEstado($estado,$alert);
+    }
+    private function assignarEstado($estado,$alert){
+      $this->smarty->assign('estado',$estado);
+      $this->smarty->assign('alert',$alert);
     }
     function mostrarCrearMarca(){
       $this->assignarForm();

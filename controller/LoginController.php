@@ -18,18 +18,26 @@ class LoginController extends Controller
   {
       $userName = $_POST['usuario'];
       $password = $_POST['password'];
+      if (!empty($user)){
+        throw new Exception('No se ingreso nombre de usuario');
+      }
       if(!empty($userName) && !empty($password)){
         $user = $this->model->getUsuario($userName);
-        if((!empty($user)) && password_verify($password, $user[0]['password'])) {
-            session_start();
-            $_SESSION['USER'] = $userName;
-            $_SESSION['LAST_ACTIVITY'] = time();
-            header('Location: '.admin);
+        try {
+          if (empty($user)){
+            throw new Exception('No existe el usuario');
+          }
+          if (!password_verify($password, $user[0]['password'])){
+            throw new Exception('Contraseña incorrecta');
+          }
+          session_start();
+          $_SESSION['USER'] = $userName;
+          $_SESSION['LAST_ACTIVITY'] = time();
+          header('Location: '.admin);
+        } catch (Exception $e) {
+          $this->view->mostrarLogin($e->getMessage());
         }
-        else{
-            $this->view->mostrarLogin('Usuario o Password incorrectos');
-        }
-      }
+     }
   }
   public function destroy()
   {

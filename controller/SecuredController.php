@@ -22,10 +22,11 @@ class SecuredController extends Controller
   }
   function isConnect(){
     session_start();
-    if(isset($_SESSION['USER'])){
+    try {
+      if(!isset($_SESSION['USER']))
+       throw new Exception("La conexion expiro");
       return true;
-    }
-    else {
+    } catch (Exception $e) {
       return false;
     }
   }
