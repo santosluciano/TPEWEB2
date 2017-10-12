@@ -34,6 +34,9 @@ $(document).ready(function () {
       success: function(result) {
         $(".cuerpo").html(result);
         asignarProductos();
+      },
+      error: function(){
+        $(".cuerpo").html("<h1>Error - Request Failed!</h1>");
       }
     });
     let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
