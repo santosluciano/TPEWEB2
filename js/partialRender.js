@@ -25,6 +25,7 @@ $(document).ready(function () {
     $.post(accion, serializedData,
                  function(response) {
 			      		$(".cuerpo").html(response);
+                asignarProductos();
     });
   });
   function llamada_ajax(accion){
