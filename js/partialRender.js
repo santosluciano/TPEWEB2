@@ -1,6 +1,6 @@
 $(document).ready(function () {
   llamada_ajax("home");
-  $(document).on('click','.partial',function(event){
+  $('.partial').on('click',function(event){
     event.preventDefault();
     let accion = this.href;
     $('.active').removeClass('active');
@@ -11,11 +11,13 @@ $(document).ready(function () {
     }
     llamada_ajax(accion);
   });
-  $(document).on('click','.partialContain',function(event){
-    event.preventDefault();
-    let accion = this.href;
-    llamada_ajax(accion);
-  });
+  function asignarProductos(){
+    $('.partialContain').on('click',function(event){
+      event.preventDefault();
+      let accion = this.href;
+      llamada_ajax(accion);
+    });
+  }
   $('.partialSearch').on('submit',function(event){
     event.preventDefault();
     let accion = this.action;
@@ -30,6 +32,7 @@ $(document).ready(function () {
       url:accion,
       success: function(result) {
         $(".cuerpo").html(result);
+        asignarProductos();
       }
     });
     let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
