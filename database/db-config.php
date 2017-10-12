@@ -7,4 +7,6 @@ define('DB_USER','root');
 define('DB_PASSWORD','');
 //Nombre del host
 define('DB_HOST',"localhost");
+//Nombre archivo de base de datos
+define('DB_ARCHIVO',"schema.sql");
  ?>

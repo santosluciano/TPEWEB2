@@ -11,16 +11,16 @@
         .'dbname='.DB_NAME.';charset=utf8'
         , DB_USER, DB_PASSWORD);
       } catch (PDOException $e) {
-        $this->buildDDBBfromFile('db_celulares','schema.sql');
+        $this->buildDDBBfromFile(DB_NAME,DB_ARCHIVO);
       }
     }
-    public function buildDDBBfromFile($dbname,$dbfile)
+    public function buildDDBBfromFile()
     {
       try {
         $this->db = new PDO('mysql:host='.DB_HOST , DB_USER, DB_PASSWORD);
-        $this->db->exec('CREATE DATABASE IF NOT EXISTS '.$dbname); //Creacion SQL
-        $this->db->exec('USE '.$dbname); //Sentencia para usar por defecto la BBDD
-        $queries = $this->loadSQLSchema($dbfile); //Cargar el archivo de texto
+        $this->db->exec('CREATE DATABASE IF NOT EXISTS '.DB_NAME); //Creacion SQL
+        $this->db->exec('USE '.DB_NAME); //Sentencia para usar por defecto la BBDD
+        $queries = $this->loadSQLSchema(DB_ARCHIVO); //Cargar el archivo de texto
         $i = 0; // Ejecuto todos los queries
         while ($i < count($queries) && strlen($this->db->errorInfo()[2]) == 0)
         {
@@ -32,15 +32,15 @@
       }
     }
     public function loadSQLSchema($dbfile){
-      $querys = fopen("database/$dbfile", "r+");
+      $queries = fopen("database/$dbfile", "r+");
       $sql = "";
-      while (!feof($querys)) {
-        $linea = fgets($querys);
+      while (!feof($queries)) {
+        $linea = fgets($queries);
         $sql .= $linea;
       }
-      fclose($querys);
-      $querys = explode(";", $sql);
-      return $querys;
+      fclose($queries);
+      $queries = explode(";", $sql);
+      return $queries;
     }
   }
  ?>
