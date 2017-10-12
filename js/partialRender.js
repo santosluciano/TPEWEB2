@@ -10,13 +10,11 @@ $(document).ready(function () {
       $(this).parent().addClass('active');
     }
     llamada_ajax(accion);
-    $(".cuerpo").html("Cargando...");
   });
   $(document).on('click','.partialContain',function(event){
     event.preventDefault();
     let accion = this.href;
     llamada_ajax(accion);
-    $(".cuerpo").html("Cargando...");
   });
   $('.partialSearch').on('submit',function(event){
     event.preventDefault();
@@ -34,5 +32,7 @@ $(document).ready(function () {
         $(".cuerpo").html(result);
       }
     });
+    let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
+    $(".cuerpo").html(load);
   }
 });

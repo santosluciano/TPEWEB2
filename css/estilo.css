@@ -30,15 +30,6 @@ h1{
   text-align: center;
 }
 
-.attr2{
-  color: white;
-}
-
-.attr2 p{
-  background-color: grey;
-  text-shadow: 5px 5px 4px black;
-}
-
 #tarjetas{
   margin-top: 65px;
   height: 80px;
@@ -59,4 +50,7 @@ h1{
 }
 .panel-admin{
   background-color: white;
+}
+.precio-celular{
+  margin-top:0px;
 }
