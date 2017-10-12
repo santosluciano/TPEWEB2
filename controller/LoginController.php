@@ -2,7 +2,7 @@
 include_once('model/LoginModel.php');
 include_once('view/LoginView.php');
 
-class LoginController extends Controller
+class LoginController extends SecuredController
 {
 
   function __construct()
@@ -12,7 +12,10 @@ class LoginController extends Controller
   }
   public function index()
   {
-    $this->view->mostrarLogin();
+    if (!$this->isConnect())
+      $this->view->mostrarLogin();
+    else
+      header('Location: '.admin);
   }
   public function verify()
   {

@@ -52,7 +52,7 @@
                     <label for="pwd">Contraseña</label>
                     <input type="password" class="form-control" id="pwd" name ="password" placeholder="******" required>
                   </div>
-                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                  <button type="submit" class="btn btn-info">Ingresar</button>
                 </form>
               </div>
             </ul>
