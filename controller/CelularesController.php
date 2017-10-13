@@ -1,6 +1,6 @@
 <?php
-  include_once('model/CelularesModel.php');
-  include_once('view/CelularesView.php');
+  require_once('model/CelularesModel.php');
+  require_once('view/CelularesView.php');
   /**
    *
    */
@@ -19,7 +19,7 @@
       $marcas = $this->modelMarca->getAll();
       $this->view->mostrarCelulares($celulares,$marcas);
     }
-    public function destroy($params)
+    public function destroy($params = [])
     {
       $id_celular = $params[0];
       $this->modelCelular->delete($id_celular);
@@ -61,25 +61,25 @@
       if(empty($_POST['url']))
         throw new Exception("La url es requerida");
     }
-    public function update($params)
+    public function update($params = [])
     {
       try {
         if (!isset($params[0]))
           throw new Exception("No se envio el id del celular a modificar");
           $id_celular = $params[0];
           $celular = $this->modelCelular->get($id_celular);
-          $nombre = $celular[0]['nombre'];
-          $caracteristicas = $celular[0]['caracteristicas'];
-          $precio = $celular[0]['precio'];
-          $url = $celular[0]['url_img'];
-          $id_marca = $celular[0]['id_marca'];
+          $nombre = $celular['nombre'];
+          $caracteristicas = $celular['caracteristicas'];
+          $precio = $celular['precio'];
+          $url = $celular['url_img'];
+          $id_marca = $celular['id_marca'];
           $marcas = $this->modelMarca->getAll();
           $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$id_marca,$marcas);
       } catch (Exception $e) {
         header('Location: '.HOMECELULARES);
       }
     }
-    public function set($params)
+    public function set($params = [])
     {
       {
         try {

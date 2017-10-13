@@ -1,6 +1,6 @@
 <?php
-  include_once('model/MarcasModel.php');
-  include_once('view/MarcasView.php');
+  require_once('model/MarcasModel.php');
+  require_once('view/MarcasView.php');
   /**
    *
    */
@@ -62,8 +62,8 @@
           throw new Exception("Falta el id de la marca a modificar");
         $id_marca = $params[0];
         $marca = $this->model->get($id_marca);
-        $nombre = $marca[0]['nombre'];
-        $url = $marca[0]['url_img'];
+        $nombre = $marca['nombre'];
+        $url = $marca['url_img'];
         $this->view->mostrarActualizarMarca($nombre,$url,$id_marca);
       } catch (Exception $e) {
         header('Location: '.HOMEMARCAS);

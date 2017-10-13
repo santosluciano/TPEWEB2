@@ -12,7 +12,7 @@
     function get($id_marca){
       $sentencia = $this->db->prepare( "select * from marca where id_marca = ? limit 1");
       $sentencia->execute([$id_marca]);
-      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+      return $sentencia->fetch(PDO::FETCH_ASSOC);
     }
     function delete($id_marca){
       $sentencia = $this->db->prepare( "delete from marca where id_marca=?");

@@ -2,15 +2,15 @@
 define('ACTION', 0);
 define('PARAMS', 1);
 
-include_once 'config/ConfigApp.php';
-include_once 'model/Model.php';
-include_once 'view/View.php';
-include_once 'controller/Controller.php';
-include_once 'controller/SecuredController.php';
-include_once 'controller/NavigationController.php';
-include_once 'controller/MarcasController.php';
-include_once 'controller/CelularesController.php';
-include_once 'controller/LoginController.php';
+require_once 'config/ConfigApp.php';
+require_once 'model/Model.php';
+require_once 'view/View.php';
+require_once 'controller/Controller.php';
+require_once 'controller/SecuredController.php';
+require_once 'controller/NavigationController.php';
+require_once 'controller/MarcasController.php';
+require_once 'controller/CelularesController.php';
+require_once 'controller/LoginController.php';
 
 
 function parseURL($url)
@@ -33,7 +33,7 @@ if(isset($_GET['action'])){
             echo $controller->$metodo($params);
         }
         else{
-            echo $controller->$metodo($params[0] = "");
+            echo $controller->$metodo();
         }
     }
 }

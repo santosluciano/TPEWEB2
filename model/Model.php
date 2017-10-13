@@ -1,5 +1,5 @@
 <?php
-  include_once("database/db-config.php");
+  require_once("database/db-config.php");
   class Model
   {
     protected $db;

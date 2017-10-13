@@ -1,7 +1,7 @@
 <?php
-  include_once('model/MarcasModel.php');
-  include_once('model/CelularesModel.php');
-  include_once('view/NavigationView.php');
+  require_once('model/MarcasModel.php');
+  require_once('model/CelularesModel.php');
+  require_once('view/NavigationView.php');
   /**
    *
    */
@@ -55,7 +55,7 @@
     {
       $idCelular = $params[0];
       $celular = $this->modelCelulares->get($idCelular);
-      $marca = $this->modelMarcas->get($celular[0]['id_marca']);
+      $marca = $this->modelMarcas->get($celular['id_marca']);
       $this->view->mostrarCelular($celular,$marca);
     }
     public function admin()

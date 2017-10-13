@@ -1,6 +1,6 @@
 <?php
-include_once('model/LoginModel.php');
-include_once('view/LoginView.php');
+require_once('model/LoginModel.php');
+require_once('view/LoginView.php');
 
 class LoginController extends SecuredController
 {
