@@ -28,7 +28,11 @@
         </ul>
         <form class="navbar-form navbar-left partialSearch" action="celulares/buscar">
           <div class="form-group">
-            <input type="text" class="form-control" name="key" placeholder="Modelo Celular">
+            <div class="dropdown dropdown-busqueda">
+              <input type="search" required autocomplete="off" class="dropdown-toggle form-control" id="buscador" placeholder="Modelo Celular" name="key" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <ul class="dropdown-menu busqueda" aria-labelledby="buscador">
+              </ul>
+            </div>
           </div>
           <button type="submit" class="btn btn-success">BUSCAR</button>
         </form>

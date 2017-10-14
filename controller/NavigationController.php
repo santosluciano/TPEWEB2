@@ -28,7 +28,12 @@
     {
       if (isset($params[0])){
         if ($params[0] == "buscar" && isset($_POST['key'])){
-          $celulares = $this->modelCelulares->searchByName($_POST['key']);
+          if (isset($params[1])&&($params[1]=="sugerencia")){
+            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByNameLimit($_POST['key']):[];
+          }
+          else {
+            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key']):[];
+          }
         }else if ($params[0] == "ordenados"){
           if ($params[1] == "marca"){
             $celulares = $this->modelCelulares->getAllInOrder();
@@ -39,7 +44,12 @@
       }else{
         $celulares = $this->modelCelulares->getAll();
       }
-      $this->desplegarCelulares($celulares);
+      if (isset($params[1])&&($params[1]=="sugerencia")){
+        $marcas = $this->modelMarcas->getAll();
+        $this->view->mostrarSugerencias($celulares,$marcas);
+      }else {
+        $this->desplegarCelulares($celulares);
+      }
     }
     private function desplegarCelulares($celulares){
       try {

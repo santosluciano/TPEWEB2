@@ -28,6 +28,11 @@
       $this->smarty->assign('error',$error);
       return $this->smarty->display('templates/error.tpl');
     }
+    function mostrarSugerencias($celulares,$marcas){
+      $this->smarty->assign('celulares',$celulares);
+      $this->smarty->assign('marcas',$marcas);
+      return $this->smarty->display('templates/buscador.tpl');
+    }
   }
 
  ?>

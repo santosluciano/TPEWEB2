@@ -27,6 +27,24 @@ $(document).ready(function () {
 			      		$(".cuerpo").html(response);
                 asignarProductos();
     });
+    cargando();
+  });
+  $('.partialSearch').on('keyup',function(event){
+    event.preventDefault();
+    $('.dropdown-busqueda').addClass('open');
+    let accion = this.action+"/sugerencia";
+    let serializedData = $(this).serialize();
+    if($("#buscador").val()!==''){
+      $.post(accion, serializedData,
+                   function(response) {
+                  $(".busqueda").html(response);
+                  asignarProductos();
+    });
+    let load = '<li><a class="fa fa-spinner fa-pulse fa-fw"></a></li>';
+    $(".busqueda").html(load);
+  }else {
+    $('.dropdown-busqueda').removeClass('open');
+  }
   });
   function llamada_ajax(accion){
     $.ajax({
@@ -39,6 +57,13 @@ $(document).ready(function () {
         $(".cuerpo").html("<h1>Error - Request Failed!</h1>");
       }
     });
+    cargando();
+  }
+  $('.dropdown-busqueda').on('click',function (event) {
+    event.preventDefault();
+    $(this).toggleClass('open');
+  });
+  function cargando() {
     let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
     $(".cuerpo").html(load);
   }

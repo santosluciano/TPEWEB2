@@ -52,6 +52,11 @@ class CelularesModel extends Model
     $sentencia->execute(["%$nombre%"]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
+  function searchByNameLimit($nombre){
+    $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ? limit 4");
+    $sentencia->execute(['%'.$nombre.'%']);
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+  }
   function getAllInOrder(){
     $sentencia = $this->db->prepare( "select * from celular ORDER BY celular.id_marca ASC");
     $sentencia->execute();
