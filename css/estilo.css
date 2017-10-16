@@ -48,12 +48,18 @@ h1{
   color: white;
   text-align: center;
 }
-.nav-stacked{
+.nav-stacked,.nota{
   text-align: center;
+  top: 50px;
 }
 .panel-admin{
   background-color: white;
 }
 .precio-celular{
   margin-top:0px;
+}
+.estadisticasCelular{
+  position: relative;
+  top: 40px;
+  margin-bottom: 40px;
 }

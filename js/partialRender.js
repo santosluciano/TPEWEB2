@@ -15,7 +15,11 @@ $(document).ready(function () {
     $('.partialContain').on('click',function(event){
       event.preventDefault();
       let accion = this.href;
-      llamada_ajax(accion);
+      if ($(this).hasClass('contenedor-celular')){
+        llamada_ajax_grafico(accion);
+      }else{
+        llamada_ajax(accion);
+      }
     });
   }
   $('.partialSearch').on('submit',function(event){
@@ -29,6 +33,20 @@ $(document).ready(function () {
     });
     cargando();
   });
+  function llamada_ajax_grafico(accion){
+    $.ajax({
+      url:accion,
+      success: function(result) {
+        $(".cuerpo").html(result);
+        asignarProductos();
+        generarGrafico();
+      },
+      error: function(){
+        $(".cuerpo").html("<h1>Error - Request Failed!</h1>");
+      }
+    });
+    cargando();
+  }
   $('.partialSearch').on('keyup',function(event){
     event.preventDefault();
     $('.dropdown-busqueda').addClass('open');

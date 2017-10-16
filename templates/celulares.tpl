@@ -6,7 +6,7 @@
   	<div class="col-md-12">
       {foreach from=$celulares item=celular}
   		<div class="col-sm-6 col-md-4">
-  			<a class="thumbnail partialContain" href="celular/{$celular['id_celular']}">
+  			<a class="thumbnail partialContain contenedor-celular" href="celular/{$celular['id_celular']}">
           {foreach from=$marcas item=marca}
           {if $marca.id_marca == $celular.id_marca}
   				    <h4 class="text-center"><span class="label label-info">{$marca.nombre}</span></h4>

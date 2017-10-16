@@ -1,19 +1,32 @@
   function generarGrafico(){
-    let marksCanvas = document.getElementById("marksChart");
-    let marksData = {
-      labels: ["English", "Maths", "Physics", "Chemistry", "Biology", "History"],
+    let celularCanvas = document.getElementById("EstadisticasCelular");
+    let celularData = {
+      labels: ["RENDIMIENTO", "CONECTIVIDAD", "DISEÑO", "PANTALLA", "CAMARA"],
       datasets: [{
-        label: "Student A",
-        backgroundColor: "rgba(200,0,0,0.2)",
-        data: [65, 75, 70, 80, 60, 80]
-      }, {
-        label: "Student B",
-        backgroundColor: "rgba(0,0,200,0.2)",
-        data: [54, 65, 60, 70, 70, 75]
+        backgroundColor: "rgba(0,88,255,0.5)",
+        data: [8.5, 8.0, 8.0, 9.1, 5]
       }]
     };
-    var radarChart = new Chart(marksCanvas, {
+    let configuracion = {
+      legend: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: 'Estadisticas Mundo Celular'
+      }, scale: {
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 10,
+            stepSize: 10,
+            display:false
+          }
+        }
+    }
+    let radarChart = new Chart(celularCanvas, {
       type: 'radar',
-      data: marksData
+      data: celularData,
+      options: configuracion
     });
   }
