@@ -60,6 +60,9 @@ h1{
 }
 .estadisticasCelular{
   position: relative;
-  top: 40px;
+  top: 20px;
   margin-bottom: 40px;
+}
+#antutu{
+  text-align: center;
 }

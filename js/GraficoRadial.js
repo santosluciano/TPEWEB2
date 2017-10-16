@@ -14,15 +14,16 @@
               title: {
                 display: true,
                 text: 'Estadisticas Mundo Celular'
-      }, scale: {
-          ticks: {
-            beginAtZero: true,
-            min: 0,
-            max: 10,
-            stepSize: 10,
-            display:false
-          }
-        }
+              },
+              scale: {
+                ticks: {
+                  beginAtZero: true,
+                  min: 0,
+                  max: 10,
+                  stepSize: 10,
+                  display:false
+                }
+              } 
     }
     let radarChart = new Chart(celularCanvas, {
       type: 'radar',
