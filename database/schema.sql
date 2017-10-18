@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2017 a las 22:47:53
+-- Tiempo de generación: 19-10-2017 a las 01:40:52
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.8
 
@@ -47,6 +47,39 @@ INSERT INTO `celular` (`id_celular`, `nombre`, `caracteristicas`, `precio`, `url
 (3, 'Galaxy S8', 'El Samsung Galaxy S8 es el nuevo flagship de Samsung que apuesta fuerte en un frente sin bordes de pantalla. Entre sus características se destaca la pantalla Infinity Super AMOLED dual-edge de 5.8 pulgadas y resolución QHD+, procesador Snapdragon 835 o Exynos 8895, 4GB de RAM, 64GB de almacenamiento interno, resistencia al agua IP68, carga inalámbrica, cámara Dual Pixel de 12 megapixels, cámara frontal de 8 megapixels, lector de huellas dactilares, lector de iris y Android 7.0 Nougat.', 20000, 'https://image.ibb.co/htCkmG/S8.png', 4),
 (4, 'G Flex2', 'El LG G Flex2 es el sucesor del G Flex del año pasado, esta vez acentuando su diseño curvo en cuatro puntos estratégicos a lo largo del smartphone. Por dentro, se trata de una verdadera bestia, con un procesador Snapdragon 810 quad-core de 64 bits, pantalla 1080p de 5.5 pulgadas, panel trasero autorreparable, y batería de 3000 mAh de carga rápida.', 10699, 'https://image.ibb.co/jeuLLb/FLEX.png', 1),
 (5, 'P10', 'El Huawei P10 es el sucesor del Huawei P9, manteniendo muchas de las características. El P10 cuenta con una pantalla Full HD de 5.1 pulgadas, procesador octa-core Kirin 960, 4GB de RAM, 64GB de almacenamiento interno expandible, cámara dual Leica de dos sensores: 13 MP y 20 MP monocromático, mientras que al frente cuenta con una cámara de 8 megapixels. El Huawei P10 también tiene una batería de 3200 mAh con carga rápida Super Charge, y corre Android 7.0 Nougat con la interfaz EMUI 5.1.', 13999, 'https://image.ibb.co/n14y6G/P10.png', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `especificacion_celular`
+--
+
+CREATE TABLE `especificacion_celular` (
+  `id_celular` int(11) NOT NULL,
+  `pantalla` varchar(50) NOT NULL,
+  `pantalla_dimension` varchar(50) NOT NULL,
+  `peso` double NOT NULL,
+  `procesador` varchar(100) NOT NULL,
+  `ram` varchar(50) NOT NULL,
+  `memoria` varchar(50) NOT NULL,
+  `sistema_operativo` varchar(50) NOT NULL,
+  `conectividad` varchar(2550) NOT NULL,
+  `capacidad_bateria` int(11) NOT NULL,
+  `camara` varchar(150) NOT NULL,
+  `lector_huella` tinyint(1) DEFAULT NULL,
+  `supercarga` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `especificacion_celular`
+--
+
+INSERT INTO `especificacion_celular` (`id_celular`, `pantalla`, `pantalla_dimension`, `peso`, `procesador`, `ram`, `memoria`, `sistema_operativo`, `conectividad`, `capacidad_bateria`, `camara`, `lector_huella`, `supercarga`) VALUES
+(1, 'LCD IPS touchscreen capacitivo, 16M colores', '720 x 1280 px, 5.0 pulgadas', 142, 'Qualcomm Snapdragon 415 octa-core 1.5GHz, GPU Adreno 405', '2 GB', '16 GB memoria interna, microSD, hasta 32 GB', 'Android OS, v5.1.1 Lollipop', 'GSM 900 / 1800 / 1900  - HSDPA - LTE', 2750, '13 MP, 4128 x 3096 pixels, flash LED, cámara front', 0, 0),
+(2, 'IPS FullHD ', '5 pulgadas 1.920 x 1.080 píxeles ', 145, 'Snapdragon 430 octa-core a 1,4 GHz, GPU Adreno 505 a 450 MHz', '2 GB', '16 GB + MicroSD hasta 128 GB', 'Android 7.0 Nougat', '4G LTE Cat 4, WiFi a/b/g/n, Bluetooth 4.2', 2800, '13 MP, lente f/2.0, flash LED, Camara frontal 5 MP', 1, 1),
+(3, 'Pantalla Super AMOLED curva', '1.440 x 2.960 píxeles,  5.8 pulgadas', 155, 'Qualcomm Snapdragon 835 Octacore (2,3 Ghz + 1,7 Ghz) 64 Bit', '4 GB', '64 GB (UFS 2.1), microSD (hasta 256 GB)', 'Android 7.0 con TouchWiz', 'LTE Cat.16, Wi-Fi 802.11 a/b/g/n/ac (2.4/5GHz)', 3000, '12 megapíxeles con una lente con OIS y f/1,7  Fron', 1, 1),
+(4, 'P-OLED curva, touchscreen capacitivo, 16M colores', '1080 x 1920 pixels, 5.5 pulgadas', 152, 'Qualcomm Snapdragon 810 con 64-bit Octa-Core', '2GB LPDDR4', '32 GB memoria interna, microSD, hasta 128GB', 'Android OS, v5.0.1 Lollipop', 'Wi-Fi 802.11 a/b/g/n/ac, 4G LTE Cat. 6', 3000, '13 MP, flash LED dual, cámara frontal 2.1 MP', 0, 0),
+(5, 'IPS FullHD ', '1920x1080 (432 ppp), 5.15 pulgadas', 145, 'HiSilicon Kirin 960 (4 x Cortex A-73 2.36 GHz, 4 x Cortex A-53 a 1.84 GHz), Mali G-71', '4 GB LPDDR4', '64 GB (ampliables hasta 256 GB más vía MicroSD)', 'Android 7.0 con EMUI 5.1', 'LTE Cat. 12 (600/100 Mbps), Bluetooth 4.2, WiFi 802.11 a/b/g/n/ac', 3200, 'Trasera dual, un sensor de 12 MP (Sony IMX286 Exmor RS, f/2.2, color, con OIS)\r\ny otro de 20 MP (f/2.2, monocromo). Cámara frontal de 8 MP (f/1.9)', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -101,6 +134,13 @@ ALTER TABLE `celular`
   ADD KEY `id_marca` (`id_marca`);
 
 --
+-- Indices de la tabla `especificacion_celular`
+--
+ALTER TABLE `especificacion_celular`
+  ADD PRIMARY KEY (`id_celular`),
+  ADD KEY `id_celular` (`id_celular`) USING BTREE;
+
+--
 -- Indices de la tabla `marca`
 --
 ALTER TABLE `marca`
@@ -140,6 +180,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `celular`
   ADD CONSTRAINT `celular_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`);
+
+--
+-- Filtros para la tabla `especificacion_celular`
+--
+ALTER TABLE `especificacion_celular`
+  ADD CONSTRAINT `especificacion_celular_ibfk_1` FOREIGN KEY (`id_celular`) REFERENCES `celular` (`id_celular`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

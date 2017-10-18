@@ -23,7 +23,10 @@ class ConfigApp{
     'crearCelular' => 'CelularesController#create',
     'guardarCelular' => 'CelularesController#store',
     'modificarCelular' => 'CelularesController#update',
-    'setCelular' => 'CelularesController#set'
+    'setCelular' => 'CelularesController#set',
+    'especificacion' => 'CelularesController#showEspecificaciones',
+    'crearEspecificacion' => 'CelularesController#createEspecificacion',
+    'guardarEspecificacion' => 'CelularesController#storeEspecificacion'
   ];
 }
 

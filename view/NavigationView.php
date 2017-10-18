@@ -15,9 +15,10 @@
       $this->smarty->assign('marcas',$marcas);
       return $this->smarty->display('templates/celulares.tpl');
     }
-    function mostrarCelular($celular,$marca){
+    function mostrarCelular($celular,$marca,$especificacion){
       $this->smarty->assign('celular',$celular);
       $this->smarty->assign('marca',$marca);
+      $this->smarty->assign('especificacion',$especificacion);
       return $this->smarty->display('templates/celular.tpl');
     }
     function mostrarPanelAdmin(){

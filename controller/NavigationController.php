@@ -57,16 +57,25 @@
           throw new Exception('No se encontraron celulares');
         $marcas = $this->modelMarcas->getAll();
         $this->view->mostrarCelulares($celulares,$marcas);
+        } catch (Exception $e) {
+        $this->view->mostrarError($e->getMessage());
+        }
+    }
+    public function showCelular($params = [])
+    {
+      try{
+        if (!isset($params[0]))
+          throw new Exception('Celular invalido');
+        $idCelular = $params[0];
+        $celular = $this->modelCelulares->get($idCelular);
+        $especificacion = $this->modelCelulares->getEspecificacion($idCelular);
+        if (empty($celular))
+          throw new Exception('Celular invalido');
+        $marca = $this->modelMarcas->get($celular['id_marca']);
+        $this->view->mostrarCelular($celular,$marca,$especificacion);
       } catch (Exception $e) {
         $this->view->mostrarError($e->getMessage());
       }
-    }
-    public function showCelular($params)
-    {
-      $idCelular = $params[0];
-      $celular = $this->modelCelulares->get($idCelular);
-      $marca = $this->modelMarcas->get($celular['id_marca']);
-      $this->view->mostrarCelular($celular,$marca);
     }
     public function admin()
     {

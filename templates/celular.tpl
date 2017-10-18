@@ -31,13 +31,24 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="especificaciones">
+          {if (!empty($especificacion))}
             <ul class="list-group">
-              <li class="list-group-item">Cras justo odio</li>
-              <li class="list-group-item">Dapibus ac facilisis in</li>
-              <li class="list-group-item">Morbi leo risus</li>
-              <li class="list-group-item">Porta ac consectetur ac</li>
-              <li class="list-group-item">Vestibulum at eros</li>
+              <li class="list-group-item">TIPO PANTALLA: {$especificacion['pantalla']}</li>
+              <li class="list-group-item">RESOLUCION PANTALLA: {$especificacion['pantalla_dimension']}</li>
+              <li class="list-group-item">PESO: {$especificacion['peso']} gr.</li>
+              <li class="list-group-item">PROCESADOR: {$especificacion['procesador']}</li>
+              <li class="list-group-item">MEMORIA RAM: {$especificacion['ram']}</li>
+              <li class="list-group-item">MEMORIA INTERNA: {$especificacion['memoria']}</li>
+              <li class="list-group-item">SISTEMA OPERATIVO: {$especificacion['sistema_operativo']}</li>
+              <li class="list-group-item">CONECTIVIDAD: {$especificacion['conectividad']}</li>
+              <li class="list-group-item">BATERIA: {$especificacion['capacidad_bateria']} mAh</li>
+              <li class="list-group-item">CAMARA: {$especificacion['camara']}</li>
+              <li class="list-group-item">LECTOR DE HUELLA: {if $especificacion['lector_huella']}SI{else}NO{/if}</li>
+              <li class="list-group-item">SUPERCARGA: {if $especificacion['supercarga']}SI{else}NO{/if}</li>
             </ul>
+          {else}
+            DISCULPE, ESPECIFICACIONES NO CARGADAS
+          {/if}
         </div>
         <div role="tabpanel" class="tab-pane" id="reviews">
           <div class="panel panel-primary">

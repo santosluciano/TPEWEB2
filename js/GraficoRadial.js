@@ -1,3 +1,4 @@
+  //Genera el grafico que se mostrara con las estadisticas del celular
   function generarGrafico(){
     let celularCanvas = document.getElementById("EstadisticasCelular");
     let celularData = {

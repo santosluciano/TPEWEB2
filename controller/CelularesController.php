@@ -104,5 +104,54 @@
         }
       }
     }
+    public function showEspecificaciones($params = [])
+    {
+      $id_celular = $params[0];
+      $celular = $this->modelCelular->get($id_celular);
+      try{
+        if (empty($celular))
+          throw new Exception("error en la id del celular");
+        $especificacion = $this->modelCelular->getEspecificacion($id_celular);
+        $this->view->mostrarEspecificacion($celular,$especificacion);
+      }catch (Exception $e){
+              
+      }
+    }
+    public function createEspecificacion($params = [])
+    {
+      $id_celular = $params['0'];
+      $this->view->mostrarCrearEspecificacion($id_celular);
+    }    
+    public function storeEspecificacion($params = [])
+    {
+      try {
+        $this->excepcionesIssetEspecificaciones();
+        if (empty($params))
+          throw new Exception("Celular no valido");
+        $especificaciones['0'] = $params['0'];
+        $i=1;
+        foreach($_POST as $v){
+          $especificaciones[$i] = $v;
+          $i++;
+        }    
+        $especificaciones['11'] = (isset($_POST['lector_huella']))?1:0;
+        $especificaciones['12'] = (isset($_POST['supercarga']))?1:0;  
+        foreach($especificaciones as $v){
+          echo $v;
+        }        
+        $this->modelCelular->storeEspecificacion($especificaciones);
+        header('Location: '.HOMECELULARES);
+      } catch (Exception $e) {
+        header('Location: '.HOMECELULARES);
+      } 
+    }
+    private function excepcionesIssetEspecificaciones(){
+      if(!(isset($_POST['pantalla'])&&isset($_POST['pantalla_dimension'])&&isset($_POST['peso'])&&isset($_POST['procesador'])))
+        throw new Exception("Hay variables que no fueron seteadas");
+      if(!(isset($_POST['ram'])&&isset($_POST['memoria'])&&isset($_POST['sistema_operativo'])&&isset($_POST['conectividad'])))
+        throw new Exception("Hay variables que no fueron seteadas");
+      if(!(isset($_POST['capacidad_bateria'])&&isset($_POST['camara'])))
+        throw new Exception("Hay variables que no fueron seteadas");
+    }
   }
  ?>

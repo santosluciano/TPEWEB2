@@ -28,6 +28,7 @@
               {/foreach}
               <td><a href="modificarCelular/{$celular['id_celular']}" class="fa fa-pencil"></a></td>
               <td><a href="eliminarCelular/{$celular['id_celular']}" class="fa fa-trash-o"></a></td>
+              <td><a href="especificacion/{$celular['id_celular']}">Especificaciones</a></td>
             </tr>
             {/foreach}
           </tbody>
