@@ -1,4 +1,4 @@
-<div class="container contenedor-celular">
+<div class="container tarjeta-celular">
   <div class="thumbnail">
     <div class="row">
       <div class="col-xs-12 col-md-4">
@@ -12,12 +12,13 @@
         <h4><span class="label label-default">PRECIO ${$celular['precio']}</span></h4>
        </div>
        <div class="col-md-4 estadisticasCelular">
-         <h4 class="nota"><span class="label label-primary">NOTA MUNDO CELULAR: 10</span></h4>
-         <h4 class="nota"><span class="label label-info">NOTA USUARIOS: 10</span></h4>
+         <h4 class="nota"><span class="label label-primary">NOTA MUNDO CELULAR: <span class="nota-celular"></span></span></h4>
+         <h4 class="nota"><span class="label label-info">NOTA USUARIOS: <span class="nota-usuarios"></span></span></h4>
          <div id="antutu">
-          <span class="label label-danger">ANTUTU V6</span><img src="images/antutu.png" alt=""><span class="badge">2000</span>
+          <span class="label label-danger">ANTUTU V6</span><img src="images/antutu.png" alt=""><span class="badge puntaje-antutu"></span>
          </div>
-         <canvas id="EstadisticasCelular"></canvas>
+         <div class="graficoCelular">
+         </div>
        </div>
      </div>
    </div>
@@ -53,14 +54,6 @@
         <div role="tabpanel" class="tab-pane" id="reviews">
           <div class="panel panel-primary">
             <div class="panel-heading">Panel heading without title</div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">Panel title</h3>
-            </div>
             <div class="panel-body">
               Panel content
             </div>

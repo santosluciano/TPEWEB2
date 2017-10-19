@@ -25,14 +25,14 @@
       $this->view->mostrar_inicio($celulares);
     }
     public function showCelulares($params)
-    {
+    {      
       if (isset($params[0])){
         if ($params[0] == "buscar" && isset($_POST['key'])){
           if (isset($params[1])&&($params[1]=="sugerencia")){
-            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByNameLimit($_POST['key']):[];
+            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],4):[];
           }
-          else {
-            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key']):[];
+          else{
+            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],1000):[];
           }
         }else if ($params[0] == "ordenados"){
           if ($params[1] == "marca"){

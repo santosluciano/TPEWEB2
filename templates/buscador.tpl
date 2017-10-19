@@ -2,7 +2,7 @@
   {foreach from=$celulares item=celular}
       {foreach from=$marcas item=marca}
         {if $marca.id_marca == $celular.id_marca}
-          <li><a class="partialContain searcha" href="celular/{$celular['id_celular']}">{$marca.nombre|upper} {$celular.nombre|upper}
+          <li><a class="partialContain contenedor-celular" href="celular/" data-value="{$celular.id_celular}">{$marca.nombre|upper} {$celular.nombre|upper}
            </a></li>
         {/if}
       {/foreach}

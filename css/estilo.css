@@ -35,7 +35,7 @@ h1{
   height: 80px;
   width: 1200px;
 }
-.contenedor-celular{
+.tarjeta-celular{
   position: relative;
   top: 50px;
 }
@@ -66,3 +66,9 @@ h1{
 #antutu{
   text-align: center;
 }
+.carga{
+  display: inline-block;
+  width: 100%;
+  line-height: inherit;
+}
+

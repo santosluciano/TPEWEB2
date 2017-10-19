@@ -3,7 +3,7 @@
   {if !empty($celulares[0]['nombre'])}
   <div class="row">
 		   <div class="col-md-offset-4 col-sm-offset-3 col-sm-6 col-md-4">
-  			<a class="thumbnail partialContain contenedor-celular" href="celular/{$celulares[0]['id_celular']}">
+  			<a class="thumbnail partialContain contenedor-celular" href="celular/" data-value="{$celulares[0]['id_celular']}">
 					<img class="img-responsive" src="{$celulares[0]['url_img']}" alt="celular">
   				<div class="caption">
   					<div class="row">

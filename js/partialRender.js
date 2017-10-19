@@ -37,7 +37,7 @@ $(document).ready(function () {
                   $(".busqueda").html(response);
                   asignarProductos();
     });
-    let load = '<li><a class="fa fa-spinner fa-pulse fa-fw"></a></li>';
+    let load = '<i class="fa fa-spinner fa-pulse fa-fw carga"></i>';
     $(".busqueda").html(load);
     }else {
       $('.dropdown-busqueda').removeClass('open');
@@ -58,13 +58,13 @@ $(document).ready(function () {
     cargando();
   }
   //Llamada a ajax en el caso que se tiene que generar el grafico para la vista del celular
-  function llamada_ajax_grafico(accion){
+  function llamada_ajax_grafico(accion,id){
     $.ajax({
       url:accion,
       success: function(result) {
         $(".cuerpo").html(result);
         asignarProductos();
-        generarGrafico();
+        cargar_estadisticas(id);
       },
       error: function(){
         $(".cuerpo").html("<h1>Error - Request Failed!</h1>");
@@ -79,16 +79,16 @@ $(document).ready(function () {
   });
   //Muestra el gif de cargando en el cuerpo de la pagina
   function cargando() {
-    let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
+    let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw carga"></i>';
     $(".cuerpo").html(load);
   }
   //Asigna a los items que se llaman con el partial de nav su comportamiento
   function asignarProductos(){
     $('.partialContain').on('click',function(event){
       event.preventDefault();
-      let accion = this.href;
+      let accion = this.href+'/'+$(this).data("value");
       if ($(this).hasClass('contenedor-celular')){
-        llamada_ajax_grafico(accion);
+        llamada_ajax_grafico(accion,$(this).data("value"));
       }else{
         llamada_ajax(accion);
       }

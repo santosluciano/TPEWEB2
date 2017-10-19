@@ -47,14 +47,9 @@ class CelularesModel extends Model
     $sentencia->execute([$id_marca]);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
-  function searchByName($nombre){
-    $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ?");
+  function searchByName($nombre,$limite){
+    $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ? limit $limite");
     $sentencia->execute(["%$nombre%"]);
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
-  }
-  function searchByNameLimit($nombre){
-    $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ? limit 4");
-    $sentencia->execute(['%'.$nombre.'%']);
     return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
   function getAllInOrder(){
@@ -70,6 +65,11 @@ class CelularesModel extends Model
   function storeEspecificacion($especificaciones){
     $sentencia = $this->db->prepare( "INSERT INTO especificacion_celular(id_celular,pantalla,pantalla_dimension,peso,procesador,ram,memoria,sistema_operativo,conectividad,capacidad_bateria,camara,lector_huella,supercarga) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
     $sentencia->execute($especificaciones);
+  }
+  function getEstadistica($id_celular){
+    $sentencia = $this->db->prepare( "select * from estadisticas_celular where id_celular = ? limit 1");
+    $sentencia->execute([$id_celular]);
+    return $sentencia->fetch(PDO::FETCH_ASSOC);
   }
 }
 

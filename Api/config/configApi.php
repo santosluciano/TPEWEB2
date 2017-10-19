@@ -5,7 +5,7 @@ class ConfigApi
     public static $PARAMS = 'params';
     
     public static $RESOURCES = [
-      'tareas#GET'=> 'TareasApiController#getTareas'
+      'estadisticas#GET'=> 'CelularesApiController#getEstadisticas'
     ];
 }
 ?>
