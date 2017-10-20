@@ -1,4 +1,5 @@
 <?php
+    //Librerias incluidas
     include_once 'config/Router.php';
     include_once 'model/Model.php';
     include_once 'view/View.php';
@@ -43,17 +44,19 @@
     $router->AddRoute("modificarMarca/:id", "GET", "MarcasController", "update");
     $router->AddRoute("setMarca/:id", "POST", "MarcasController", "set");
 
+    //Se carga la accion que viene por url y se llama a la funcion url para que genere el array 
+    //con el controlador, el metodo y los parametros por url
     $route = $_GET['action'];
     $array = $router->Route($route);
 
     if(sizeof($array) == 0)
-    echo "404";
+        echo "404";
     else
     {
-    $controller = $array[0];
-    $metodo = $array[1];
-    $url_params = $array[2];
-    echo (new $controller())->$metodo($url_params);
+        $controller = $array[0];
+        $metodo = $array[1];
+        $url_params = $array[2];
+        echo (new $controller())->$metodo($url_params);
     }
 ?>
 

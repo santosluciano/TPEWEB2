@@ -17,18 +17,18 @@
           <tbody>
             {foreach from=$celulares item=celular}
             <tr>
-              <td>{$celular['nombre']}</td>
-              <td>{$celular['caracteristicas']}</td>
-              <td><img src="{$celular['url_img']}" class="img-responsive" alt="{$celular['nombre']}"></td>
-              <td>$ {$celular['precio']}</td>
+              <td>{$celular.nombre}</td>
+              <td>{$celular.caracteristicas}</td>
+              <td><img src="{$celular.url_img}" class="img-responsive" alt="{$celular.nombre}"></td>
+              <td>$ {$celular.precio}</td>
               {foreach from=$marcas item=marca}
               {if $marca.id_marca == $celular.id_marca}
               <td>{$marca.nombre}</td>
               {/if}
               {/foreach}
-              <td><a href="modificarCelular/{$celular['id_celular']}" class="fa fa-pencil"></a></td>
-              <td><a href="eliminarCelular/{$celular['id_celular']}" class="fa fa-trash-o"></a></td>
-              <td><a href="especificacion/{$celular['id_celular']}">Especificaciones</a></td>
+              <td><a href="modificarCelular/{$celular.id_celular}" class="fa fa-pencil"></a></td>
+              <td><a href="eliminarCelular/{$celular.id_celular}" class="fa fa-trash-o"></a></td>
+              <td><a href="especificacion/{$celular.id_celular}">Especificaciones</a></td>
             </tr>
             {/foreach}
           </tbody>

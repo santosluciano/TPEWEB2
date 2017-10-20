@@ -37,7 +37,6 @@
             return false;
       return true;
     }
-
     public function Route($url)
     {
       foreach ($this->routes as  $route) {

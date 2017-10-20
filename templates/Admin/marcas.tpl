@@ -14,10 +14,10 @@
           <tbody>
             {foreach from=$marcas item=marca}
             <tr>
-              <td>{$marca['nombre']}</td>
-              <td><img src="{$marca['url_img']}" class="img-responsive" alt="{$marca['nombre']}"></td>
-              <td><a href="modificarMarca/{$marca['id_marca']}" class="fa fa-pencil"></a></td>
-              <td><a href="eliminarMarca/{$marca['id_marca']}" class="fa fa-trash-o"></a></td>
+              <td>{$marca.nombre}</td>
+              <td><img src="{$marca.url_img}" class="img-responsive" alt="{$marca.nombre}"></td>
+              <td><a href="modificarMarca/{$marca.id_marca}" class="fa fa-pencil"></a></td>
+              <td><a href="eliminarMarca/{$marca.id_marca}" class="fa fa-trash-o"></a></td>
             </tr>
             {/foreach}
           </tbody>

@@ -15,7 +15,7 @@ class LoginController extends SecuredController
     if (!$this->isConnect())
       $this->view->mostrarLogin();
     else
-      header('Location: '.admin);
+      header('Location: '.HOME);
   }
   public function verify()
   {
@@ -36,7 +36,7 @@ class LoginController extends SecuredController
           session_start();
           $_SESSION['USER'] = $userName;
           $_SESSION['LAST_ACTIVITY'] = time();
-          header('Location: '.admin);
+          header('Location: '.HOME);
         } catch (Exception $e) {
           $this->view->mostrarLogin($e->getMessage());
         }
@@ -46,7 +46,7 @@ class LoginController extends SecuredController
   {
     session_start();
     session_destroy();
-    header('Location: '.login);
+    header('Location: '.HOME);
   }
 }
 

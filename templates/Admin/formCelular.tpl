@@ -28,9 +28,9 @@
           <select class="form-control" name="marca">
             {foreach from=$marcas item=marca}
             {if $marca.id_marca == $id_marca_celular}
-              <option value={$marca.id_marca} selected>{$marca['nombre']}</option>
+              <option value={$marca.id_marca} selected>{$marca.nombre}</option>
             {else}
-              <option value={$marca['id_marca']} >{$marca['nombre']}</option>
+              <option value={$marca.id_marca} >{$marca.nombre}</option>
             {/if}
             {/foreach}
           </select>

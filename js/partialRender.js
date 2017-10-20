@@ -18,12 +18,11 @@ $(document).ready(function () {
     event.preventDefault();
     let accion = this.action;
     let serializedData = $(this).serialize();
-    $.post(accion, serializedData,
-                 function(response) {
+   $.post(accion, serializedData, function(response) {
 			      		$(".cuerpo").html(response);
                 asignarProductos();
     });
-    cargando();
+    cargando(); 
   });
   //Partial render para la busqueda en tiempo real
   $('.partialSearch').on('keyup',function(event){

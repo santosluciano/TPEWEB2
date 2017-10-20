@@ -9,7 +9,7 @@ class SecuredController extends Controller
   {
     session_start();
     if(isset($_SESSION['USER'])){
-      if (time() - $_SESSION['LAST_ACTIVITY'] > 100000) {
+      if (time() - $_SESSION['LAST_ACTIVITY'] > 1000) {
         header('Location: '.logout);
         die();
       }
@@ -21,7 +21,7 @@ class SecuredController extends Controller
     }
   }
   function isConnect(){
-    session_start();
+    session_start(); 
     try {
       if(!isset($_SESSION['USER']))
        throw new Exception("La conexion expiro");
@@ -32,4 +32,4 @@ class SecuredController extends Controller
   }
 }
 
- ?>
+?>

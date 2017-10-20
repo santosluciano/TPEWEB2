@@ -6,13 +6,13 @@
   	<div class="col-md-12">
       {foreach from=$celulares item=celular}
   		<div class="col-sm-6 col-md-4">
-  			<a class="thumbnail partialContain contenedor-celular" href="celular/" data-value="{$celular['id_celular']}">
+  			<a class="thumbnail partialContain contenedor-celular" href="celular/" data-value="{$celular.id_celular}">
           {foreach from=$marcas item=marca}
           {if $marca.id_marca == $celular.id_marca}
   				    <h4 class="text-center"><span class="label label-info">{$marca.nombre}</span></h4>
           {/if}
           {/foreach}
-  					<img class="img-responsive" src="{$celular['url_img']}" alt="celular">
+  					<img class="img-responsive" src="{$celular.url_img}" alt="celular">
   				<div class="caption">
   					<div class="row">
   						<div class="col-md-8 col-xs-6">
