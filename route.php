@@ -26,6 +26,8 @@
     $router->AddRoute("login", "GET", "LoginController", "index");
     $router->AddRoute("logout", "GET", "LoginController", "destroy");
     $router->AddRoute("verificarUsuario", "POST", "LoginController", "verify");
+    $router->AddRoute("crearUsuario", "GET", "LoginController", "create");
+    $router->AddRoute("registrarUsuario", "POST", "LoginController", "store");
     //Control de celulares
     $router->AddRoute("adminCelulares", "GET", "CelularesController", "index");
     $router->AddRoute("eliminarCelular/:id", "GET", "CelularesController", "destroy");

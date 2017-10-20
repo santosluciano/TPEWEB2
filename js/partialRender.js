@@ -92,5 +92,18 @@ $(document).ready(function () {
         llamada_ajax(accion);
       }
     });
+    submit_registro();
+  }
+  function submit_registro() {
+    $('.form-registro').on('submit',function(event){
+      event.preventDefault();
+      let accion = this.action;
+      let serializedData = $(this).serialize();
+     $.post(accion, serializedData, function(response) {
+                  $(".cuerpo").html(response);
+                  asignarProductos();
+      });
+      cargando(); 
+    });    
   }
 });

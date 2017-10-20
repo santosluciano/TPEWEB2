@@ -48,6 +48,36 @@ class LoginController extends SecuredController
     session_destroy();
     header('Location: '.HOME);
   }
+  public function create(){
+    $this->view->mostrarFormRegistrar();
+  }
+  private function excepcionesIssetRegistro(){
+    if (!isset($_POST['usuario']))
+      throw new Exception("No se recibio el nombre de usuario");
+    if (!isset($_POST['email']))
+      throw new Exception("No se recibio el email");
+    if (!isset($_POST['password']))
+      throw new Exception("No se recibio la contraseña");
+  }
+  public function store()
+  {
+    try {
+      $this->excepcionesIssetRegistro();
+        try {
+          if (strlen($_POST['usuario'])<6)
+            throw new Exception("El nombre de usuario debe tener mas de 6 caracteres");
+          if (strlen($_POST['password'])<6)
+            throw new Exception("La contraseña debe tener mas de 6 caracteres");
+          $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+          $this->model->store($_POST['usuario'],$_POST['email'],$password);
+          header('Location: '.HOME);
+        } catch (Exception $e) {
+          $this->view->errorFormRegistro($e->getMessage());
+        }
+      }catch (Exception $e) {
+        $this->view->errorFormRegistro($e->getMessage());
+      }
+  }
 }
 
  ?>

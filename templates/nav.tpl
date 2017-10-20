@@ -57,6 +57,8 @@
                     <input type="password" class="form-control" id="pwd" name ="password" placeholder="******" required>
                   </div>
                   <button type="submit" class="btn btn-info">Ingresar</button>
+                  <p>¿No eres usuario?</p>
+                  <a href="crearUsuario" class="partial">Creá tu cuenta</a>
                 </form>
               </div>
             </ul>
