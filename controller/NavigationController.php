@@ -24,32 +24,26 @@
       $celulares = $this->modelCelulares->getAll();
       $this->view->mostrar_inicio($celulares);
     }
-    public function showCelulares($params)
-    {      
-      if (isset($params[0])){
-        if ($params[0] == "buscar" && isset($_POST['key'])){
-          if (isset($params[1])&&($params[1]=="sugerencia")){
-            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],4):[];
-          }
-          else{
-            $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],1000):[];
-          }
-        }else if ($params[0] == "ordenados"){
-          if ($params[1] == "marca"){
-            $celulares = $this->modelCelulares->getAllInOrder();
-          }
-        }else{
-          $celulares = $this->modelCelulares->getAllFromMarca($params[0]);
-        }
-      }else{
-        $celulares = $this->modelCelulares->getAll();
-      }
-      if (isset($params[1])&&($params[1]=="sugerencia")){
-        $marcas = $this->modelMarcas->getAll();
-        $this->view->mostrarSugerencias($celulares,$marcas);
-      }else {
-        $this->desplegarCelulares($celulares);
-      }
+    public function searchSugerenciasCelulares(){
+      $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],4):[];
+      $marcas = $this->modelMarcas->getAll();
+      $this->view->mostrarSugerencias($celulares,$marcas);
+    }
+    public function searchCelulares(){
+      $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],1000):[];
+      $this->desplegarCelulares($celulares);
+    }
+    public function showCelularesOrdenadosMarca(){
+      $celulares = $this->modelCelulares->getAllInOrder();
+      $this->desplegarCelulares($celulares);      
+    }
+    public function showCelularesMarca($params){
+      $celulares = $this->modelCelulares->getAllFromMarca($params[':id']);
+      $this->desplegarCelulares($celulares);
+    }
+    public function showCelulares(){
+      $celulares = $this->modelCelulares->getAll();
+      $this->desplegarCelulares($celulares);
     }
     private function desplegarCelulares($celulares){
       try {
@@ -64,9 +58,7 @@
     public function showCelular($params = [])
     {
       try{
-        if (!isset($params[0]))
-          throw new Exception('Celular invalido');
-        $idCelular = $params[0];
+        $idCelular = $params[':id'];
         $celular = $this->modelCelulares->get($idCelular);
         $especificacion = $this->modelCelulares->getEspecificacion($idCelular);
         if (empty($celular))

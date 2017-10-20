@@ -21,7 +21,7 @@
     }
     public function destroy($params = [])
     {
-      $id_celular = $params[0];
+      $id_celular = $params[':id'];
       $this->modelCelular->delete($id_celular);
       header('Location: '.HOMECELULARES);
     }
@@ -63,72 +63,59 @@
     }
     public function update($params = [])
     {
-      try {
-        if (!isset($params[0]))
-          throw new Exception("No se envio el id del celular a modificar");
-          $id_celular = $params[0];
-          $celular = $this->modelCelular->get($id_celular);
-          $nombre = $celular['nombre'];
-          $caracteristicas = $celular['caracteristicas'];
-          $precio = $celular['precio'];
-          $url = $celular['url_img'];
-          $id_marca = $celular['id_marca'];
-          $marcas = $this->modelMarca->getAll();
-          $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$id_marca,$marcas);
-      } catch (Exception $e) {
-        header('Location: '.HOMECELULARES);
-      }
+      $id_celular = $params[':id'];
+      $celular = $this->modelCelular->get($id_celular);
+      $nombre = $celular['nombre'];
+      $caracteristicas = $celular['caracteristicas'];
+      $precio = $celular['precio'];
+      $url = $celular['url_img'];
+      $id_marca = $celular['id_marca'];
+      $marcas = $this->modelMarca->getAll();
+      $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$id_marca,$marcas);
     }
     public function set($params = [])
     {
-      {
-        try {
-          if (!isset($params[0]))
-            throw new Exception("No se envio el id del celular a modificar");
-          $this->excepcionesIsset();
-          $id_celular = $params[0];
-            try {
-              $this->excepcionesEmpty();
-              $this->modelCelular->setNombre($id_celular,$_POST['nombre']);
-              $this->modelCelular->setCaracteristicas($id_celular,$_POST['caracteristicas']);
-              $this->modelCelular->setPrecio($id_celular,$_POST['precio']);
-              $this->modelCelular->setMarca($id_celular,$_POST['marca']);
-              $this->modelCelular->setUrl_img($id_celular,$_POST['url']);
-              header('Location: '.HOMECELULARES);
-            } catch (Exception $e) {
-              $marcas = $this->modelMarca->getAll();
-              $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$_POST['url'],$marcas,$_POST['marca'],"setCelular/$id_celular",'Modificar','Modificar celular');
-            }
+      try {
+        $this->excepcionesIsset();
+        $id_celular = $params[':id'];
+          try {
+            $this->excepcionesEmpty();
+            $this->modelCelular->setNombre($id_celular,$_POST['nombre']);
+            $this->modelCelular->setCaracteristicas($id_celular,$_POST['caracteristicas']);
+            $this->modelCelular->setPrecio($id_celular,$_POST['precio']);
+            $this->modelCelular->setMarca($id_celular,$_POST['marca']);
+            $this->modelCelular->setUrl_img($id_celular,$_POST['url']);
+            header('Location: '.HOMECELULARES);
           } catch (Exception $e) {
-          header('Location: '.HOMECELULARES);
-        }
+            $marcas = $this->modelMarca->getAll();
+            $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$_POST['url'],$marcas,$_POST['marca'],"setCelular/$id_celular",'Modificar','Modificar celular');
+          }
+        } catch (Exception $e) {
+        header('Location: '.HOMECELULARES);
       }
     }
     public function showEspecificaciones($params = [])
     {
-      $id_celular = $params[0];
+      $id_celular = $params[':id'];
       $celular = $this->modelCelular->get($id_celular);
       try{
         if (empty($celular))
           throw new Exception("error en la id del celular");
         $especificacion = $this->modelCelular->getEspecificacion($id_celular);
         $this->view->mostrarEspecificacion($celular,$especificacion);
-      }catch (Exception $e){
-              
+      }catch (Exception $e){              
       }
     }
     public function createEspecificacion($params = [])
     {
-      $id_celular = $params['0'];
+      $id_celular = $params[':id'];
       $this->view->mostrarCrearEspecificacion($id_celular);
     }    
     public function storeEspecificacion($params = [])
     {
       try {
         $this->excepcionesIssetEspecificaciones();
-        if (empty($params))
-          throw new Exception("Celular no valido");
-        $especificaciones['0'] = $params['0'];
+        $especificaciones['0'] = $params[':id'];
         $i=1;
         foreach($_POST as $v){
           $especificaciones[$i] = $v;
@@ -136,9 +123,6 @@
         }    
         $especificaciones['11'] = (isset($_POST['lector_huella']))?1:0;
         $especificaciones['12'] = (isset($_POST['supercarga']))?1:0;  
-        foreach($especificaciones as $v){
-          echo $v;
-        }        
         $this->modelCelular->storeEspecificacion($especificaciones);
         header('Location: '.HOMECELULARES);
       } catch (Exception $e) {

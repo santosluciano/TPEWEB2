@@ -19,7 +19,7 @@
     }
     public function destroy($params)
     {
-      $id_marca = $params[0];
+      $id_marca = $params[':id'];
       $isDelete = $this->model->delete($id_marca);
       try {
         if (!$isDelete)
@@ -57,26 +57,18 @@
     }
     public function update($params)
     {
-      try {
-        if (!isset($params[0]))
-          throw new Exception("Falta el id de la marca a modificar");
-        $id_marca = $params[0];
+        $id_marca = $params[':id'];
         $marca = $this->model->get($id_marca);
         $nombre = $marca['nombre'];
         $url = $marca['url_img'];
         $this->view->mostrarActualizarMarca($nombre,$url,$id_marca);
-      } catch (Exception $e) {
-        header('Location: '.HOMEMARCAS);
-      }
     }
     public function set($params)
     {
       try {
-        if (!isset($params))
-          throw new Exception("Falta el id de la marca a modificar");
         if (!(isset($_POST['nombre'])&&isset($_POST['url'])))
           throw new Exception("Se enviaron mal los datos");
-        $id_marca = $params[0];
+        $id_marca = $params[':id'];
         try {
             if (empty($_POST['nombre']))
               throw new Exception("El nombre es requerido");
