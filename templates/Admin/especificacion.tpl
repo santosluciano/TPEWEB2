@@ -18,6 +18,7 @@
         <li class="list-group-item">LECTOR DE HUELLA: {if $especificacion.lector_huella}SI{else}NO{/if}</li>
         <li class="list-group-item">SUPERCARGA: {if $especificacion.supercarga}SI{else}NO{/if}</li>
       </ul>
+      <a href="borrarEspecificacion/{$celular.id_celular}" type="button" class="btn btn-danger btn-sm">Borrar</a>
      {else}
         <p>ESPECIFICACIONES NO CARGADAS</p>
         <a href="crearEspecificacion/{$celular.id_celular}" type="button" class="btn btn-primary btn-sm">Crear Especificaciones</a>

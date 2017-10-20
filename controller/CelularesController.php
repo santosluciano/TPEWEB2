@@ -137,5 +137,11 @@
       if(!(isset($_POST['capacidad_bateria'])&&isset($_POST['camara'])))
         throw new Exception("Hay variables que no fueron seteadas");
     }
+    public function destroyEspecificacion($params = [])
+    {
+      $id_celular = $params[':id'];
+      $this->modelCelular->deleteEspecificaciones($id_celular);
+      header('Location: '.HOMECELULARES);
+    }
   }
  ?>

@@ -71,6 +71,10 @@ class CelularesModel extends Model
     $sentencia->execute([$id_celular]);
     return $sentencia->fetch(PDO::FETCH_ASSOC);
   }
+  function deleteEspecificaciones($id_celular){
+    $sentencia = $this->db->prepare( "delete from especificacion_celular where id_celular=?");
+    $sentencia->execute([$id_celular]);
+  }
 }
 
 ?>
