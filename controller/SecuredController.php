@@ -4,9 +4,11 @@ define('HOMECELULARES', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PH
 
 class SecuredController extends Controller
 {
-
   function __construct()
   {
+    $this->isActive();
+  }
+  function isActive(){
     session_start();
     if(isset($_SESSION['USER'])){
       if (time() - $_SESSION['LAST_ACTIVITY'] > 1000) {

@@ -8,7 +8,7 @@
   {
     function __construct()
     {
-      parent::__construct();
+      $this->isActive();
       $this->view = new MarcasView();
       $this->model = new MarcasModel();
     }

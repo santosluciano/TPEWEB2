@@ -50,14 +50,56 @@
           {else}
             DISCULPE, ESPECIFICACIONES NO CARGADAS
           {/if}
-        </div>
+        </div>        
         <div role="tabpanel" class="tab-pane" id="reviews">
-          <div class="panel panel-primary">
-            <div class="panel-heading">Panel heading without title</div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
+          <div class="container">
+          <!--Agregar Review -->
+              <div class="col-md-1">
+                <div class="thumbnail">
+                  <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-1 -->
+              <div class="col-md-4">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <strong>Usuario</strong>
+                  </div>
+                  <div class="panel-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="review">Review</label>
+                        <textarea class="form-control" id="review" name="review" placeholder="Escriba su review..." rows="5" cols="50"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="notaUsuario">Nota</label>
+                        <input type="number" min="0" max="10" class="form-control" name="notaUsuario" id="notaUsuario" placeholder="Nota Celular (0-10)" required>
+                      </div>
+                      <button type="submit" class="btn btn-default">Publicar</button>
+                    </form>
+                  </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+              </div><!-- /col-sm-5 -->
+            <!-- /Agregar Review -->          
+            <!--Review usuario-->
+            <div class="row">
+              <div class="col-md-1">
+                <div class="thumbnail">
+                  <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-1 -->
+              <div class="col-md-5">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <strong>Usuario</strong> <span class="text-muted">comentado hace n dias </span><span class="label label-info nota-user">NOTA <span class="nota-usuarios"></span></span>
+                  </div>
+                  <div class="panel-body">
+                    Review
+                  </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+              </div><!-- /col-sm-5 -->
+            <!--/Review usuario-->          
+            </div><!-- /row -->
+          </div><!-- /container -->
         </div>
       </div>
     </div>

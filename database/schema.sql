@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2017 a las 01:40:52
+-- Tiempo de generación: 22-10-2017 a las 21:59:05
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.8
 
@@ -84,6 +84,33 @@ INSERT INTO `especificacion_celular` (`id_celular`, `pantalla`, `pantalla_dimens
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `estadisticas_celular`
+--
+
+CREATE TABLE `estadisticas_celular` (
+  `id_celular` int(11) NOT NULL,
+  `rendimiento` double NOT NULL,
+  `conectividad` double NOT NULL,
+  `disenio` double NOT NULL,
+  `pantalla` double NOT NULL,
+  `camara` double NOT NULL,
+  `antutu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estadisticas_celular`
+--
+
+INSERT INTO `estadisticas_celular` (`id_celular`, `rendimiento`, `conectividad`, `disenio`, `pantalla`, `camara`, `antutu`) VALUES
+(1, 6.9, 8.6, 6.5, 6.5, 6.3, 31298),
+(2, 7.3, 8.9, 8.7, 8, 7.6, 40000),
+(3, 9.9, 9.5, 10, 10, 9.9, 174150),
+(4, 8, 9.2, 8.3, 8, 8.7, 54337),
+(5, 9.7, 9.9, 9.9, 9.5, 9.9, 147800);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `marca`
 --
 
@@ -112,15 +139,17 @@ INSERT INTO `marca` (`id_marca`, `nombre`, `url_img`) VALUES
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(40) NOT NULL,
-  `password` varchar(250) NOT NULL
+  `password` varchar(250) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `permiso_admin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`) VALUES
-(1, 'root', '$2a$06$f.ma9glTC0dpoEjExJwDcus3rBtnIxlYOOzI3ixUhC5RdD4caKxX2');
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `email`, `permiso_admin`) VALUES
+(1, 'root', '$2a$06$f.ma9glTC0dpoEjExJwDcus3rBtnIxlYOOzI3ixUhC5RdD4caKxX2', 'root@root.com', 1);
 
 --
 -- Índices para tablas volcadas
@@ -139,6 +168,12 @@ ALTER TABLE `celular`
 ALTER TABLE `especificacion_celular`
   ADD PRIMARY KEY (`id_celular`),
   ADD KEY `id_celular` (`id_celular`) USING BTREE;
+
+--
+-- Indices de la tabla `estadisticas_celular`
+--
+ALTER TABLE `estadisticas_celular`
+  ADD PRIMARY KEY (`id_celular`);
 
 --
 -- Indices de la tabla `marca`
@@ -165,12 +200,12 @@ ALTER TABLE `celular`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
@@ -186,6 +221,12 @@ ALTER TABLE `celular`
 --
 ALTER TABLE `especificacion_celular`
   ADD CONSTRAINT `especificacion_celular_ibfk_1` FOREIGN KEY (`id_celular`) REFERENCES `celular` (`id_celular`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `estadisticas_celular`
+--
+ALTER TABLE `estadisticas_celular`
+  ADD CONSTRAINT `estadisticas_celular_ibfk_1` FOREIGN KEY (`id_celular`) REFERENCES `celular` (`id_celular`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

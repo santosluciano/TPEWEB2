@@ -69,8 +69,9 @@ class LoginController extends SecuredController
           if (strlen($_POST['password'])<6)
             throw new Exception("La contraseña debe tener mas de 6 caracteres");
           $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-          $this->model->store($_POST['usuario'],$_POST['email'],$password);
-          header('Location: '.HOME);
+          $foto_perfil = "https://ssl.gstatic.com/accounts/ui/avatar_2x.png";
+          $this->model->store($_POST['usuario'],$_POST['email'],$password,$foto_perfil);
+          //header('Location: '.HOME);
         } catch (Exception $e) {
           $this->view->errorFormRegistro($e->getMessage());
         }

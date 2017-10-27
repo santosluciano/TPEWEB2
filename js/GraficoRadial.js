@@ -1,26 +1,17 @@
   //Genera el grafico que se mostrara con las estadisticas del celular
-    function cargar_estadisticas(id_celular){
-      $.ajax({
-        method: 'GET',
-        dataType: 'JSON',
-        url:'Api/estadisticas/' + id_celular,
-        success: function(resultData){
-          $(".graficoCelular").html('<canvas id="EstadisticasCelular"></canvas>');          
-          $(".puntaje-antutu").html(resultData.antutu);
-          $(".nota-celular").html(resultData.nota);
-          let datos = [resultData.rendimiento,resultData.conectividad,resultData.disenio,resultData.pantalla,resultData.camara];
-          generarGrafico(datos);
-        },
-        error:function(jqxml, status, errorThrown){
-          $(".graficoCelular").html("");
-        }
-      });
-      let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw carga"></i>';
-      $(".graficoCelular").html(load);
-    }
-    function dibujar_informe(error){
-
-    }
+    function cargar_estadisticas(id_celular) {
+      $.ajax("api/estadisticas/"+id_celular)
+          .done(function(celular) {
+            $(".graficoCelular").html('<canvas id="EstadisticasCelular"></canvas>');          
+            $(".puntaje-antutu").html(celular.antutu);
+            $(".nota-celular").html(celular.nota);
+            let datos = [celular.rendimiento,celular.conectividad,celular.disenio,celular.pantalla,celular.camara];
+            generarGrafico(datos);
+          })
+          .fail(function() {
+            $(".graficoCelular").html("");
+          });
+   }
     function generarGrafico(datos){
       let celularCanvas = document.getElementById("EstadisticasCelular");
       let celularData = {

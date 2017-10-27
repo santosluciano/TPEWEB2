@@ -71,7 +71,7 @@
     }
     public function admin()
     {
-      parent::__construct();
+      $this->isActive();
       $this->view->mostrarPanelAdmin();
     }
   }
