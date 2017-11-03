@@ -26,8 +26,7 @@
     }
     public function searchSugerenciasCelulares(){
       $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],4):[];
-      $marcas = $this->modelMarcas->getAll();
-      $this->view->mostrarSugerencias($celulares,$marcas);
+      $this->view->mostrarSugerencias($celulares);
     }
     public function searchCelulares(){
       $celulares = (!empty($_POST['key']))?$this->modelCelulares->searchByName($_POST['key'],1000):[];

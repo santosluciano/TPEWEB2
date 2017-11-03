@@ -17,7 +17,7 @@
     {
       $celulares = $this->modelCelular->getAll();
       $marcas = $this->modelMarca->getAll();
-      $this->view->mostrarCelulares($celulares,$marcas);
+      $this->view->mostrarCelulares($celulares);
     }
     public function destroy($params = [])
     {

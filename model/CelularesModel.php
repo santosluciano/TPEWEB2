@@ -7,7 +7,19 @@ class CelularesModel extends Model
   function getAll(){
     $sentencia = $this->db->prepare( "select * from celular");
     $sentencia->execute();
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $this->getCelularesMarca($celulares);
+  }
+  private function getCelularesMarca($celulares){
+    $celularesMarca = [];
+    $sentencia = $this->db->prepare("select * from marca where id_marca = ?");
+    foreach ($celulares as $celular) {
+      $sentencia->execute([$celular['id_marca']]);
+      $marca = $sentencia->fetch(PDO::FETCH_ASSOC);
+      $celular['marca'] = $marca;
+      $celularesMarca[] = $celular;
+    }
+    return $celularesMarca;
   }
   function get($id_celular){
     $sentencia = $this->db->prepare( "select * from celular where id_celular = ? limit 1");
@@ -45,17 +57,20 @@ class CelularesModel extends Model
   function getAllFromMarca($id_marca){
     $sentencia = $this->db->prepare( "select celular.* from celular, marca WHERE celular.id_marca=marca.id_marca AND marca.id_marca = ?");
     $sentencia->execute([$id_marca]);
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $this->getCelularesMarca($celulares);
   }
   function searchByName($nombre,$limite){
     $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ? limit $limite");
     $sentencia->execute(["%$nombre%"]);
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $this->getCelularesMarca($celulares);
   }
   function getAllInOrder(){
     $sentencia = $this->db->prepare( "select * from celular ORDER BY celular.id_marca ASC");
-    $sentencia->execute();
-    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->execute();    
+    $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $this->getCelularesMarca($celulares);
   }
   function getEspecificacion($id_celular){
     $sentencia = $this->db->prepare( "select * from especificacion_celular where id_celular = ? limit 1");

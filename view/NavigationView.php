@@ -10,9 +10,8 @@
       $this->smarty->assign('celulares',$celulares);
       return $this->smarty->display('templates/inicio.tpl');
     }
-    function mostrarCelulares($celulares,$marcas){
+    function mostrarCelulares($celulares){
       $this->smarty->assign('celulares',$celulares);
-      $this->smarty->assign('marcas',$marcas);
       return $this->smarty->display('templates/celulares.tpl');
     }
     function mostrarCelular($celular,$marca,$especificacion){
@@ -29,9 +28,8 @@
       $this->smarty->assign('error',$error);
       return $this->smarty->display('templates/error.tpl');
     }
-    function mostrarSugerencias($celulares,$marcas){
+    function mostrarSugerencias($celulares){
       $this->smarty->assign('celulares',$celulares);
-      $this->smarty->assign('marcas',$marcas);
       return $this->smarty->display('templates/buscador.tpl');
     }
   }

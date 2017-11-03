@@ -1,9 +1,8 @@
 <?php
   class CelularesView extends View
   {
-    function mostrarCelulares($celulares,$marcas){
+    function mostrarCelulares($celulares){
       $this->smarty->assign('celulares',$celulares);
-      $this->smarty->assign('marcas',$marcas);
       $this->smarty->assign('encabezado','Listado de Celulares');
       $this->smarty->display('templates/Admin/celulares.tpl');
     }
