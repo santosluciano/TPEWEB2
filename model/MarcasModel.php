@@ -9,6 +9,11 @@
       $sentencia->execute();
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
+    function getAllInOrder(){
+      $sentencia = $this->db->prepare('select * from marca ORDER BY nombre');
+      $sentencia->execute();
+      return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    }
     function get($id_marca){
       $sentencia = $this->db->prepare( "select * from marca where id_marca = ? limit 1");
       $sentencia->execute([$id_marca]);
