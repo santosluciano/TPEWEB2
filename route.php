@@ -9,6 +9,7 @@
     include_once 'controller/MarcasController.php';
     include_once 'controller/CelularesController.php';
     include_once 'controller/LoginController.php';
+    include_once 'controller/UsuariosController.php';
 
     $router = new Router();
     //(url, verb, controller, method)
@@ -22,12 +23,16 @@
     $router->AddRoute("celulares/buscar", "POST", "NavigationController", "searchCelulares");
     $router->AddRoute("celulares/buscar/sugerencia", "POST", "NavigationController", "searchSugerenciasCelulares");
     $router->AddRoute("celulares/ordenados/marca", "GET", "NavigationController", "showCelularesOrdenadosMarca"); 
-    //Control de usuarios
+    //Control de logueo
     $router->AddRoute("login", "GET", "LoginController", "index");
     $router->AddRoute("logout", "GET", "LoginController", "destroy");
     $router->AddRoute("verificarUsuario", "POST", "LoginController", "verify");
+    //Control de usuarios
     $router->AddRoute("crearUsuario", "GET", "LoginController", "create");
     $router->AddRoute("registrarUsuario", "POST", "LoginController", "store");
+    $router->AddRoute("adminUsuarios", "GET", "UsuariosController", "index");
+    $router->AddRoute("hacerAdmin/:id", "GET", "UsuariosController", "doAdmin");
+    $router->AddRoute("eliminarUsuario/:id", "GET", "UsuariosController", "destroy");
     //Control de celulares
     $router->AddRoute("adminCelulares", "GET", "CelularesController", "index");
     $router->AddRoute("eliminarCelular/:id", "GET", "CelularesController", "destroy");

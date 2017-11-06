@@ -1,6 +1,7 @@
 <?php
 define('HOMEMARCAS', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminMarcas');
 define('HOMECELULARES', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminCelulares');
+define('HOMEUSUARIOS', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminUsuarios');
 
 class SecuredController extends Controller
 {
@@ -31,6 +32,9 @@ class SecuredController extends Controller
     } catch (Exception $e) {
       return false;
     }
+  }
+  function isAdmin(){
+    return $_SESSION['ADMIN'] == 1; 
   }
 }
 

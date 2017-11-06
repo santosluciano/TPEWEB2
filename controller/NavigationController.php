@@ -71,7 +71,10 @@
     public function admin()
     {
       $this->isActive();
-      $this->view->mostrarPanelAdmin();
+      if ($this->isAdmin())
+        $this->view->mostrarPanelAdmin();
+      else
+        header('Location: '.HOME);
     }
   }
 

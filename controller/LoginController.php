@@ -1,5 +1,5 @@
 <?php
-require_once('model/LoginModel.php');
+require_once('model/UsuariosModel.php');
 require_once('view/LoginView.php');
 
 class LoginController extends SecuredController
@@ -8,7 +8,7 @@ class LoginController extends SecuredController
   function __construct()
   {
     $this->view = new LoginView();
-    $this->model = new LoginModel();
+    $this->model = new UsuariosModel();
   }
   public function index()
   {
@@ -21,7 +21,7 @@ class LoginController extends SecuredController
   {
       $userName = $_POST['usuario'];
       $password = $_POST['password'];
-      if (!empty($user)){
+      if (!empty($userName)){
         throw new Exception('No se ingreso nombre de usuario');
       }
       if(!empty($userName) && !empty($password)){
@@ -30,12 +30,13 @@ class LoginController extends SecuredController
           if (empty($user)){
             throw new Exception('No existe el usuario');
           }
-          if (!password_verify($password, $user[0]['password'])){
+          if (!password_verify($password, $user['password'])){
             throw new Exception('Contraseña incorrecta');
           }
           session_start();
           $_SESSION['USER'] = $userName;
           $_SESSION['LAST_ACTIVITY'] = time();
+          $_SESSION['ADMIN'] = $user['permiso_admin']; 
           header('Location: '.HOME);
         } catch (Exception $e) {
           $this->view->mostrarLogin($e->getMessage());

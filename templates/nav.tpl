@@ -42,6 +42,7 @@
           <li><a href="https://www.youtube.com/" class="fa fa-youtube hidden-xs" target="_blank"></a></li>
           {if $hayConexion}
           <li><a href="admin" class="fa fa-user-circle-o"></a></li>
+          <li><a href="logout" class="fa fa-sign-out"></a></li>
           {else}
           <li class="dropdown">
             <a href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>

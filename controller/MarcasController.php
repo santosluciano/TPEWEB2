@@ -9,8 +9,11 @@
     function __construct()
     {
       $this->isActive();
-      $this->view = new MarcasView();
-      $this->model = new MarcasModel();
+      if ($this->isAdmin()){
+        $this->view = new MarcasView();
+        $this->model = new MarcasModel();
+      }else
+      header('Location: '.HOME);  
     }
     public function index()
     {
