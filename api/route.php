@@ -3,16 +3,21 @@
 include_once '../config/Router.php';
 include_once '../model/Model.php';
 include_once 'controller/CelularesApiController.php';
+include_once 'controller/ComentariosApiController.php';
 
 
 $router = new Router();
 //url, verb, controller, method
+//Api estaditicas
 $router->AddRoute("estadisticas/:id", "GET", "CelularesApiController", "getEstadisticas");
-//$router->AddRoute("tareas/:id", "GET", "TareasApiController", "getTarea");
-//$router->AddRoute("tareas/:id/descripcion", "GET", "TareasApiController", "getDescripcion");
+//Api comentarios
+$router->AddRoute("comentarios", "GET", "ComentariosApiController", "getComentarios");
+$router->AddRoute("comentarios/celular/:id", "GET", "ComentariosApiController", "getComentariosCelular");
+$router->AddRoute("comentarios/:id", "GET", "ComentariosApiController", "getComentario");
+$router->AddRoute("comentarios/usuario/:id", "GET", "ComentariosApiController", "getComentariosUsuario");
 //$router->AddRoute("tareas/:id", "PUT", "TareasApiController", "editTarea");
 //$router->AddRoute("tareas/:id", "POST", "TareasApiController", "createTareas");
-//$router->AddRoute("tareas/:id", "DELETE", "TareasApiController", "deleteTareas");
+$router->AddRoute("comentarios/:id", "DELETE", "ComentariosApiController", "deleteComentario");
 
 $route = $_GET['resource'];
 $array = $router->Route($route);
