@@ -104,3 +104,12 @@ border-width:8px;
   float: right;
   top: 3px;
 }
+.contenedor-usuario{
+  margin-top: 60px;
+}
+.img-perfil{
+  margin-top: 20px;
+}
+.nombre-perfil{
+  text-align: center;
+}

@@ -12,6 +12,7 @@
       $this->view = new NavigationView();
       $this->modelMarcas = new MarcasModel();
       $this->modelCelulares = new CelularesModel();
+      $this->modelUsuarios = new UsuariosModel();
     }
     public function index()
     {
@@ -75,6 +76,13 @@
         $this->view->mostrarPanelAdmin();
       else
         header('Location: '.HOME);
+    }
+    public function user()
+    {
+      $this->isActive();
+      $isAdministrador = $this->isAdmin();
+      $usuario = $this->modelUsuarios->getUsuario($_SESSION['USER']);
+      $this->view->mostrarDatosUsuario($isAdministrador,$usuario);
     }
   }
 

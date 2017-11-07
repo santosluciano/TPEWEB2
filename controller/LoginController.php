@@ -21,9 +21,6 @@ class LoginController extends SecuredController
   {
       $userName = $_POST['usuario'];
       $password = $_POST['password'];
-      if (!empty($userName)){
-        throw new Exception('No se ingreso nombre de usuario');
-      }
       if(!empty($userName) && !empty($password)){
         $user = $this->model->getUsuario($userName);
         try {

@@ -33,6 +33,7 @@
     $router->AddRoute("adminUsuarios", "GET", "UsuariosController", "index");
     $router->AddRoute("hacerAdmin/:id", "GET", "UsuariosController", "doAdmin");
     $router->AddRoute("eliminarUsuario/:id", "GET", "UsuariosController", "destroy");
+    $router->AddRoute("perfilUsuario", "GET", "NavigationController", "user");
     //Control de celulares
     $router->AddRoute("adminCelulares", "GET", "CelularesController", "index");
     $router->AddRoute("eliminarCelular/:id", "GET", "CelularesController", "destroy");

@@ -41,7 +41,7 @@
           <li><a href="https://www.instagram.com/?hl=es" class="fa fa-instagram hidden-xs" target="_blank"></a></li>
           <li><a href="https://www.youtube.com/" class="fa fa-youtube hidden-xs" target="_blank"></a></li>
           {if $hayConexion}
-          <li><a href="admin" class="fa fa-user-circle-o"></a></li>
+          <li><a href="perfilUsuario" class="fa fa-user-circle-o partial"></a></li>
           <li><a href="logout" class="fa fa-sign-out"></a></li>
           {else}
           <li class="dropdown">
