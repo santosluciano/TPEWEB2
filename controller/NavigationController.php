@@ -80,9 +80,8 @@
     public function user()
     {
       $this->isActive();
-      $isAdministrador = $this->isAdmin();
       $usuario = $this->modelUsuarios->getUsuario($_SESSION['USER']);
-      $this->view->mostrarDatosUsuario($isAdministrador,$usuario);
+      $this->view->mostrarDatosUsuario($usuario);
     }
   }
 

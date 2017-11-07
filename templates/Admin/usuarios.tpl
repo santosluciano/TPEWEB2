@@ -18,9 +18,9 @@
               <td>{$usuario.nombre}</td>
               <td>{$usuario.email}</td>
               {if $usuario.permiso_admin == 0}
-              <td>NO <a class="fa fa-lock" href="hacerAdmin/{$usuario.id_usuario}" aria-hidden="true"></a></td>
+              <td>NO <a class="fa fa-lock" href="cambiarPermisoAdmin/{$usuario.id_usuario}" aria-hidden="true"></a></td>
               {else}
-              <td>SI <i class="fa fa-unlock" aria-hidden="true"></i></td>
+              <td>SI <a class="fa fa-unlock" href="cambiarPermisoAdmin/{$usuario.id_usuario}" aria-hidden="true"></i></td>
               {/if}
               <td><a href="eliminarUsuario/{$usuario.id_usuario}" class="fa fa-trash-o"></a></td>
             </tr>

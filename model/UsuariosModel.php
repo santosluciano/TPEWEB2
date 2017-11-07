@@ -27,6 +27,10 @@
       $sentencia = $this->db->prepare('update usuario set permiso_admin=1 where id_usuario=?');
       $sentencia->execute([$id_usuario]);
     }
+    function quitAdmin($id_usuario){
+      $sentencia = $this->db->prepare('update usuario set permiso_admin=0 where id_usuario=?');
+      $sentencia->execute([$id_usuario]);
+    }
     function delete($id_usuario){
       $sentencia = $this->db->prepare('DELETE from usuario where id_usuario=?');
       $sentencia->execute([$id_usuario]);

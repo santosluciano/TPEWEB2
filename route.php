@@ -31,7 +31,7 @@
     $router->AddRoute("crearUsuario", "GET", "LoginController", "create");
     $router->AddRoute("registrarUsuario", "POST", "LoginController", "store");
     $router->AddRoute("adminUsuarios", "GET", "UsuariosController", "index");
-    $router->AddRoute("hacerAdmin/:id", "GET", "UsuariosController", "doAdmin");
+    $router->AddRoute("cambiarPermisoAdmin/:id", "GET", "UsuariosController", "changeAdmin");
     $router->AddRoute("eliminarUsuario/:id", "GET", "UsuariosController", "destroy");
     $router->AddRoute("perfilUsuario", "GET", "NavigationController", "user");
     //Control de celulares

@@ -32,9 +32,8 @@
       $this->smarty->assign('celulares',$celulares);
       return $this->smarty->display('templates/buscador.tpl');
     }
-    function mostrarDatosUsuario($isAdministrador,$usuario){
+    function mostrarDatosUsuario($usuario){
       $this->smarty->assign('usuario',$usuario);
-      $this->smarty->assign('isAdministrador',$isAdministrador);
       return $this->smarty->display('templates/usuario.tpl');
     }
   }

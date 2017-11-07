@@ -19,11 +19,23 @@ class UsuariosController extends SecuredController
     $usuarios = $this->model->getAll();
     $this->view->mostrarUsuarios($usuarios);
   }
-  public function doAdmin($params)
+  public function changeAdmin($params)
   {
     $id_usuario = $params[':id'];
-    $this->model->putAdmin($id_usuario);
-    header('Location: '.HOMEUSUARIOS);
+    $user = $this->model->getUsuarioID($id_usuario);
+    $userName = $_SESSION['USER'];
+    try{
+      if ($user['nombre'] == $userName)
+        throw new Exception("No podes cambiarte tus propios permisos");        
+      if ($user['permiso_admin']==1)
+        $this->model->quitAdmin($id_usuario);
+      else
+        $this->model->putAdmin($id_usuario);
+      header('Location: '.HOMEUSUARIOS);
+    }catch (Exception $e) {
+      $usuarios = $this->model->getAll();
+      $this->view->mostrarEstado($usuarios,$e->getMessage(),'danger');
+    }
   }
   public function destroy($params)
   {
