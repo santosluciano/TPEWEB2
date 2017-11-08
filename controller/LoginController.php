@@ -46,7 +46,8 @@ class LoginController extends SecuredController
     session_destroy();
     header('Location: '.HOME);
   }
-  public function create(){
+  public function create()
+  {
     $this->view->mostrarFormRegistrar();
   }
   private function excepcionesIssetRegistro(){
