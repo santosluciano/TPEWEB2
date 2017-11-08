@@ -69,6 +69,14 @@
         $this->view->mostrarError($e->getMessage());
       }
     }
+    public function showComentar()
+    {
+      if ($this->userActive()){
+        $usuario = $this->modelUsuarios->getUsuario($_SESSION['USER']);
+        $this->view->mostrarComentar($usuario);
+      }else
+        $this->view->mostrarError("Solo usuarios registrados pueden subir reviews");
+    }
     public function admin()
     {
       $this->isActive();

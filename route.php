@@ -23,6 +23,7 @@
     $router->AddRoute("celulares/buscar", "POST", "NavigationController", "searchCelulares");
     $router->AddRoute("celulares/buscar/sugerencia", "POST", "NavigationController", "searchSugerenciasCelulares");
     $router->AddRoute("celulares/ordenados/marca", "GET", "NavigationController", "showCelularesOrdenadosMarca"); 
+    $router->AddRoute("comentar", "GET", "NavigationController", "showComentar");
     //Control de logueo
     $router->AddRoute("login", "GET", "LoginController", "index");
     $router->AddRoute("logout", "GET", "LoginController", "destroy");

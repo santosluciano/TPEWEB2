@@ -93,6 +93,18 @@ $(document).ready(function(){
     //     let idTarea = $(this).data('idtarea');
     //     completarTarea(idTarea);
     // });
-  
+     $('body').on('click','.btn-review',function(event){
+        event.preventDefault();
+        let accion = this.href;
+        $.ajax({
+            url:accion,
+            success: function(result) {
+              $(".comentar").html(result);
+            },
+            error: function(){
+              $(".comentar").html("<h1>Error - Request Failed!</h1>");
+            }
+          });
+     });
   });
   

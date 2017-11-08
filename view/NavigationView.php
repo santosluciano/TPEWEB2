@@ -36,6 +36,10 @@
       $this->smarty->assign('usuario',$usuario);
       return $this->smarty->display('templates/usuario.tpl');
     }
+    function mostrarComentar($usuario){
+      $this->smarty->assign('usuario',$usuario);
+      return $this->smarty->display('templates/comentar.tpl');
+    }
   }
 
  ?>

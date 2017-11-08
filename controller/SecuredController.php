@@ -10,6 +10,12 @@ class SecuredController extends Controller
     $this->isActive();
   }
   function isActive(){
+    if(!$this->userActive()){
+      header('Location: '.login);
+      die();
+    }
+  }
+  function userActive(){
     session_start();
     if(isset($_SESSION['USER'])){
       if (time() - $_SESSION['LAST_ACTIVITY'] > 1000) {
@@ -17,10 +23,9 @@ class SecuredController extends Controller
         die();
       }
       $_SESSION['LAST_ACTIVITY'] = time();
-    }
-    else {
-      header('Location: '.login);
-      die();
+      return true;
+    }else{
+      return false;
     }
   }
   function isConnect(){
