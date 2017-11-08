@@ -8,5 +8,6 @@
     <script type="text/javascript" src="js/GraficoRadial.js"></script>
     <script type="text/javascript" src="js/partialRender.js"></script>
     <script type="text/javascript" src="js/comentarios.js"></script>
+    <script type="text/javascript" src="js/muestraFotos.js"></script>
   </body>
 </html>

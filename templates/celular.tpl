@@ -2,7 +2,18 @@
   <div class="thumbnail">
     <div class="row">
       <div class="col-xs-12 col-md-4">
-       <img class="img-responsive" src="{$celular.url_img}" />
+       <img class="img-responsive img-celular" src="{$celular.url_img}" />
+       <div class="row">
+          <div class="col-md-4">
+              <a href="" class="thumbnail minicelular active"><img class="img-responsive" src="{$celular.url_img}" /></a>
+          </div>
+          <div class="col-md-4">
+              <a href="" class="thumbnail minicelular"><img class="img-responsive" src="{$celular.url_img}" /></a>
+          </div>
+          <div class="col-md-4">
+              <a href="" class="thumbnail minicelular"><img class="img-responsive" src="{$celular.url_img}" /></a>
+          </div>
+       </div>
       </div>
       <div class="col-xs-12 col-md-4">
         <h3><a class="partialContain" href="celulares" data-value="{$marca.id_marca}">{$marca.nombre|upper}</a> {$celular.nombre|upper}</h3>
