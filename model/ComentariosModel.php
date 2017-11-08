@@ -10,7 +10,7 @@
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
     function getAllForCelular($id_celular){
-        $sql = "select comentario.*,DATE_FORMAT(fecha_comentario,'%d-%m-%Y %H:%i:%s') AS fecha_comentario,usuario.nombre,usuario.imagen_perfil from comentario,usuario where fk_id_celular=? AND fk_id_usuario=id_usuario";
+        $sql = "select comentario.*,DATE_FORMAT(fecha_comentario,'%d-%m-%Y %H:%i:%s') AS fecha_comentario,usuario.nombre,usuario.imagen_perfil from comentario,usuario where fk_id_celular=? AND fk_id_usuario=id_usuario ORDER BY comentario.fecha_comentario DESC";
         $sentencia = $this->db->prepare($sql);
         $sentencia->execute([$id_celular]);
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);

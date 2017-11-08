@@ -37,7 +37,7 @@ $(document).ready(function(){
              })
            .done(function(comentarios) {               
              let rendered = Mustache.render(templateComentario , comentarios);
-             $('.comentarios').append(rendered);
+             $('.comentarios').prepend(rendered);
            })
            .fail(function(data) {
                console.log(data);

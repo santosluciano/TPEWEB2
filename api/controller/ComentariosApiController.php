@@ -78,12 +78,16 @@ class ComentariosApiController extends Api
       $id_usuario = $body->id_usuario;
       $texto_comentario = $body->texto_comentario;
       $nota_comentario = $body->nota_comentario;
-      if (($nota_comentario <=10)&&($nota_comentario>=0))
+      if (($nota_comentario <=10)&&($nota_comentario>=0)){
         $comentario = $this->model->guardarComentario($id_celular,$id_usuario,$texto_comentario,$nota_comentario);
+        $response = new stdClass();
+        $response->comentarios = $comentario;
+        $response->status = 200;
+      }
       else
         return $this->json_response(false, 404);
       if ($comentario)
-        return $this->json_response($comentario, 200);
+        return $this->json_response($response, 200);
       else
         return $this->json_response(false, 404);
     }catch (Exception $e){
