@@ -16,8 +16,11 @@ class ComentariosApiController extends Api
   }
   public function getComentarios()
   {
-    $comentarios = $this->model->getAll();  
-    return $this->json_response($comentarios, 200);
+    $comentarios = $this->model->getAll();
+    $response = new stdClass();
+    $response->comentarios = $comentarios;
+    $response->status = 200;  
+    return $this->json_response($response, 200);
   }
   public function getComentario($params = [])
   {
@@ -41,8 +44,13 @@ class ComentariosApiController extends Api
   {
     $id_usuario = $params[':id'];
     $comentarios = $this->model->getAllForUsuario($id_usuario);
-    if ($comentarios)
+    if ($comentarios){
       return $this->json_response($comentarios, 200);
+      $response = new stdClass();
+      $response->comentarios = $comentarios;
+      $response->status = 200;  
+      return $this->json_response($response, 200);
+    }
     else
       return $this->json_response(false, 404);
   }
