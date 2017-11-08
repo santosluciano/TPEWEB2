@@ -29,6 +29,12 @@
         $sentencia->execute([$id_comentario]);
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
+    function guardarComentario($id_celular,$id_usuario,$texto_comentario,$nota_comentario){
+        $sentencia = $this->db->prepare('INSERT INTO comentario(fk_id_celular,fk_id_usuario,texto_comentario,nota_comentario) VALUES(?,?,?,?)');
+        $sentencia->execute([$id_celular,$id_usuario,$texto_comentario,$nota_comentario]);
+        $id = $this->db->lastInsertId();
+        return $this->getComentario($id);
+    }
   }
 
  ?>

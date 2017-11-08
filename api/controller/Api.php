@@ -1,5 +1,5 @@
 <?php
-class Api
+abstract class Api
 {
   protected $model;
   protected $raw_data;
@@ -23,4 +23,5 @@ class Api
     return ($status[$code])? $status[$code] : $status[500];
   }
 }
+
  ?>

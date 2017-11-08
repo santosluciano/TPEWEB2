@@ -16,7 +16,7 @@ $router->AddRoute("comentarios/celular/:id", "GET", "ComentariosApiController", 
 $router->AddRoute("comentarios/:id", "GET", "ComentariosApiController", "getComentario");
 $router->AddRoute("comentarios/usuario/:id", "GET", "ComentariosApiController", "getComentariosUsuario");
 //$router->AddRoute("tareas/:id", "PUT", "TareasApiController", "editTarea");
-//$router->AddRoute("tareas/:id", "POST", "TareasApiController", "createTareas");
+$router->AddRoute("comentarios", "POST", "ComentariosApiController", "crearComentario");
 $router->AddRoute("comentarios/:id", "DELETE", "ComentariosApiController", "deleteComentario");
 
 $route = $_GET['resource'];
