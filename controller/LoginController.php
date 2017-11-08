@@ -77,6 +77,16 @@ class LoginController extends SecuredController
         $this->view->errorFormRegistro($e->getMessage());
       }
   }
+  public function changeImage()
+  { 
+    if ($this->isConnect()){
+      $rutaTempImagen = $_FILES['imageProfile']['tmp_name'];
+      if($_FILES['imageProfile']['type'] == 'image/jpeg') {
+        $this->model->changeImageProfile($_SESSION['USER'],$rutaTempImagen);
+        header('Location: '.HOME);
+      }
+    }
+  }
 }
 
  ?>

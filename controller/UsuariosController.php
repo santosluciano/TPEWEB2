@@ -50,6 +50,6 @@ class UsuariosController extends SecuredController
       $usuarios = $this->model->getAll();
       $this->view->mostrarEstado($usuarios,$e->getMessage(),'danger');
     }
-  }  
+  } 
 }
  ?>

@@ -35,6 +35,7 @@
     $router->AddRoute("cambiarPermisoAdmin/:id", "GET", "UsuariosController", "changeAdmin");
     $router->AddRoute("eliminarUsuario/:id", "GET", "UsuariosController", "destroy");
     $router->AddRoute("perfilUsuario", "GET", "NavigationController", "user");
+    $router->AddRoute("cambiarFotoPerfil", "POST", "LoginController", "changeImage");
     //Control de celulares
     $router->AddRoute("adminCelulares", "GET", "CelularesController", "index");
     $router->AddRoute("eliminarCelular/:id", "GET", "CelularesController", "destroy");
