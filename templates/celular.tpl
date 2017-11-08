@@ -27,7 +27,7 @@
     <div class="thumbnail">
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#especificaciones" aria-controls="home" role="tab" data-toggle="tab">Especificaciones</a></li>
-        <li role="presentation"><a href="#reviews" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+        <li role="presentation"><a href="#reviews" class="btnComentarios" data-idcelular="{$celular.id_celular}" aria-controls="profile" role="tab" data-toggle="tab" >Reviews</a></li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">
@@ -53,19 +53,20 @@
         </div>        
         <div role="tabpanel" class="tab-pane" id="reviews">
           <div class="container">
-          <!--Agregar Review -->
+          <!--Agregar Review --> 
+          <div class="row">
               <div class="col-md-1">
                 <div class="thumbnail">
                   <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
                 </div><!-- /thumbnail -->
               </div><!-- /col-sm-1 -->
-              <div class="col-md-4">
+              <div class="col-md-10">
                 <div class="panel panel-default">
                   <div class="panel-heading">
                     <strong>Usuario</strong>
                   </div>
                   <div class="panel-body">
-                    <form>
+                    <form class="publicarComentario">
                       <div class="form-group">
                         <label for="review">Review</label>
                         <textarea class="form-control" id="review" name="review" placeholder="Escriba su review..." rows="5" cols="50"></textarea>
@@ -79,26 +80,12 @@
                   </div><!-- /panel-body -->
                 </div><!-- /panel panel-default -->
               </div><!-- /col-sm-5 -->
+            </div> 
             <!-- /Agregar Review -->          
             <!--Review usuario-->
-            <div class="row">
-              <div class="col-md-1">
-                <div class="thumbnail">
-                  <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                </div><!-- /thumbnail -->
-              </div><!-- /col-sm-1 -->
-              <div class="col-md-5">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <strong>Usuario</strong> <span class="text-muted">comentado hace n dias </span><span class="label label-info nota-user">NOTA <span class="nota-usuarios"></span></span>
-                  </div>
-                  <div class="panel-body">
-                    Review
-                  </div><!-- /panel-body -->
-                </div><!-- /panel panel-default -->
-              </div><!-- /col-sm-5 -->
-            <!--/Review usuario-->          
-            </div><!-- /row -->
+            <!-- /row -->
+            <div class="comentarios">
+            <div>
           </div><!-- /container -->
         </div>
       </div>

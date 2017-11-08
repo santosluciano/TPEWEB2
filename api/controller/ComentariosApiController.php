@@ -16,7 +16,7 @@ class ComentariosApiController extends Api
   }
   public function getComentarios()
   {
-    $comentarios = $this->model->getAll();
+    $comentarios = $this->model->getAll();  
     return $this->json_response($comentarios, 200);
   }
   public function getComentario($params = [])
@@ -32,7 +32,10 @@ class ComentariosApiController extends Api
   {
     $id_celular = $params[':id'];
     $comentarios = $this->model->getAllForCelular($id_celular);
-    return $this->json_response($comentarios, 200);
+    $response = new stdClass();
+    $response->comentarios = $comentarios;
+    $response->status = 200;
+    return $this->json_response($response, 200);
   }
   public function getComentariosUsuario($params = [])
   {
