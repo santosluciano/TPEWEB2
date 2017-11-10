@@ -36,10 +36,10 @@
       $sentencia->execute([$id_usuario]);
     }
     function changeImageProfile($usuario,$imagen){
-    $destino_final = 'images/' . uniqid() . '.jpg';
-    move_uploaded_file($imagen, $destino_final);
-    $sentencia = $this->db->prepare('update usuario set imagen_perfil=? where usuario.nombre=?');
-    $sentencia->execute([$destino_final,$usuario]);
+      $destino_final = 'images/' . uniqid() . '.jpg';
+      move_uploaded_file($imagen, $destino_final);
+      $sentencia = $this->db->prepare('update usuario set imagen_perfil=? where usuario.nombre=?');
+      $sentencia->execute([$destino_final,$usuario]);
     }
   }
 

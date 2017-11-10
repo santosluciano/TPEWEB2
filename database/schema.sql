@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2017 a las 21:59:05
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.8
+-- Servidor: localhost
+-- Tiempo de generación: 10-11-2017 a las 02:35:35
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.0.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,6 +51,32 @@ INSERT INTO `celular` (`id_celular`, `nombre`, `caracteristicas`, `precio`, `url
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `fk_id_celular` int(11) NOT NULL,
+  `fk_id_usuario` int(11) NOT NULL,
+  `texto_comentario` text NOT NULL,
+  `nota_comentario` decimal(10,0) NOT NULL DEFAULT '0',
+  `fecha_comentario` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `fk_id_celular`, `fk_id_usuario`, `texto_comentario`, `nota_comentario`, `fecha_comentario`) VALUES
+(2, 1, 1, '33333', '2', '2017-11-08 20:17:23'),
+(82, 1, 1, 'BLEDABUSITO', '3', '2017-11-08 19:13:38'),
+(83, 1, 1, 'agrego otra chabon', '2', '2017-11-08 20:10:28'),
+(84, 1, 1, 'esta es la review', '4', '2017-11-09 16:10:07'),
+(85, 1, 1, 'li', '3', '2017-11-09 16:12:44');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `especificacion_celular`
 --
 
@@ -75,7 +101,7 @@ CREATE TABLE `especificacion_celular` (
 --
 
 INSERT INTO `especificacion_celular` (`id_celular`, `pantalla`, `pantalla_dimension`, `peso`, `procesador`, `ram`, `memoria`, `sistema_operativo`, `conectividad`, `capacidad_bateria`, `camara`, `lector_huella`, `supercarga`) VALUES
-(1, 'LCD IPS touchscreen capacitivo, 16M colores', '720 x 1280 px, 5.0 pulgadas', 142, 'Qualcomm Snapdragon 415 octa-core 1.5GHz, GPU Adreno 405', '2 GB', '16 GB memoria interna, microSD, hasta 32 GB', 'Android OS, v5.1.1 Lollipop', 'GSM 900 / 1800 / 1900  - HSDPA - LTE', 2750, '13 MP, 4128 x 3096 pixels, flash LED, cámara front', 0, 0),
+(1, '', '', 0, '', '', '', '', '', 0, '', 0, 0),
 (2, 'IPS FullHD ', '5 pulgadas 1.920 x 1.080 píxeles ', 145, 'Snapdragon 430 octa-core a 1,4 GHz, GPU Adreno 505 a 450 MHz', '2 GB', '16 GB + MicroSD hasta 128 GB', 'Android 7.0 Nougat', '4G LTE Cat 4, WiFi a/b/g/n, Bluetooth 4.2', 2800, '13 MP, lente f/2.0, flash LED, Camara frontal 5 MP', 1, 1),
 (3, 'Pantalla Super AMOLED curva', '1.440 x 2.960 píxeles,  5.8 pulgadas', 155, 'Qualcomm Snapdragon 835 Octacore (2,3 Ghz + 1,7 Ghz) 64 Bit', '4 GB', '64 GB (UFS 2.1), microSD (hasta 256 GB)', 'Android 7.0 con TouchWiz', 'LTE Cat.16, Wi-Fi 802.11 a/b/g/n/ac (2.4/5GHz)', 3000, '12 megapíxeles con una lente con OIS y f/1,7  Fron', 1, 1),
 (4, 'P-OLED curva, touchscreen capacitivo, 16M colores', '1080 x 1920 pixels, 5.5 pulgadas', 152, 'Qualcomm Snapdragon 810 con 64-bit Octa-Core', '2GB LPDDR4', '32 GB memoria interna, microSD, hasta 128GB', 'Android OS, v5.0.1 Lollipop', 'Wi-Fi 802.11 a/b/g/n/ac, 4G LTE Cat. 6', 3000, '13 MP, flash LED dual, cámara frontal 2.1 MP', 0, 0),
@@ -141,15 +167,17 @@ CREATE TABLE `usuario` (
   `nombre` varchar(40) NOT NULL,
   `password` varchar(250) NOT NULL,
   `email` varchar(80) NOT NULL,
-  `permiso_admin` tinyint(1) DEFAULT NULL
+  `permiso_admin` tinyint(1) DEFAULT '0',
+  `imagen_perfil` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `email`, `permiso_admin`) VALUES
-(1, 'root', '$2a$06$f.ma9glTC0dpoEjExJwDcus3rBtnIxlYOOzI3ixUhC5RdD4caKxX2', 'root@root.com', 1);
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `email`, `permiso_admin`, `imagen_perfil`) VALUES
+(1, 'root', '$2a$06$f.ma9glTC0dpoEjExJwDcus3rBtnIxlYOOzI3ixUhC5RdD4caKxX2', 'root@root.com', 1, 'images/5a04a957acd31.jpg'),
+(7, 'luchosan', '$2y$10$Nw21F1dUEf0US5c5rOzaPeGKGnpDcYoSb5xH6NQHe8uZ59M6E2wbG', 'luchosan74@gmail.com', 0, '');
 
 --
 -- Índices para tablas volcadas
@@ -161,6 +189,14 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `email`, `permiso_adm
 ALTER TABLE `celular`
   ADD PRIMARY KEY (`id_celular`),
   ADD KEY `id_marca` (`id_marca`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `fk_id_usuario` (`fk_id_usuario`),
+  ADD KEY `fk_id_celular` (`fk_id_celular`);
 
 --
 -- Indices de la tabla `especificacion_celular`
@@ -196,16 +232,25 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `celular`
   MODIFY `id_celular` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
   MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -215,6 +260,13 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `celular`
   ADD CONSTRAINT `celular_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`);
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`fk_id_celular`) REFERENCES `celular` (`id_celular`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`fk_id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `especificacion_celular`

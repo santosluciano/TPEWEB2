@@ -1,4 +1,4 @@
 {
     "git.ignoreLimitWarning": true,
-    "php.validate.executablePath": "C:\\xampp\\php\\php.exe"
+    "php.validate.executablePath": "/opt/lampp/bin/php"
 }
