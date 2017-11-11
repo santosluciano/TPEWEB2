@@ -109,6 +109,8 @@ border-width:8px;
 }
 .img-perfil{
   margin-top: 20px;
+  height: 150px;
+  width: 150px;
 }
 .nombre-perfil{
   text-align: center;

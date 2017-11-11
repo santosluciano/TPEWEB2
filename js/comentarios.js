@@ -8,7 +8,7 @@ $(document).ready(function(){
     });
 
     function cargarComentarios(idCelular) {
-        $.ajax("api/comentarios/celular/"+idCelular)
+        $.ajax("api/comentarios?id_celular="+idCelular)
            .done(function(comentarios) {
                  let rendered = Mustache.render(templateComentario , comentarios);
                 //  let nota = 0;
@@ -106,5 +106,7 @@ $(document).ready(function(){
             }
           });
      });
+
+
   });
   

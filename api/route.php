@@ -12,9 +12,7 @@ $router = new Router();
 $router->AddRoute("estadisticas/:id", "GET", "CelularesApiController", "getEstadisticas");
 //Api comentarios
 $router->AddRoute("comentarios", "GET", "ComentariosApiController", "getComentarios");
-$router->AddRoute("comentarios/celular/:id", "GET", "ComentariosApiController", "getComentariosCelular");
 $router->AddRoute("comentarios/:id", "GET", "ComentariosApiController", "getComentario");
-$router->AddRoute("comentarios/usuario/:id", "GET", "ComentariosApiController", "getComentariosUsuario");
 //$router->AddRoute("tareas/:id", "PUT", "TareasApiController", "editTarea");
 $router->AddRoute("comentarios", "POST", "ComentariosApiController", "crearComentario");
 $router->AddRoute("comentarios/:id", "DELETE", "ComentariosApiController", "deleteComentario");

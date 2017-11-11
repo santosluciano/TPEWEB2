@@ -83,8 +83,8 @@ class LoginController extends SecuredController
     if ($this->isConnect()){
       $rutaTempImagen = $_FILES['imageProfile']['tmp_name'];
       if($_FILES['imageProfile']['type'] == 'image/jpeg') {
-        $this->model->changeImageProfile($_SESSION['USER'],$rutaTempImagen);
-        header('Location: '.HOME);
+        $usuario = $this->model->changeImageProfile($_SESSION['USER'],$rutaTempImagen);
+        $this->view->mostrarImagenPerfil($usuario);
       }
     }
   }

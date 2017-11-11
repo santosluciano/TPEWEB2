@@ -12,6 +12,10 @@ class LoginView extends View
     $this->smarty->assign('error', $error);
     return $this->smarty->display('templates/Login/formCrearCuenta.tpl');
   }
+  function mostrarImagenPerfil($usuario){
+    $this->smarty->assign('usuario',$usuario);
+    return $this->smarty->display('templates/fotoperfil.tpl');
+  }
 }
 
  ?>

@@ -16,7 +16,15 @@ class ComentariosApiController extends Api
   }
   public function getComentarios()
   {
-    $comentarios = $this->model->getAll();
+    if (isset($_GET['id_celular'])){
+      $id_celular = $_GET['id_celular'];
+      $comentarios = $this->model->getAllForCelular($id_celular);
+    } else if (isset($_GET['id_usuario'])){
+      $id_usuario = $_GET['id_usuario']; 
+      $comentarios = $this->model->getAllForUsuario($id_usuario);  
+    } else {
+      $comentarios = $this->model->getAll();
+    }
     $response = new stdClass();
     $response->comentarios = $comentarios;
     $response->status = 200;  
@@ -28,29 +36,6 @@ class ComentariosApiController extends Api
     $comentario = $this->model->getComentario($id_comentario);
     if ($comentario)
       return $this->json_response($comentario, 200);
-    else
-      return $this->json_response(false, 404);
-  }
-  public function getComentariosCelular($params = [])
-  {
-    $id_celular = $params[':id'];
-    $comentarios = $this->model->getAllForCelular($id_celular);
-    $response = new stdClass();
-    $response->comentarios = $comentarios;
-    $response->status = 200;
-    return $this->json_response($response, 200);
-  }
-  public function getComentariosUsuario($params = [])
-  {
-    $id_usuario = $params[':id'];
-    $comentarios = $this->model->getAllForUsuario($id_usuario);
-    if ($comentarios){
-      return $this->json_response($comentarios, 200);
-      $response = new stdClass();
-      $response->comentarios = $comentarios;
-      $response->status = 200;  
-      return $this->json_response($response, 200);
-    }
     else
       return $this->json_response(false, 404);
   }
@@ -66,7 +51,8 @@ class ComentariosApiController extends Api
     else
       return $this->json_response(false, 404);
   }
-  private function excepcionesCreacion($body){
+  private function excepcionesCreacion($body)
+  {
     if (!isset($body))
       throw new Exception(false);
     if (!isset($body->id_celular))
@@ -78,7 +64,8 @@ class ComentariosApiController extends Api
     if (!isset($body->nota_comentario))
       throw new Exception(false);          
   }
-  function crearComentario(){
+  function crearComentario()
+  {
     $body = json_decode($this->raw_data);
     try{
       $this->excepcionesCreacion($body);
