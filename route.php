@@ -47,6 +47,9 @@
     $router->AddRoute("crearEspecificacion/:id", "GET", "CelularesController", "createEspecificacion");
     $router->AddRoute("guardarEspecificacion/:id", "POST", "CelularesController", "storeEspecificacion");
     $router->AddRoute("borrarEspecificacion/:id", "GET", "CelularesController", "destroyEspecificacion");
+    $router->AddRoute("modificarImagenes/:id", "GET", "CelularesController", "showImagenes");
+    $router->AddRoute("subirImagenes/:id", "POST", "CelularesController", "cargarImagenes");
+    $router->AddRoute("cambiarImagen/:id", "POST", "CelularesController", "setImagen");
     //Control de marcas
     $router->AddRoute("adminMarcas", "GET", "MarcasController", "index");
     $router->AddRoute("eliminarMarca/:id", "GET", "MarcasController", "destroy");

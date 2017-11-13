@@ -20,7 +20,7 @@
     }   
     function mostrarImagenPerfil($usuario){
         $this->smarty->assign('usuario',$usuario);
-        return $this->smarty->display('templates/fotoperfil.tpl');
+        return $this->smarty->display('templates/imagen.tpl');
     }
     function mostrarFormRegistrar(){
         return $this->smarty->display('templates/Login/formCrearCuenta.tpl');

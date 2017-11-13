@@ -38,11 +38,10 @@
       try {
         $this->excepcionesIsset();
         try {
-          if (empty($_FILES['imagenes']['name'][0]))
-            throw new Exception("Se debe subir al menos una imagen");
+          $this->cumpleRequisitosImagen();
           $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
           if (!$this->sonPNG($_FILES['imagenes']['type']))
-            throw new Exception("Las imagenes tienen que ser png");            
+            throw new Exception("Las imagenes tienen que ser png");             
           $this->excepcionesEmpty();
           $this->modelCelular->store($_POST['marca'],$_POST['nombre'],$_POST['caracteristicas'],$_POST['precio'],$rutaTempImagenes);
           header('Location: '.HOMECELULARES);
@@ -53,6 +52,12 @@
       } catch (Exception $e) {
         header('Location: '.HOMECELULARES);
       }
+    }
+    private function cumpleRequisitosImagen(){
+      if (count($_FILES['imagenes']['name'])>3)
+        throw new Exception("El maximo de imagenes es 3");          
+      if (empty($_FILES['imagenes']['name'][0]))
+        throw new Exception("Se debe subir al menos una imagen"); 
     }
     private function sonPNG($imagenesTipos){
       foreach ($imagenesTipos as $tipo) {
@@ -93,18 +98,30 @@
         $id_celular = $params[':id'];
           try {
             $this->excepcionesEmpty();
+            $this->excepcionesLimiteImagenes($id_celular);
+            $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
             $this->modelCelular->setNombre($id_celular,$_POST['nombre']);
             $this->modelCelular->setCaracteristicas($id_celular,$_POST['caracteristicas']);
             $this->modelCelular->setPrecio($id_celular,$_POST['precio']);
             $this->modelCelular->setMarca($id_celular,$_POST['marca']);
+            if (!empty($_FILES['imagenes']['name'][0]))
+              $this->modelCelular->storeImagenes($id_celular,$rutaTempImagenes);
             header('Location: '.HOMECELULARES);
           } catch (Exception $e) {
             $marcas = $this->modelMarca->getAll();
             $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$marcas,$_POST['marca'],"setCelular/$id_celular",'Modificar','Modificar celular');
           }
         } catch (Exception $e) {
-        header('Location: '.HOMECELULARES);
+          header('Location: '.HOMECELULARES);
       }
+    }
+    private function excepcionesLimiteImagenes($id_celular){
+      $cant_imagenes = $this->modelCelular->cantImagenesCelular($id_celular);
+      $cant_imagenes_total = $cant_imagenes[0]+count($_FILES['imagenes']['name']);
+      if (empty($_FILES['imagenes']['name'][0]))
+        $cant_imagenes_total-=1;
+      if ($cant_imagenes_total>3)
+        throw new Exception("Excede la cantidad de imagenes para el celular");
     }
     public function showEspecificaciones($params = [])
     {
@@ -154,6 +171,50 @@
       $id_celular = $params[':id'];
       $this->modelCelular->deleteEspecificaciones($id_celular);
       header('Location: '.HOMECELULARES);
+    }
+    public function showImagenes($params = [])
+    {
+      $id_celular = $params[':id'];
+      $imagenes = $this->modelCelular->getImagenesCelularID($id_celular);
+      $this->view->mostrarImagenes($imagenes,$id_celular);
+    }
+    public function cargarImagenes($params = [])
+    {
+      $id_celular = $params[':id'];
+      try{
+        $this->excepcionesLimiteImagenes($id_celular);
+        if (!$this->sonPNG($_FILES['imagenes']['type']))
+          throw new Exception("Las imagenes tienen que ser png");
+        if (!empty($_FILES['imagenes']['name'][0])){
+          $rutaTempImagenes = $_FILES['imagenes']['tmp_name']; 
+          $this->modelCelular->storeImagenes($id_celular,$rutaTempImagenes);      
+        }
+        header('Location: '.HOMECELULARES); 
+      }catch (Exception $e){
+        $imagenes = $this->modelCelular->getImagenesCelularID($id_celular); 
+        $this->view->errorFormImagenes($e->getMessage(),$imagenes,$id_celular);
+      }
+    }
+    public function setImagen($params = [])
+    {
+      $id_imagen = $params[':id'];
+      try{
+        if (($_FILES['imagen']['type']!='image/png'))
+          throw new Exception("La imagen tiene que ser png");
+        if (empty($_FILES['imagen']['name']))
+          throw new Exception("Elija una nueva imagen");
+        $rutaImagen = $_FILES['imagen']['tmp_name'];
+        $imagen = $this->modelCelular->setImagen($id_imagen,$rutaImagen);
+        $id_celular = $imagen['fk_id_celular'];
+        $imagenes = $this->modelCelular->getImagenesCelularID($id_celular);
+        $this->view->mostrarImagenes($imagenes,$id_celular);        
+      }catch (Exception $e){
+        $imagen = $this->modelCelular->getImagen($id_imagen);
+        $id_celular = $imagen['fk_id_celular'];
+        $imagenes = $this->modelCelular->getImagenesCelularID($id_celular);
+        $this->view->errorFormImagenes($e->getMessage(),$imagenes,$id_celular);
+      }
+
     }
   }
  ?>

@@ -68,6 +68,23 @@
       $this->smarty->assign('camara', $especificaciones['9']);
       $this->smarty->assign('lector_huella', $especificaciones['10']);
       $this->smarty->assign('supercarga', $especificaciones['11']);
-    } 
+    }
+    public function mostrarImagenes($imagenes,$id_celular){
+      $this->smarty->assign('imagenes',$imagenes);
+      $this->smarty->assign('id_celular',$id_celular);
+      $this->smarty->assign('encabezado','Modificar Imagenes');
+      $this->smarty->display('templates/Admin/formImagenes.tpl');
+    }
+    public function errorFormImagenes($error,$imagenes,$id_celular){
+      $this->smarty->assign('imagenes',$imagenes);
+      $this->smarty->assign('id_celular',$id_celular);
+      $this->smarty->assign('encabezado','Modificar Imagenes');
+      $this->smarty->assign('error',$error);
+      $this->smarty->display('templates/Admin/formImagenes.tpl');
+    }
+    public function mostrarImagenCelular($imagen){
+      $this->smarty->assign('imagen',$imagen);
+      return $this->smarty->display('templates/Admin/imagen.tpl');
+    }
   }
  ?>

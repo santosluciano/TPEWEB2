@@ -9,7 +9,7 @@
             <tr>
               <th>Nombre</th>
               <th>Caracteristicas</th>
-              <th>Imagen</th>
+              <th>Imagenes</th>
               <th>Precio</th>
               <th>Marca</th>
             </tr>
@@ -19,7 +19,12 @@
             <tr>
               <td>{$celular.nombre}</td>
               <td>{$celular.caracteristicas}</td>
-              <td><img src="{$celular.url_img}" class="img-responsive" alt="{$celular.nombre}"></td>
+              <td>
+              {foreach $celular.imagenes item=imagen}
+                <img src="{$imagen.ruta}" class="img-responsive" alt="{$celular.nombre}">
+              {/foreach}
+              <a href="modificarImagenes/{$celular.id_celular}" class="fa fa-pencil"></a>
+              </td>
               <td>$ {$celular.precio}</td>
               <td>{$celular.marca.nombre}</td>
               <td><a href="modificarCelular/{$celular.id_celular}" class="fa fa-pencil"></a></td>

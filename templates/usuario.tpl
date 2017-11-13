@@ -1,6 +1,6 @@
 <div class="container contenedor-usuario">
     <div class="thumbnail col-md-offset-3 col-md-6 datos-perfil">
-        {include file="fotoperfil.tpl"} 
+        {include file="imagen.tpl"} 
         <h2 class="nombre-perfil">{$usuario.nombre}</h2>
         <p class="nombre-perfil"><i class="fa fa-envelope" aria-hidden="true"></i> Email: {$usuario.email}</p>
         {if $usuario.permiso_admin == 1}

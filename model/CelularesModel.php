@@ -8,7 +8,22 @@ class CelularesModel extends Model
     $sentencia = $this->db->prepare( "select * from celular");
     $sentencia->execute();
     $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    return $this->getCelularesMarca($celulares);
+    $celularesMarca = $this->getCelularesMarca($celulares);
+    return $this->getImagenesCelular($celularesMarca);
+  }
+  private function getImagenesCelular($celulares){
+    $celularesImagenes = [];
+    foreach ($celulares as $celular) {
+      $imagenes = $this->getImagenesCelularID($celular['id_celular']);
+      $celular['imagenes'] = $imagenes;
+      $celularesImagenes[] = $celular;
+    }
+    return $celularesImagenes; 
+  }
+  public function getImagenesCelularID($id_celular){
+    $sentencia = $this->db->prepare( "select * from imagen where fk_id_celular=?");
+    $sentencia->execute([$id_celular]);
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
   private function getCelularesMarca($celulares){
     $celularesMarca = [];
@@ -34,6 +49,9 @@ class CelularesModel extends Model
     $sentencia = $this->db->prepare('INSERT INTO celular(nombre,caracteristicas,precio,id_marca) VALUES(?,?,?,?)');
     $sentencia->execute([$nombre,$caracteristicas,$precio,$id_marca]);
     $id_celular = $this->db->lastInsertId();
+    $this->storeImagenes($id_celular,$imagenes);
+  }
+  function storeImagenes($id_celular,$imagenes){
     $rutas = $this->subirImagenes($imagenes);
     $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(fk_id_celular,ruta) VALUES(?,?)');
     foreach ($rutas as $ruta) {
@@ -60,6 +78,18 @@ class CelularesModel extends Model
   function setPrecio($id_celular,$precio){
     $sentencia = $this->db->prepare( "update celular set precio=? where id_celular=?");
     $sentencia->execute([$precio,$id_celular]);
+  }
+  function setImagen($id_imagen,$imagen){
+    $destino_final = 'images/' . uniqid() . '.jpg';
+    move_uploaded_file($imagen, $destino_final);
+    $sentencia = $this->db->prepare('update imagen set ruta=? where id_imagen=?');
+    $sentencia->execute([$destino_final,$id_imagen]);
+    return $this->getImagen($id_imagen);
+  }
+  function getImagen($id_imagen){
+    $sentencia = $this->db->prepare( "select * from imagen WHERE id_imagen=?");
+    $sentencia->execute([$id_imagen]);
+    return $sentencia->fetch(PDO::FETCH_ASSOC);
   }
   function setMarca($id_celular,$id_marca){
     $sentencia = $this->db->prepare( "update celular set id_marca=? where id_celular=?");
@@ -100,6 +130,11 @@ class CelularesModel extends Model
   function deleteEspecificaciones($id_celular){
     $sentencia = $this->db->prepare( "delete from especificacion_celular where id_celular=?");
     $sentencia->execute([$id_celular]);
+  }
+  function cantImagenesCelular($id_celular){
+    $sentencia = $this->db->prepare("select COUNT(*) from imagen where fk_id_celular=?");
+    $sentencia->execute([$id_celular]);
+    return $sentencia->fetch();
   }
 }
 
