@@ -101,7 +101,7 @@ $(document).ready(function () {
       let serializedData = $(this).serialize();
      $.post(accion, serializedData, function(response) {
                   $(".cuerpo").html(response);
-                  asignarProductos();
+                  location.reload();
       });
       cargando(); 
     });    

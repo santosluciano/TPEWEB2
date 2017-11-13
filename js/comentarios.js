@@ -2,6 +2,7 @@ $(document).ready(function(){
     let templateComentario;
 
     $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => templateComentario = template);
+    
     $('body').on('click','a.btnComentarios',function(){
         let idCelular = $(this).data('idcelular');
         cargarComentarios(idCelular);
@@ -20,13 +21,13 @@ $(document).ready(function(){
                })
                .fail(function() {
                    $('.comentarios').html('No se pudieron cargar los comentarios');
-               });       
-       }
+               });      
+    }
   
-     function crearComentario() {
+    function crearComentario(id_usuario,id_celular) {
         let comentario ={
-             "id_celular": 1,
-             "id_usuario": 1,
+             "id_celular": id_celular,
+             "id_usuario": id_usuario,
              "texto_comentario": $('#review').val(),
              "nota_comentario": $('#notaUsuario').val()
             };  
@@ -43,7 +44,7 @@ $(document).ready(function(){
                console.log(data);
                alert('Imposible comentar');
            });
-        }
+    }
   
     //   function borrarTarea(idTarea) {
     //     $.ajax({
@@ -79,7 +80,9 @@ $(document).ready(function(){
   
      $('body').on('submit','.publicarComentario',function(event){
          event.preventDefault();
-         crearComentario();
+         let id_usuario = $(this).data('idusuario');
+         let id_celular = $('.btnComentarios').data('idcelular');
+         crearComentario(id_usuario,id_celular);
      });
   
     // $('body').on('click', 'a.js-borrar', function() {
@@ -93,6 +96,7 @@ $(document).ready(function(){
     //     let idTarea = $(this).data('idtarea');
     //     completarTarea(idTarea);
     // });
+
      $('body').on('click','.btn-review',function(event){
         event.preventDefault();
         let accion = this.href;

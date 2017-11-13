@@ -9,6 +9,7 @@
             <li role="presentation"><a href="adminMarcas" class="fa fa-apple"> MARCAS</a></li>
             <li role="presentation"><a href="adminCelulares" class="fa fa-mobile"> CELULARES</a></li>
             <li role="presentation"><a href="adminUsuarios" class="fa fa-user"> USUARIOS</a></li>
+            <li role="presentation"><a href="adminComentarios" class="fa fa-comments-o"> COMENTARIOS</a></li>
             <li role="presentation"><a href="logout" class="fa fa-sign-out"> CERRAR SESION</a></li>
           </ul>
         </div>

@@ -121,3 +121,8 @@ border-width:8px;
 .minicelular .active{
   border: blue;
 }
+.btn-admin{
+  margin: 5px;
+  display: block;
+  text-align: center;
+}

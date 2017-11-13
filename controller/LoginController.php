@@ -46,48 +46,6 @@ class LoginController extends SecuredController
     session_destroy();
     header('Location: '.HOME);
   }
-  public function create()
-  {
-    $this->view->mostrarFormRegistrar();
-  }
-  private function excepcionesIssetRegistro(){
-    if (!isset($_POST['usuario']))
-      throw new Exception("No se recibio el nombre de usuario");
-    if (!isset($_POST['email']))
-      throw new Exception("No se recibio el email");
-    if (!isset($_POST['password']))
-      throw new Exception("No se recibio la contraseña");
-  }
-  public function store()
-  {
-    try {
-      $this->excepcionesIssetRegistro();
-        try {
-          if (strlen($_POST['usuario'])<6)
-            throw new Exception("El nombre de usuario debe tener mas de 6 caracteres");
-          if (strlen($_POST['password'])<6)
-            throw new Exception("La contraseña debe tener mas de 6 caracteres");
-          $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-          $foto_perfil = "https://ssl.gstatic.com/accounts/ui/avatar_2x.png";
-          $this->model->store($_POST['usuario'],$_POST['email'],$password,$foto_perfil);
-          //header('Location: '.HOME);
-        } catch (Exception $e) {
-          $this->view->errorFormRegistro($e->getMessage());
-        }
-      }catch (Exception $e) {
-        $this->view->errorFormRegistro($e->getMessage());
-      }
-  }
-  public function changeImage()
-  { 
-    if ($this->isConnect()){
-      $rutaTempImagen = $_FILES['imageProfile']['tmp_name'];
-      if($_FILES['imageProfile']['type'] == 'image/jpeg') {
-        $usuario = $this->model->changeImageProfile($_SESSION['USER'],$rutaTempImagen);
-        $this->view->mostrarImagenPerfil($usuario);
-      }
-    }
-  }
 }
 
  ?>

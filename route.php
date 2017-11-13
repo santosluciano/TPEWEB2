@@ -29,13 +29,13 @@
     $router->AddRoute("logout", "GET", "LoginController", "destroy");
     $router->AddRoute("verificarUsuario", "POST", "LoginController", "verify");
     //Control de usuarios
-    $router->AddRoute("crearUsuario", "GET", "LoginController", "create");
-    $router->AddRoute("registrarUsuario", "POST", "LoginController", "store");
+    $router->AddRoute("crearUsuario", "GET", "UsuariosController", "create");
+    $router->AddRoute("registrarUsuario", "POST", "UsuariosController", "store");
     $router->AddRoute("adminUsuarios", "GET", "UsuariosController", "index");
     $router->AddRoute("cambiarPermisoAdmin/:id", "GET", "UsuariosController", "changeAdmin");
     $router->AddRoute("eliminarUsuario/:id", "GET", "UsuariosController", "destroy");
     $router->AddRoute("perfilUsuario", "GET", "NavigationController", "user");
-    $router->AddRoute("cambiarFotoPerfil", "POST", "LoginController", "changeImage");
+    $router->AddRoute("cambiarFotoPerfil", "POST", "UsuariosController", "changeImage");
     //Control de celulares
     $router->AddRoute("adminCelulares", "GET", "CelularesController", "index");
     $router->AddRoute("eliminarCelular/:id", "GET", "CelularesController", "destroy");
@@ -54,6 +54,7 @@
     $router->AddRoute("guardarMarca", "POST", "MarcasController", "store");
     $router->AddRoute("modificarMarca/:id", "GET", "MarcasController", "update");
     $router->AddRoute("setMarca/:id", "POST", "MarcasController", "set");
+    //Control de comentarios
 
     //Se carga la accion que viene por url y se llama a la funcion url para que genere el array 
     //con el controlador, el metodo y los parametros por url

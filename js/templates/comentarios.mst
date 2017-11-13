@@ -8,7 +8,7 @@
   <div class="col-md-5">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <strong>{{nombre}}</strong> <span class="text-muted">publicado el {{fecha_comentario}} </span><span class="label label-info nota-user">NOTA {{nota_comentario}}</span>
+        <strong>{{nombre}}</strong> <span class="text-muted">publicado el {{fecha_comentario}} </span><span class="label label-info nota-user">NOTA {{nota_comentario}} </span>
       </div>
       <div class="panel-body">
         {{texto_comentario}}

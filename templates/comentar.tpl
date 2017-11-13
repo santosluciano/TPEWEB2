@@ -11,7 +11,7 @@
         <strong>{$usuario.nombre}</strong>
         </div>
         <div class="panel-body">
-        <form class="publicarComentario">
+        <form class="publicarComentario" data-idusuario={$usuario.id_usuario}>
             <div class="form-group">
             <label for="review">Review</label>
             <textarea class="form-control" id="review" name="review" placeholder="Escriba su review..." rows="5" cols="50"></textarea>
