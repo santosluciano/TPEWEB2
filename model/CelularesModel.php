@@ -30,9 +30,24 @@ class CelularesModel extends Model
     $sentencia = $this->db->prepare( "delete from celular where id_celular=?");
     $sentencia->execute([$id_celular]);
   }
-  function store($id_marca,$nombre,$caracteristicas,$precio,$url){
-    $sentencia = $this->db->prepare('INSERT INTO celular(nombre,caracteristicas,precio,url_img,id_marca) VALUES(?,?,?,?,?)');
-    $sentencia->execute([$nombre,$caracteristicas,$precio,$url,$id_marca]);
+  function store($id_marca,$nombre,$caracteristicas,$precio,$imagenes){
+    $sentencia = $this->db->prepare('INSERT INTO celular(nombre,caracteristicas,precio,id_marca) VALUES(?,?,?,?)');
+    $sentencia->execute([$nombre,$caracteristicas,$precio,$id_marca]);
+    $id_celular = $this->db->lastInsertId();
+    $rutas = $this->subirImagenes($imagenes);
+    $sentencia_imagenes = $this->db->prepare('INSERT INTO imagen(fk_id_celular,ruta) VALUES(?,?)');
+    foreach ($rutas as $ruta) {
+      $sentencia_imagenes->execute([$id_celular,$ruta]);
+    }
+  }
+  private function subirImagenes($imagenes){
+    $rutas = [];
+    foreach ($imagenes as $imagen) {
+      $destino_final = 'images/' . uniqid() . '.png';
+      move_uploaded_file($imagen, $destino_final);
+      $rutas[]=$destino_final;
+    }
+    return $rutas;
   }
   function setNombre($id_celular,$nombre){
     $sentencia = $this->db->prepare( "update celular set nombre=? where id_celular=?");
@@ -49,10 +64,6 @@ class CelularesModel extends Model
   function setMarca($id_celular,$id_marca){
     $sentencia = $this->db->prepare( "update celular set id_marca=? where id_celular=?");
     $sentencia->execute([$id_marca,$id_celular]);
-  }
-  function setUrl_img($id_celular,$url){
-    $sentencia = $this->db->prepare( "update celular set url_img=? where id_celular=?");
-    $sentencia->execute([$url,$id_celular]);
   }
   function getAllFromMarca($id_marca){
     $sentencia = $this->db->prepare( "select celular.* from celular, marca WHERE celular.id_marca=marca.id_marca AND marca.id_marca = ?");

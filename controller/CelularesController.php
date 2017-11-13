@@ -38,19 +38,32 @@
       try {
         $this->excepcionesIsset();
         try {
+          if (empty($_FILES['imagenes']['name'][0]))
+            throw new Exception("Se debe subir al menos una imagen");
+          $rutaTempImagenes = $_FILES['imagenes']['tmp_name'];
+          if (!$this->sonPNG($_FILES['imagenes']['type']))
+            throw new Exception("Las imagenes tienen que ser png");            
           $this->excepcionesEmpty();
-          $this->modelCelular->store($_POST['marca'],$_POST['nombre'],$_POST['caracteristicas'],$_POST['precio'],$_POST['url']);
+          $this->modelCelular->store($_POST['marca'],$_POST['nombre'],$_POST['caracteristicas'],$_POST['precio'],$rutaTempImagenes);
           header('Location: '.HOMECELULARES);
         } catch (Exception $e) {
           $marcas = $this->modelMarca->getAll();
-          $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$_POST['url'],$marcas,$_POST['marca'],"guardarCelular",'Crear','Crear celular');
+          $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$marcas,$_POST['marca'],"guardarCelular",'Crear','Crear celular');
         }
       } catch (Exception $e) {
         header('Location: '.HOMECELULARES);
       }
     }
+    private function sonPNG($imagenesTipos){
+      foreach ($imagenesTipos as $tipo) {
+        if($tipo != 'image/png') {
+          return false;
+        }
+      }
+      return true;
+    }
     private function excepcionesIsset(){
-      if(!(isset($_POST['marca'])&&isset($_POST['precio'])&&isset($_POST['nombre'])&&isset($_POST['url'])))
+      if(!(isset($_POST['marca'])&&isset($_POST['precio'])&&isset($_POST['nombre'])))
         throw new Exception("Hay variables que no fueron seteadas");
     }
     private function excepcionesEmpty()
@@ -61,8 +74,6 @@
         throw new Exception("El nombre es requerido");
       if(empty($_POST['precio']))
         throw new Exception("El precio es requerido");
-      if(empty($_POST['url']))
-        throw new Exception("La url es requerida");
     }
     public function update($params = [])
     {
@@ -71,10 +82,9 @@
       $nombre = $celular['nombre'];
       $caracteristicas = $celular['caracteristicas'];
       $precio = $celular['precio'];
-      $url = $celular['url_img'];
       $id_marca = $celular['id_marca'];
       $marcas = $this->modelMarca->getAll();
-      $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$url,$id_celular,$id_marca,$marcas);
+      $this->view->mostrarActualizarCelular($nombre,$caracteristicas,$precio,$id_celular,$id_marca,$marcas);
     }
     public function set($params = [])
     {
@@ -87,11 +97,10 @@
             $this->modelCelular->setCaracteristicas($id_celular,$_POST['caracteristicas']);
             $this->modelCelular->setPrecio($id_celular,$_POST['precio']);
             $this->modelCelular->setMarca($id_celular,$_POST['marca']);
-            $this->modelCelular->setUrl_img($id_celular,$_POST['url']);
             header('Location: '.HOMECELULARES);
           } catch (Exception $e) {
             $marcas = $this->modelMarca->getAll();
-            $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$_POST['url'],$marcas,$_POST['marca'],"setCelular/$id_celular",'Modificar','Modificar celular');
+            $this->view->errorFormCelular($e->getMessage(),$_POST['nombre'], $_POST['caracteristicas'],$_POST['precio'],$marcas,$_POST['marca'],"setCelular/$id_celular",'Modificar','Modificar celular');
           }
         } catch (Exception $e) {
         header('Location: '.HOMECELULARES);

@@ -6,7 +6,7 @@
       <div class="alert alert-danger" role="alert">{$error}</div>
     {/if}
     <div class="thumbnail">
-      <form action="{$action}" method="post">
+      <form action="{$action}" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <input type="text" class="form-control" id="nombre" name="nombre"  value="{$nombre}" placeholder="Nombre del celular">
@@ -20,10 +20,6 @@
           <input type="number" class="form-control" id="precio" name="precio"  value="{$precio}" placeholder="$99.99">
         </div>
         <div class="form-group">
-          <label for="url">Url de la imagen</label>
-          <input type="text" class="form-control" id="url" name="url"  value="{$url_img}" placeholder="www.imagenes.com/imagen">
-        </div>
-        <div class="form-group">
           <label for="precio">Marca</label>
           <select class="form-control" name="marca">
             {foreach from=$marcas item=marca}
@@ -34,6 +30,10 @@
             {/if}
             {/foreach}
           </select>
+        </div>
+        <div class="form-group">
+          <label for="imagenes">Imagenes Celular (Max. 3)</label>
+          <input type="file" id="imagenes" name="imagenes[]" multiple>
         </div>
         <button type="submit" class="btn btn-primary">{$accion}</button>
         <a href="adminCelulares" type="button" class="btn btn-success btn-sm">Volver</a>
