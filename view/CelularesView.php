@@ -82,9 +82,5 @@
       $this->smarty->assign('error',$error);
       $this->smarty->display('templates/Admin/formImagenes.tpl');
     }
-    public function mostrarImagenCelular($imagen){
-      $this->smarty->assign('imagen',$imagen);
-      return $this->smarty->display('templates/Admin/imagen.tpl');
-    }
   }
  ?>

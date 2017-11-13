@@ -10,6 +10,7 @@
     include_once 'controller/CelularesController.php';
     include_once 'controller/LoginController.php';
     include_once 'controller/UsuariosController.php';
+    include_once 'controller/ImagenesController.php';
 
     $router = new Router();
     //(url, verb, controller, method)
@@ -47,9 +48,10 @@
     $router->AddRoute("crearEspecificacion/:id", "GET", "CelularesController", "createEspecificacion");
     $router->AddRoute("guardarEspecificacion/:id", "POST", "CelularesController", "storeEspecificacion");
     $router->AddRoute("borrarEspecificacion/:id", "GET", "CelularesController", "destroyEspecificacion");
-    $router->AddRoute("modificarImagenes/:id", "GET", "CelularesController", "showImagenes");
-    $router->AddRoute("subirImagenes/:id", "POST", "CelularesController", "cargarImagenes");
-    $router->AddRoute("cambiarImagen/:id", "POST", "CelularesController", "setImagen");
+    $router->AddRoute("modificarImagenes/:id", "GET", "ImagenesController", "index");
+    $router->AddRoute("subirImagenes/:id", "POST", "ImagenesController", "cargarImagenes");
+    $router->AddRoute("cambiarImagen/:id", "POST", "ImagenesController", "setImagen");
+    $router->AddRoute("eliminarImagen/:id", "GET", "ImagenesController", "deleteImagen");
     //Control de marcas
     $router->AddRoute("adminMarcas", "GET", "MarcasController", "index");
     $router->AddRoute("eliminarMarca/:id", "GET", "MarcasController", "destroy");

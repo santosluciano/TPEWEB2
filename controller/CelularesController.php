@@ -1,11 +1,17 @@
 <?php
   require_once('model/CelularesModel.php');
   require_once('view/CelularesView.php');
+  require_once('model/MarcasModel.php');
+  require_once('model/ImagenesModel.php');
   /**
    *
    */
   class CelularesController extends SecuredController
   {
+    protected $modelCelular;
+    protected $modelMarca;
+    protected $modelImagenes;
+
     function __construct()
     {
       $this->isActive();
@@ -13,6 +19,7 @@
         $this->view = new CelularesView();
         $this->modelCelular = new CelularesModel();
         $this->modelMarca = new MarcasModel();
+        $this->modelImagenes = new ImagenesModel();
       }else
       header('Location: '.HOME);  
     }
@@ -43,7 +50,8 @@
           if (!$this->sonPNG($_FILES['imagenes']['type']))
             throw new Exception("Las imagenes tienen que ser png");             
           $this->excepcionesEmpty();
-          $this->modelCelular->store($_POST['marca'],$_POST['nombre'],$_POST['caracteristicas'],$_POST['precio'],$rutaTempImagenes);
+          $id_celular = $this->modelCelular->store($_POST['marca'],$_POST['nombre'],$_POST['caracteristicas'],$_POST['precio']);
+          $this->modelImagenes->storeImagenes($id_celular,$rutaTempImagenes);
           header('Location: '.HOMECELULARES);
         } catch (Exception $e) {
           $marcas = $this->modelMarca->getAll();
@@ -105,7 +113,7 @@
             $this->modelCelular->setPrecio($id_celular,$_POST['precio']);
             $this->modelCelular->setMarca($id_celular,$_POST['marca']);
             if (!empty($_FILES['imagenes']['name'][0]))
-              $this->modelCelular->storeImagenes($id_celular,$rutaTempImagenes);
+              $this->modelImagenes->storeImagenes($id_celular,$rutaTempImagenes);
             header('Location: '.HOMECELULARES);
           } catch (Exception $e) {
             $marcas = $this->modelMarca->getAll();
@@ -116,7 +124,7 @@
       }
     }
     private function excepcionesLimiteImagenes($id_celular){
-      $cant_imagenes = $this->modelCelular->cantImagenesCelular($id_celular);
+      $cant_imagenes = $this->modelImagenes->cantImagenesCelular($id_celular);
       $cant_imagenes_total = $cant_imagenes[0]+count($_FILES['imagenes']['name']);
       if (empty($_FILES['imagenes']['name'][0]))
         $cant_imagenes_total-=1;
@@ -172,49 +180,6 @@
       $this->modelCelular->deleteEspecificaciones($id_celular);
       header('Location: '.HOMECELULARES);
     }
-    public function showImagenes($params = [])
-    {
-      $id_celular = $params[':id'];
-      $imagenes = $this->modelCelular->getImagenesCelularID($id_celular);
-      $this->view->mostrarImagenes($imagenes,$id_celular);
-    }
-    public function cargarImagenes($params = [])
-    {
-      $id_celular = $params[':id'];
-      try{
-        $this->excepcionesLimiteImagenes($id_celular);
-        if (!$this->sonPNG($_FILES['imagenes']['type']))
-          throw new Exception("Las imagenes tienen que ser png");
-        if (!empty($_FILES['imagenes']['name'][0])){
-          $rutaTempImagenes = $_FILES['imagenes']['tmp_name']; 
-          $this->modelCelular->storeImagenes($id_celular,$rutaTempImagenes);      
-        }
-        header('Location: '.HOMECELULARES); 
-      }catch (Exception $e){
-        $imagenes = $this->modelCelular->getImagenesCelularID($id_celular); 
-        $this->view->errorFormImagenes($e->getMessage(),$imagenes,$id_celular);
-      }
-    }
-    public function setImagen($params = [])
-    {
-      $id_imagen = $params[':id'];
-      try{
-        if (($_FILES['imagen']['type']!='image/png'))
-          throw new Exception("La imagen tiene que ser png");
-        if (empty($_FILES['imagen']['name']))
-          throw new Exception("Elija una nueva imagen");
-        $rutaImagen = $_FILES['imagen']['tmp_name'];
-        $imagen = $this->modelCelular->setImagen($id_imagen,$rutaImagen);
-        $id_celular = $imagen['fk_id_celular'];
-        $imagenes = $this->modelCelular->getImagenesCelularID($id_celular);
-        $this->view->mostrarImagenes($imagenes,$id_celular);        
-      }catch (Exception $e){
-        $imagen = $this->modelCelular->getImagen($id_imagen);
-        $id_celular = $imagen['fk_id_celular'];
-        $imagenes = $this->modelCelular->getImagenesCelularID($id_celular);
-        $this->view->errorFormImagenes($e->getMessage(),$imagenes,$id_celular);
-      }
-
-    }
+    
   }
  ?>
