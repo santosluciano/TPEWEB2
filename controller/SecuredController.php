@@ -11,7 +11,7 @@ class SecuredController extends Controller
   }
   function isActive(){
     if(!$this->userActive()){
-      header('Location: '.login);
+      header('Location: '.HOME);
       die();
     }
   }

@@ -78,7 +78,7 @@ $(document).ready(function () {
     $(".cuerpo").html(load);
   }
   //Asigna a los items que se llaman con el partial de nav su comportamiento
-    $('body').on('click','.partialContain',function(event){
+  $('body').on('click','.partialContain',function(event){
       event.preventDefault();
       let accion = this.href+'/'+$(this).data("value");
       if ($(this).hasClass('contenedor-celular')){
@@ -86,8 +86,8 @@ $(document).ready(function () {
       }else{
         llamada_ajax(accion);
       }
-    });
-    $('body').on('submit','.form-registro',function(event){
+  });
+  $('body').on('submit','.form-registro',function(event){
       event.preventDefault();
       let accion = this.action;
       let serializedData = $(this).serialize();
@@ -95,13 +95,13 @@ $(document).ready(function () {
               (response == true)?location.reload():$(".cuerpo").html(response);
       });
       cargando(); 
-    });  
-    $('body').on('submit','.formlogin',function(event){
+  });  
+  $('body').on('submit','.formlogin',function(event){
       event.preventDefault();
       let accion = this.action;
       let serializedData = $(this).serialize();
      $.post(accion, serializedData, function(response) {
           (response == true)?location.reload():$(".error-logueo").html(response);
       });
-    });      
+  });      
 });

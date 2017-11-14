@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => templateComentario = template);
     
-    $('body').on('click','a.btnComentarios',function(){
+    $('body').on('click','.btnComentarios',function(){
         let idCelular = $(this).data('idcelular');
         cargarComentarios(idCelular);
     });
@@ -11,13 +11,8 @@ $(document).ready(function(){
     function cargarComentarios(idCelular) {
         $.ajax("api/comentarios?id_celular="+idCelular)
            .done(function(comentarios) {
-                 let rendered = Mustache.render(templateComentario , comentarios);
-                //  let nota = 0;
-                //  comentarios.forEach(function(comentario) {
-                //     nota+=parseInt(comentario.nota_comentario);   
-                //  });
-                //  alert(nota);   
-                 $('.comentarios').html(rendered);
+                let rendered = Mustache.render(templateComentario , comentarios);  
+                $('.comentarios').html(rendered);
                })
                .fail(function() {
                    $('.comentarios').html('No se pudieron cargar los comentarios');
@@ -46,32 +41,18 @@ $(document).ready(function(){
            });
     }
   
-    //   function borrarTarea(idTarea) {
-    //     $.ajax({
-    //           method: "DELETE",
-    //           url: "api/tareas/" + idTarea
-    //         })
-    //       .done(function() {
-    //          $('#tarea'+idTarea).remove();
-    //       })
-    //       .fail(function() {
-    //           alert('Imposible borrar la tarea');
-    //       });
-    //   }
-  
-    //   function completarTarea(idTarea) {
-    //     $.ajax({
-    //           method: "PUT",
-    //           url: "api/tareas/" + idTarea + "/finalizar"
-    //         })
-    //       .done(function() {
-    //          cargarTareas();
-    //       })
-    //       .fail(function(data) {
-    //           console.log(data);
-    //           alert('Imposible finalizar la tarea');
-    //       });
-    //   }
+    function borrarComentario(idComentario) {
+         $.ajax({
+               method: "DELETE",
+               url: "api/comentarios/" + idComentario
+            })
+           .done(function() {
+              $('#comentario'+idComentario).remove();
+            })
+           .fail(function() {
+               alert('Imposible borrar el comentario');
+            });
+    }
   
     // $('#refresh').click(function(event){
     //     event.preventDefault();
@@ -85,11 +66,11 @@ $(document).ready(function(){
          crearComentario(id_usuario,id_celular);
      });
   
-    // $('body').on('click', 'a.js-borrar', function() {
-    //     event.preventDefault();
-    //     let idTarea = $(this).data('idtarea');
-    //     borrarTarea(idTarea);
-    // });
+    $('body').on('click', 'a.comentario-borrar', function() {
+        event.preventDefault();
+        let idComentario = $(this).data('idcomentario');
+        borrarComentario(idComentario);
+    });
   
     // $('body').on('click', 'a.js-completada', function() {
     //     event.preventDefault();
@@ -110,7 +91,8 @@ $(document).ready(function(){
             }
           });
      });
-
+     $('body')
+     //cuerpoCelulares
 
   });
   

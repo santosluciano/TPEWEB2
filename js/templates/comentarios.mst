@@ -1,5 +1,5 @@
 {{#comentarios}}
-<div class="row">
+<div class="row" id="comentario{{id_comentario}}">
   <div class="col-md-1">
     <div class="thumbnail">
       <img class="img-responsive user-photo" src="{{imagen_perfil}}">
@@ -15,6 +15,7 @@
       </div><!-- /panel-body -->
     </div><!-- /panel panel-default -->
   </div><!-- /col-sm-5 -->
-  <!--/Review usuario-->          
+  <!--/Review usuario-->
+  {{#admin}}<a href="" data-idcomentario="{{id_comentario}}" class="comentario-borrar fa fa-trash-o"></a>{{/admin}}          
 </div>
 {{/comentarios}}

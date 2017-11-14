@@ -2,7 +2,7 @@
 <h1>{$encabezado}</h1>
 <div class="row">
   <div class="col-md-8 col-md-offset-2 col-xs-12">
-    <div class="thumbnail">
+    <div class="thumbnail cuerpoCelulares">
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
@@ -30,6 +30,7 @@
               <td><a href="modificarCelular/{$celular.id_celular}" class="fa fa-pencil"></a></td>
               <td><a href="eliminarCelular/{$celular.id_celular}" class="fa fa-trash-o"></a></td>
               <td><a href="especificacion/{$celular.id_celular}">Especificaciones</a></td>
+              <td><a href="" data-idcelular="{$celular.id_celular}" class="btnComentarios">Comentarios</a></td>
             </tr>
             {/foreach}
           </tbody>

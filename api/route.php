@@ -13,7 +13,6 @@ $router->AddRoute("estadisticas/:id", "GET", "CelularesApiController", "getEstad
 //Api comentarios
 $router->AddRoute("comentarios", "GET", "ComentariosApiController", "getComentarios");
 $router->AddRoute("comentarios/:id", "GET", "ComentariosApiController", "getComentario");
-//$router->AddRoute("tareas/:id", "PUT", "TareasApiController", "editTarea");
 $router->AddRoute("comentarios", "POST", "ComentariosApiController", "crearComentario");
 $router->AddRoute("comentarios/:id", "DELETE", "ComentariosApiController", "deleteComentario");
 

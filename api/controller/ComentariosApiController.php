@@ -1,11 +1,11 @@
 <?php
 
 require_once('../model/ComentariosModel.php');
-require_once('Api.php');
+require_once('ApiSecuredController.php');
 /**
  *
  */
-class ComentariosApiController extends Api
+class ComentariosApiController extends ApiSecuredController
 {
   protected $model;
 
@@ -27,7 +27,9 @@ class ComentariosApiController extends Api
     }
     $response = new stdClass();
     $response->comentarios = $comentarios;
-    $response->status = 200;  
+    $response->login = $this->isActive();
+    $response->admin = $this->isAdmin();
+    $response->status = 200;
     return $this->json_response($response, 200);
   }
   public function getComentario($params = [])
@@ -41,15 +43,21 @@ class ComentariosApiController extends Api
   }
   public function deleteComentario($params = [])
   {
-    $id_comentario = $params[":id"];    
-    $comentario = $this->model->getComentario($id_comentario);
-    if ($comentario)
-    {
-      $this->model->borrarComentario($id_comentario);
-      return $this->json_response("Comentario borrado.", 200);
-    }
-    else
-      return $this->json_response(false, 404);
+    if ($this->isActive()){
+      if ($this->isAdmin()){
+        $id_comentario = $params[":id"];    
+        $comentario = $this->model->getComentario($id_comentario);
+        if ($comentario)
+        {
+          $this->model->borrarComentario($id_comentario);
+          return $this->json_response("Comentario borrado.", 200);
+        }
+        else
+          return $this->json_response(false, 404);
+      }else
+        return $this->Forbidden_response();
+    }else
+      return $this->Unauthorized_response();      
   }
   private function excepcionesCreacion($body)
   {
@@ -66,29 +74,32 @@ class ComentariosApiController extends Api
   }
   function crearComentario()
   {
-    $body = json_decode($this->raw_data);
-    try{
-      $this->excepcionesCreacion($body);
-      $id_celular = $body->id_celular;
-      $id_usuario = $body->id_usuario;
-      $texto_comentario = $body->texto_comentario;
-      $nota_comentario = $body->nota_comentario;
-      if (($nota_comentario <=10)&&($nota_comentario>=0)){
-        $comentario = $this->model->guardarComentario($id_celular,$id_usuario,$texto_comentario,$nota_comentario);
-        $response = new stdClass();
-        $response->comentarios = $comentario;
-        $response->status = 200;
+    if ($this->isActive()){
+      $body = json_decode($this->raw_data);
+      try{
+        $this->excepcionesCreacion($body);
+        $id_celular = $body->id_celular;
+        $id_usuario = $body->id_usuario;
+        $texto_comentario = $body->texto_comentario;
+        $nota_comentario = $body->nota_comentario;
+        if (($nota_comentario <=10)&&($nota_comentario>=0)){
+          $comentario = $this->model->guardarComentario($id_celular,$id_usuario,$texto_comentario,$nota_comentario);
+          $response = new stdClass();
+          $response->comentarios = $comentario;
+          $response->status = 200;
+        }
+        else
+          return $this->json_response(false, 404);
+        if ($comentario)
+          return $this->json_response($response, 200);
+        else
+          return $this->json_response(false, 404);
+      }catch (Exception $e){
+        return $this->json_response(false, 404); 
       }
-      else
-        return $this->json_response(false, 404);
-      if ($comentario)
-        return $this->json_response($response, 200);
-      else
-        return $this->json_response(false, 404);
-    }catch (Exception $e){
-      return $this->json_response(false, 404); 
-    }
-  }
+    }else
+      return $this->Unauthorized_response();
+  }        
 }
 
  ?>

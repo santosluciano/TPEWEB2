@@ -22,7 +22,6 @@
        </div>
        <div class="col-md-4 estadisticasCelular">
          <h4 class="nota"><span class="label label-primary">NOTA MUNDO CELULAR: <span class="nota-celular"></span></span></h4>
-         <h4 class="nota"><span class="label label-info">NOTA USUARIOS: <span class="nota-usuarios"></span></span></h4>
          <div id="antutu">
           <span class="label label-danger">ANTUTU V6</span><img src="images/antutu.png" alt=""><span class="badge puntaje-antutu"></span>
          </div>

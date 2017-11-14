@@ -1,8 +1,6 @@
 <div class="container contenedor-usuario">
     <div class="thumbnail col-md-offset-3 col-md-6 datos-perfil">
-        {if !empty($imagen)}
         {include file="imagen.tpl"}
-        {/if} 
         <h2 class="nombre-perfil">{$usuario.nombre}</h2>
         {if $usuario.permiso_admin == 1}
             <a href="admin" class="btn btn-default btn-admin">Ir al panel de administrador</a>

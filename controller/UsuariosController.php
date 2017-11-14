@@ -28,7 +28,6 @@ class UsuariosController extends SecuredController
       $user = $this->model->getUsuarioID($id_usuario);
       $userName = $_SESSION['USER'];
       try{
-        die();
         if ($user['nombre'] == $userName)
           throw new Exception("No podes cambiarte tus propios permisos");        
         if ($user['permiso_admin']==1)
