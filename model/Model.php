@@ -1,6 +1,4 @@
 <?php
-  //include("../database/db-config.php");
-  require_once("db-config.php");
   class Model
   {
     protected $db;

@@ -1,17 +1,18 @@
 <?php
 
 require_once('../model/CelularesModel.php');
-require_once('Api.php');
+require_once('ApiSecuredController.php');
 /**
  *
  */
-class CelularesApiController extends Api
+class CelularesApiController extends ApiSecuredController
 {
   protected $model;
 
   function __construct()
   {
-      $this->model = new CelularesModel();
+    parent::__construct();
+    $this->model = new CelularesModel();
   }
 
   public function getEstadisticas($params = [])

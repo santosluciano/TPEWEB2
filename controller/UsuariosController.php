@@ -88,7 +88,7 @@ class UsuariosController extends SecuredController
   }   
   public function changeImage()
   { 
-    if ($this->isConnect()){
+    if ($this->userActive()){
       $rutaTempImagen = $_FILES['imageProfile']['tmp_name'];
       if($_FILES['imageProfile']['type'] == 'image/jpeg') {
         $usuario = $this->model->changeImageProfile($_SESSION['USER'],$rutaTempImagen);

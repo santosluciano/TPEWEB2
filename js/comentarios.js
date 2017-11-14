@@ -1,17 +1,26 @@
 $(document).ready(function(){    
+    let templateComentarios;
     let templateComentario;
+    let recarga;
+    let ultimo_comentario;
 
+    $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => templateComentarios = template);
     $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => templateComentario = template);
     
     $('body').on('click','.btnComentarios',function(){
+        clearInterval(recarga);
         let idCelular = $(this).data('idcelular');
-        cargarComentarios(idCelular);
+        cargarComentarios(idCelular,"api/comentarios?id_celular="+idCelular);
+    //    cargaAutomatica(idCelular);
     });
 
+    function cargaAutomatica(idCelular){
+        recarga = setInterval(function(){ cargarComentarios(idCelular) }, 2000); 
+    };
     function cargarComentarios(idCelular) {
         $.ajax("api/comentarios?id_celular="+idCelular)
            .done(function(comentarios) {
-                let rendered = Mustache.render(templateComentario , comentarios);  
+                let rendered = Mustache.render(templateComentarios , comentarios);  
                 $('.comentarios').html(rendered);
                })
                .fail(function() {
@@ -31,7 +40,7 @@ $(document).ready(function(){
                url: "api/comentarios",
                data: JSON.stringify(comentario)
              })
-           .done(function(comentarios) {               
+           .done(function(comentarios) {                 
              let rendered = Mustache.render(templateComentario , comentarios);
              $('.comentarios').prepend(rendered);
            })
@@ -53,12 +62,7 @@ $(document).ready(function(){
                alert('Imposible borrar el comentario');
             });
     }
-  
-    // $('#refresh').click(function(event){
-    //     event.preventDefault();
-    //     cargarTareas();
-    // });
-  
+
      $('body').on('submit','.publicarComentario',function(event){
          event.preventDefault();
          let id_usuario = $(this).data('idusuario');
@@ -72,12 +76,6 @@ $(document).ready(function(){
         borrarComentario(idComentario);
     });
   
-    // $('body').on('click', 'a.js-completada', function() {
-    //     event.preventDefault();
-    //     let idTarea = $(this).data('idtarea');
-    //     completarTarea(idTarea);
-    // });
-
      $('body').on('click','.btn-review',function(event){
         event.preventDefault();
         let accion = this.href;
@@ -91,8 +89,6 @@ $(document).ready(function(){
             }
           });
      });
-     $('body')
-     //cuerpoCelulares
 
   });
   

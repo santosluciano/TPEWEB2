@@ -4,6 +4,7 @@ include_once '../config/Router.php';
 include_once '../model/Model.php';
 include_once 'controller/CelularesApiController.php';
 include_once 'controller/ComentariosApiController.php';
+require_once '../config/db-config.php';
 
 
 $router = new Router();

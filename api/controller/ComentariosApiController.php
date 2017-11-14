@@ -1,5 +1,5 @@
-<?php
 
+<?php
 require_once('../model/ComentariosModel.php');
 require_once('ApiSecuredController.php');
 /**
@@ -8,7 +8,6 @@ require_once('ApiSecuredController.php');
 class ComentariosApiController extends ApiSecuredController
 {
   protected $model;
-
   function __construct()
   {
     parent::__construct();
@@ -101,5 +100,4 @@ class ComentariosApiController extends ApiSecuredController
       return $this->Unauthorized_response();
   }        
 }
-
  ?>

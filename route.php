@@ -11,6 +11,7 @@
     include_once 'controller/LoginController.php';
     include_once 'controller/UsuariosController.php';
     include_once 'controller/ImagenesController.php';
+    require_once 'config/db-config.php';
 
     $router = new Router();
     //(url, verb, controller, method)

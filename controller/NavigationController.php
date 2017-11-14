@@ -87,7 +87,7 @@
     }
     public function user()
     {
-      $this->isActive();
+      $this->userActive();
       $usuario = $this->modelUsuarios->getUsuario($_SESSION['USER']);
       $this->view->mostrarDatosUsuario($usuario);
     }

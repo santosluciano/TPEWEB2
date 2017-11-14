@@ -18,8 +18,9 @@ class SecuredController extends Controller
   function userActive(){
     session_start();
     if(isset($_SESSION['USER'])){
-      if (time() - $_SESSION['LAST_ACTIVITY'] > 1000) {
+      if (time() - $_SESSION['LAST_ACTIVITY'] > 100000) {
         header('Location: '.logout);
+        header('Location: '.HOME);
         die();
       }
       $_SESSION['LAST_ACTIVITY'] = time();
