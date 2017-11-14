@@ -2,7 +2,7 @@ $(document).ready(function () {
   //Llamada a ajax cuando se carga o recarga la pagina
   llamada_ajax("home");
   //Partial render comun de la pagina
-  $('.partial').on('click',function(event){
+  $('body').on('click','.partial',function(event){
     event.preventDefault();
     let accion = this.href;
     $('.active').removeClass('active');
@@ -14,18 +14,17 @@ $(document).ready(function () {
     llamada_ajax(accion);
   });
   //Partial render para el submit de la busqueda
-  $('.partialSearch').on('submit',function(event){
+  $('body').on('submit','.partialSearch',function(event){
     event.preventDefault();
     let accion = this.action;
     let serializedData = $(this).serialize();
    $.post(accion, serializedData, function(response) {
 			      		$(".cuerpo").html(response);
-                asignarProductos();
     });
     cargando(); 
   });
   //Partial render para la busqueda en tiempo real
-  $('.partialSearch').on('keyup',function(event){
+  $('body').on('keyup','.partialSearch',function(event){
     event.preventDefault();
     $('.dropdown-busqueda').addClass('open');
     let accion = this.action+"/sugerencia";
@@ -34,7 +33,6 @@ $(document).ready(function () {
       $.post(accion, serializedData,
                    function(response) {
                   $(".busqueda").html(response);
-                  asignarProductos();
     });
     let load = '<i class="fa fa-spinner fa-pulse fa-fw carga"></i>';
     $(".busqueda").html(load);
@@ -48,7 +46,6 @@ $(document).ready(function () {
       url:accion,
       success: function(result) {
         $(".cuerpo").html(result);
-        asignarProductos();
       },
       error: function(){
         $(".cuerpo").html("<h1>Error - Request Failed!</h1>");
@@ -62,7 +59,6 @@ $(document).ready(function () {
       url:accion,
       success: function(result) {
         $(".cuerpo").html(result);
-        asignarProductos();
         cargar_estadisticas(id);
       },
       error: function(){
@@ -72,7 +68,7 @@ $(document).ready(function () {
     cargando();
   }
   //Maneja el comportamiento de apertura del dropdown de busqueda
-  $('.dropdown-busqueda').on('click',function (event) {
+  $('body').on('click','.dropdown-busqueda',function (event) {
     event.preventDefault();
     $(this).toggleClass('open');
   });
@@ -82,8 +78,7 @@ $(document).ready(function () {
     $(".cuerpo").html(load);
   }
   //Asigna a los items que se llaman con el partial de nav su comportamiento
-  function asignarProductos(){
-    $('.partialContain').on('click',function(event){
+    $('body').on('click','.partialContain',function(event){
       event.preventDefault();
       let accion = this.href+'/'+$(this).data("value");
       if ($(this).hasClass('contenedor-celular')){
@@ -92,18 +87,21 @@ $(document).ready(function () {
         llamada_ajax(accion);
       }
     });
-    submit_registro();
-  }
-  function submit_registro() {
-    $('.form-registro').on('submit',function(event){
+    $('body').on('submit','.form-registro',function(event){
       event.preventDefault();
       let accion = this.action;
       let serializedData = $(this).serialize();
      $.post(accion, serializedData, function(response) {
-                  $(".cuerpo").html(response);
-                  location.reload();
+              (response == true)?location.reload():$(".cuerpo").html(response);
       });
       cargando(); 
-    });    
-  }
+    });  
+    $('body').on('submit','.formlogin',function(event){
+      event.preventDefault();
+      let accion = this.action;
+      let serializedData = $(this).serialize();
+     $.post(accion, serializedData, function(response) {
+          (response == true)?location.reload():$(".error-logueo").html(response);
+      });
+    });      
 });

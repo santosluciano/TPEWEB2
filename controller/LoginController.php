@@ -12,10 +12,7 @@ class LoginController extends SecuredController
   }
   public function index()
   {
-    if (!$this->isConnect())
-      $this->view->mostrarLogin();
-    else
-      header('Location: '.HOME);
+    header('Location: '.HOME);    
   }
   public function verify()
   {
@@ -34,9 +31,10 @@ class LoginController extends SecuredController
           $_SESSION['USER'] = $userName;
           $_SESSION['LAST_ACTIVITY'] = time();
           $_SESSION['ADMIN'] = $user['permiso_admin']; 
-          header('Location: '.HOME);
+          return true;
+          //header('Location: '.HOME);
         } catch (Exception $e) {
-          $this->view->mostrarLogin($e->getMessage());
+          $this->view->mostrarError($e->getMessage());
         }
      }
   }

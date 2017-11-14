@@ -48,7 +48,7 @@
             <a href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <div class="container-fluid">
-                <form action="verificarUsuario" method="post" class="formlogin">
+                <form action="verificarUsuario" class="formlogin">
                   <div class="form-group">
                     <label for="usuario">Nombre de usuario</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" placeholder="root" required>
@@ -61,6 +61,7 @@
                   <p>¿No eres usuario?</p>
                   <a href="crearUsuario" class="partial">Creá tu cuenta</a>
                 </form>
+                <div class="error-logueo"></div>
               </div>
             </ul>
           </li>

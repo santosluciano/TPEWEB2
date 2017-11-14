@@ -19,9 +19,9 @@
       $sentencia->execute();
       return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
-    function store($usuario, $email, $password,$foto_perfil){
-      $sentencia = $this->db->prepare('INSERT INTO usuario(nombre,email,password) VALUES(?,?,?)');
-      $sentencia->execute([$usuario,$email,$password]);
+    function store($usuario, $password,$foto_perfil){
+      $sentencia = $this->db->prepare('INSERT INTO usuario(nombre,password,imagen_perfil) VALUES(?,?,?)');
+      $sentencia->execute([$usuario,$password,$foto_perfil]);
     }
     function putAdmin($id_usuario){
       $sentencia = $this->db->prepare('update usuario set permiso_admin=1 where id_usuario=?');

@@ -7,8 +7,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Email</th>
+              <th>Nombre de usuario</th>
               <th>Admin?</th>
             </tr>
           </thead>
@@ -16,7 +15,6 @@
             {foreach from=$usuarios item=usuario}
             <tr>
               <td>{$usuario.nombre}</td>
-              <td>{$usuario.email}</td>
               {if $usuario.permiso_admin == 0}
               <td>NO <a class="fa fa-lock" href="cambiarPermisoAdmin/{$usuario.id_usuario}" aria-hidden="true"></a></td>
               {else}

@@ -8,11 +8,7 @@
           <form class="form-registro" action="registrarUsuario">
             <div class="form-group">
               <label for="email">EMAIL</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="root" required>
-            </div>
-            <div class="form-group">
-              <label for="usuario">Nombre de Usuario</label>
-              <input type="text" class="form-control" id="usuario" name="usuario" placeholder="root" required>
+              <input type="email" class="form-control" id="email" name="usuario" placeholder="root" required>
             </div>
             <div class="form-group">
               <label for="password">Contraseña</label>

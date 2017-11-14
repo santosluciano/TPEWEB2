@@ -9,6 +9,7 @@ class UsuariosController extends SecuredController
   {
     $this->view = new UsuariosView();
     $this->model = new UsuariosModel();
+    $this->controller = new LoginController();
   }
   public function index()
   {
@@ -17,7 +18,7 @@ class UsuariosController extends SecuredController
       $usuarios = $this->model->getAll();
       $this->view->mostrarUsuarios($usuarios);
     }else
-    header('Location: '.HOME);
+    header('Location: '.verify);
   }
   public function changeAdmin($params)
   {
@@ -68,15 +69,17 @@ class UsuariosController extends SecuredController
   {
     try {
       $this->excepcionesIssetRegistro();
-        try {
-          if (strlen($_POST['usuario'])<6)
-            throw new Exception("El nombre de usuario debe tener mas de 6 caracteres");
+        try {        
           if (strlen($_POST['password'])<6)
             throw new Exception("La contraseña debe tener mas de 6 caracteres");
+          $usuario = $this->model->getUsuario($_POST['usuario']);
+          if ($usuario)
+            throw new Exception("Usuario ya registrado");            
           $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
           $foto_perfil = "https://ssl.gstatic.com/accounts/ui/avatar_2x.png";
-          $this->model->store($_POST['usuario'],$_POST['email'],$password,$foto_perfil);
-          
+          $this->model->store($_POST['usuario'],$password,$foto_perfil);
+          $this->controller->verify();                       
+          return true;
         } catch (Exception $e) {
           $this->view->errorFormRegistro($e->getMessage());
         }
@@ -97,8 +100,6 @@ class UsuariosController extends SecuredController
   private function excepcionesIssetRegistro(){
     if (!isset($_POST['usuario']))
       throw new Exception("No se recibio el nombre de usuario");
-    if (!isset($_POST['email']))
-      throw new Exception("No se recibio el email");
     if (!isset($_POST['password']))
       throw new Exception("No se recibio la contraseña");
   } 

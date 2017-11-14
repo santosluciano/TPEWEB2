@@ -2,7 +2,7 @@
   <h1>Iniciar Sesion</h1>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <form action="verificarUsuario" method="post">
+          <form action="verificarUsuario" class="form-verificarUsuario">
             <div class="form-group">
               <label for="usuario">Usuario</label>
               <input type="text" class="form-control" id="usuario" name="usuario" placeholder="root" required>

@@ -24,10 +24,10 @@
     }
     function mostrarFormRegistrar(){
         return $this->smarty->display('templates/Login/formCrearCuenta.tpl');
-      }
-      function errorFormRegistro($error = ''){
-        $this->smarty->assign('error', $error);
-        return $this->smarty->display('templates/Login/formCrearCuenta.tpl');
+    }
+    function errorFormRegistro($error = ''){
+      $this->smarty->assign('error', $error);
+      return $this->smarty->display('templates/Login/formCrearCuenta.tpl');
     }
   }
  ?>
