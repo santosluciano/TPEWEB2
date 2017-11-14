@@ -17,7 +17,7 @@
             <textarea class="form-control" id="review" name="review" placeholder="Escriba su review..." rows="5" cols="50"></textarea>
             </div>
             <div class="form-group">
-            <label for="notaUsuario">Nota</label>
+            <label for="notaUsuario">Nota (De 0 a 10)</label>
             <input type="number" min="0" max="10" class="form-control" name="notaUsuario" id="notaUsuario" placeholder="Nota Celular (0-10)" required>
             </div>
             <button type="submit" class="btn btn-default">Publicar</button>

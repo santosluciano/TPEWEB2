@@ -81,21 +81,24 @@ class CelularesModel extends Model
   }
   function getAllFromMarca($id_marca){
     $sentencia = $this->db->prepare( "select celular.* from celular, marca WHERE celular.id_marca=marca.id_marca AND marca.id_marca = ?");
-    $sentencia->execute([$id_marca]);
+    $sentencia->execute([$id_marca]); 
     $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    return $this->getCelularesMarca($celulares);
+    $celularesMarca = $this->getCelularesMarca($celulares);
+    return $this->getImagenesCelular($celularesMarca);
   }
   function searchByName($nombre,$limite){
     $sentencia = $this->db->prepare( "select * from celular WHERE nombre LIKE ? limit $limite");
     $sentencia->execute(["%$nombre%"]);
     $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    return $this->getCelularesMarca($celulares);
+    $celularesMarca = $this->getCelularesMarca($celulares);
+    return $this->getImagenesCelular($celularesMarca);
   }
   function getAllInOrder(){
     $sentencia = $this->db->prepare( "select * from celular ORDER BY celular.id_marca ASC");
     $sentencia->execute();    
     $celulares = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    return $this->getCelularesMarca($celulares);
+    $celularesMarca = $this->getCelularesMarca($celulares);
+    return $this->getImagenesCelular($celularesMarca);
   }
   function getEspecificacion($id_celular){
     $sentencia = $this->db->prepare( "select * from especificacion_celular where id_celular = ? limit 1");
