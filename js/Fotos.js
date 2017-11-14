@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $('.img-celular').attr('src',$('.active').attr('src'));
     $('body').on('click','.minicelular',function(event){
         event.preventDefault();
         $('.minicelular').removeClass('active');

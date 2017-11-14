@@ -4,7 +4,7 @@
   <div class="row">
 		   <div class="col-md-offset-4 col-sm-offset-3 col-sm-6 col-md-4">
   			<a class="thumbnail partialContain contenedor-celular" href="celular/" data-value="{$celulares.0.id_celular}">
-					<img class="img-responsive" src="{$celulares.0.url_img}" alt="celular">
+					<img class="img-responsive" src="{$celulares.0.imagenes.0.ruta}" alt="celular">
   				<div class="caption">
   					<div class="row">
   						<div class="col-md-offset-4 col-sm-offset-4 col-xs-offset-4 col-md-8 col-xs-6">

@@ -8,7 +8,7 @@
   		<div class="col-sm-6 col-md-4">
   			<a class="thumbnail partialContain contenedor-celular" href="celular/" data-value="{$celular.id_celular}">
   				    <h4 class="text-center"><span class="label label-info">{$celular.marca.nombre}</span></h4>
-  					<img class="img-responsive" src="{$celular.url_img}" alt="celular">
+  					<img class="img-responsive" src="{$celular.imagenes.0.ruta}" alt="celular">
   				<div class="caption">
   					<div class="row">
   						<div class="col-md-8 col-xs-6">

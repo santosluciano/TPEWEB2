@@ -39,7 +39,10 @@ class CelularesModel extends Model
   function get($id_celular){
     $sentencia = $this->db->prepare( "select * from celular where id_celular = ? limit 1");
     $sentencia->execute([$id_celular]);
-    return $sentencia->fetch(PDO::FETCH_ASSOC);
+    $celular = $sentencia->fetch(PDO::FETCH_ASSOC);
+    $imagenes = $this->getImagenesCelularID($celular['id_celular']);
+    $celular['imagenes'] = $imagenes;
+    return $celular; 
   }
   function delete($id_celular){
     $sentencia = $this->db->prepare( "DELETE from celular where id_celular=?");

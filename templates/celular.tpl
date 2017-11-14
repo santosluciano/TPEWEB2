@@ -2,17 +2,15 @@
   <div class="thumbnail">
     <div class="row">
       <div class="col-xs-12 col-md-4">
-       <img class="img-responsive img-celular" src="{$celular.url_img}" />
+       <img class="img-responsive img-celular" src="{$celular.imagenes.0.ruta}" />
        <div class="row">
+       {assign var="activo" value="active"}        
+          {foreach $celular.imagenes item=imagen}
           <div class="col-md-4">
-              <a href="" class="thumbnail minicelular active"><img class="img-responsive" src="{$celular.url_img}" /></a>
+              <a href="" class="thumbnail minicelular {$activo}"><img class="img-responsive" src="{$imagen.ruta}" /></a>
           </div>
-          <div class="col-md-4">
-              <a href="" class="thumbnail minicelular"><img class="img-responsive" src="{$celular.url_img}" /></a>
-          </div>
-          <div class="col-md-4">
-              <a href="" class="thumbnail minicelular"><img class="img-responsive" src="{$celular.url_img}" /></a>
-          </div>
+          {assign var="activo" value=""}
+          {/foreach}
        </div>
       </div>
       <div class="col-xs-12 col-md-4">
