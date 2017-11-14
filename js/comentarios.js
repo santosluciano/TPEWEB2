@@ -11,7 +11,7 @@ $(document).ready(function(){
         clearInterval(recarga);
         let idCelular = $(this).data('idcelular');
         cargarComentarios(idCelular,"api/comentarios?id_celular="+idCelular);
-    //    cargaAutomatica(idCelular);
+        cargaAutomatica(idCelular);
     });
 
     function cargaAutomatica(idCelular){

@@ -2,7 +2,6 @@
 define('HOMEMARCAS', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminMarcas');
 define('HOMECELULARES', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminCelulares');
 define('HOMEUSUARIOS', 'http://'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/adminUsuarios');
-
 class SecuredController extends Controller
 {
   function __construct()
@@ -18,9 +17,8 @@ class SecuredController extends Controller
   function userActive(){
     session_start();
     if(isset($_SESSION['USER'])){
-      if (time() - $_SESSION['LAST_ACTIVITY'] > 100000) {
+      if (time() - $_SESSION['LAST_ACTIVITY'] > 1000) {
         header('Location: '.logout);
-        header('Location: '.HOME);
         die();
       }
       $_SESSION['LAST_ACTIVITY'] = time();
@@ -43,5 +41,4 @@ class SecuredController extends Controller
     return $_SESSION['ADMIN'] == 1; 
   }
 }
-
 ?>

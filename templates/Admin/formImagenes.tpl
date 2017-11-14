@@ -35,7 +35,7 @@
       </div>
       <form action="subirImagenes/{$id_celular}" method="post" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="imagenes">Imagenes Celular (Max. 3)</label>
+          <label for="imagenes">Imagenes Celular (Puede tener como maximo 3)</label>
           <input type="file" id="imagenes" name="imagenes[]" multiple>
         </div>
         <button type="submit" class="btn btn-primary">Subir Imagenes</button>

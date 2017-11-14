@@ -18,8 +18,10 @@ $(document).ready(function () {
               type: 'post',
               success: function(data)
               {
-                $('.datos-perfil').children('img').remove();  
-                $('.datos-perfil').prepend(data);
+                if (data.length>1){
+                    $('.datos-perfil').children('img').remove();  
+                    $('.datos-perfil').prepend(data);
+                }
               }
          });
      });
