@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-11-2017 a las 23:07:47
+-- Tiempo de generación: 16-11-2017 a las 00:50:12
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -89,37 +89,11 @@ CREATE TABLE `especificacion_celular` (
 --
 
 INSERT INTO `especificacion_celular` (`id_celular`, `pantalla`, `pantalla_dimension`, `peso`, `procesador`, `ram`, `memoria`, `sistema_operativo`, `conectividad`, `capacidad_bateria`, `camara`, `lector_huella`, `supercarga`) VALUES
+(1, 'LCD IPS touchscreen capacitivo, 16M colores', '720 x 1280 pixels, 5.0 pulgadas', 142, 'Qualcomm Snapdragon 415 octa-core 1.5GHz, GPU Adreno 405', '2 GB', '16GB memoria interna, microSD, hasta 32GB', 'Android OS, v5.1.1 Lollipop', '4G LTE Cat. 4', 2750, '13 MP, 4128 x 3096 pixels, autofocus, flash LED,  cámara frontal 5 MP', 0, 0),
 (2, 'IPS FullHD ', '5 pulgadas 1.920 x 1.080 píxeles ', 145, 'Snapdragon 430 octa-core a 1,4 GHz, GPU Adreno 505 a 450 MHz', '2 GB', '16 GB + MicroSD hasta 128 GB', 'Android 7.0 Nougat', '4G LTE Cat 4, WiFi a/b/g/n, Bluetooth 4.2', 2800, '13 MP, lente f/2.0, flash LED, Camara frontal 5 MP', 1, 1),
 (3, 'Pantalla Super AMOLED curva', '1.440 x 2.960 píxeles,  5.8 pulgadas', 155, 'Qualcomm Snapdragon 835 Octacore (2,3 Ghz + 1,7 Ghz) 64 Bit', '4 GB', '64 GB (UFS 2.1), microSD (hasta 256 GB)', 'Android 7.0 con TouchWiz', 'LTE Cat.16, Wi-Fi 802.11 a/b/g/n/ac (2.4/5GHz)', 3000, '12 megapíxeles con una lente con OIS y f/1,7  Fron', 1, 1),
 (4, 'P-OLED curva, touchscreen capacitivo, 16M colores', '1080 x 1920 pixels, 5.5 pulgadas', 152, 'Qualcomm Snapdragon 810 con 64-bit Octa-Core', '2GB LPDDR4', '32 GB memoria interna, microSD, hasta 128GB', 'Android OS, v5.0.1 Lollipop', 'Wi-Fi 802.11 a/b/g/n/ac, 4G LTE Cat. 6', 3000, '13 MP, flash LED dual, cámara frontal 2.1 MP', 0, 0),
 (5, 'IPS FullHD ', '1920x1080 (432 ppp), 5.15 pulgadas', 145, 'HiSilicon Kirin 960 (4 x Cortex A-73 2.36 GHz, 4 x Cortex A-53 a 1.84 GHz), Mali G-71', '4 GB LPDDR4', '64 GB (ampliables hasta 256 GB más vía MicroSD)', 'Android 7.0 con EMUI 5.1', 'LTE Cat. 12 (600/100 Mbps), Bluetooth 4.2, WiFi 802.11 a/b/g/n/ac', 3200, 'Trasera dual, un sensor de 12 MP (Sony IMX286 Exmor RS, f/2.2, color, con OIS)\r\ny otro de 20 MP (f/2.2, monocromo). Cámara frontal de 8 MP (f/1.9)', 1, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estadisticas_celular`
---
-
-CREATE TABLE `estadisticas_celular` (
-  `id_celular` int(11) NOT NULL,
-  `rendimiento` double NOT NULL,
-  `conectividad` double NOT NULL,
-  `disenio` double NOT NULL,
-  `pantalla` double NOT NULL,
-  `camara` double NOT NULL,
-  `antutu` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `estadisticas_celular`
---
-
-INSERT INTO `estadisticas_celular` (`id_celular`, `rendimiento`, `conectividad`, `disenio`, `pantalla`, `camara`, `antutu`) VALUES
-(1, 6.9, 8.6, 6.5, 6.5, 6.3, 31298),
-(2, 7.3, 8.9, 8.7, 8, 7.6, 40000),
-(3, 9.9, 9.5, 10, 10, 9.9, 174150),
-(4, 8, 9.2, 8.3, 8, 8.7, 54337),
-(5, 9.7, 9.9, 9.9, 9.5, 9.9, 147800);
 
 -- --------------------------------------------------------
 
@@ -132,6 +106,25 @@ CREATE TABLE `imagen` (
   `fk_id_celular` int(11) NOT NULL,
   `ruta` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `imagen`
+--
+
+INSERT INTO `imagen` (`id_imagen`, `fk_id_celular`, `ruta`) VALUES
+(1, 1, 'images/5a0b6fe7052b9.png'),
+(2, 1, 'images/5a0b6fe705319.png'),
+(3, 1, 'images/5a0b6fe70535b.png'),
+(4, 2, 'images/5a0b7027ae79e.png'),
+(5, 2, 'images/5a0b7027ae807.png'),
+(6, 2, 'images/5a0b7027ae854.png'),
+(9, 3, 'images/5a0b70e1257a5.png'),
+(10, 4, 'images/5a0b713d2a66f.png'),
+(11, 4, 'images/5a0b713d2a6ed.png'),
+(12, 4, 'images/5a0b713d2a74a.png'),
+(13, 5, 'images/5a0b717d227a6.png'),
+(14, 5, 'images/5a0b717d22811.png'),
+(15, 5, 'images/5a0b717d22857.png');
 
 -- --------------------------------------------------------
 
@@ -174,7 +167,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `password`, `permiso_admin`, `imagen_perfil`) VALUES
-(1, 'root', '$2y$10$bgdTLmZgp42n7rLd6cu6w.oMDKnhH0SQj/453uPr5OcbEp/aBylAq', 1, 'https://ssl.gstatic.com/accounts/ui/avatar_2x.png');
+(1, 'root', '$2y$10$bgdTLmZgp42n7rLd6cu6w.oMDKnhH0SQj/453uPr5OcbEp/aBylAq', 1, 'https://ssl.gstatic.com/accounts/ui/avatar_2x.png'),
+(3, 'luchosan74@gmail.com', '$2y$10$p.Ut/.rPLBSdmkyiSA7P1O6Eaub1f2CiEivC5x7A4pAl1vVjFJQYO', 0, 'images/5a0cd1a5a2b39.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -201,12 +195,6 @@ ALTER TABLE `comentario`
 ALTER TABLE `especificacion_celular`
   ADD PRIMARY KEY (`id_celular`),
   ADD KEY `id_celular` (`id_celular`) USING BTREE;
-
---
--- Indices de la tabla `estadisticas_celular`
---
-ALTER TABLE `estadisticas_celular`
-  ADD PRIMARY KEY (`id_celular`);
 
 --
 -- Indices de la tabla `imagen`
@@ -247,7 +235,7 @@ ALTER TABLE `comentario`
 -- AUTO_INCREMENT de la tabla `imagen`
 --
 ALTER TABLE `imagen`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -259,7 +247,7 @@ ALTER TABLE `marca`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -283,12 +271,6 @@ ALTER TABLE `comentario`
 --
 ALTER TABLE `especificacion_celular`
   ADD CONSTRAINT `especificacion_celular_ibfk_1` FOREIGN KEY (`id_celular`) REFERENCES `celular` (`id_celular`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `estadisticas_celular`
---
-ALTER TABLE `estadisticas_celular`
-  ADD CONSTRAINT `estadisticas_celular_ibfk_1` FOREIGN KEY (`id_celular`) REFERENCES `celular` (`id_celular`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `imagen`
