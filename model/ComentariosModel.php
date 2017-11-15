@@ -5,7 +5,7 @@
   class ComentariosModel extends Model
   {
     function getAll(){
-        $sentencia = $this->db->prepare( "select * from comentario");
+        $sentencia = $this->db->prepare("select comentario.*,DATE_FORMAT(fecha_comentario,'%d-%m-%Y %H:%i:%s') AS fecha_comentario,usuario.nombre,usuario.imagen_perfil from comentario,usuario ORDER BY comentario.fecha_comentario DESC");
         $sentencia->execute();
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }

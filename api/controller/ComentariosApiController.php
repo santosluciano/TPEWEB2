@@ -25,10 +25,10 @@ class ComentariosApiController extends ApiSecuredController
       $comentarios = $this->model->getAll();
     }
     $response = new stdClass();
-    $response->comentarios = $comentarios;
     $response->login = $this->isActive();
     $response->admin = $this->isAdmin();
-    $response->status = 200;
+    $response->status = 200; 
+    $response->comentarios = $comentarios;
     return $this->json_response($response, 200);
   }
   public function getComentario($params = [])
