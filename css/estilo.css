@@ -126,3 +126,38 @@ border-width:8px;
   display: block;
   text-align: center;
 }
+/**Sistema de rating por estrellas **/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+/****** Style Star Rating Widget *****/
+.puntaje { 
+  border: none;
+  float: left;
+}
+.puntaje > input { display: none; } 
+.puntaje > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+.puntaje > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+.full:hover{
+  cursor: pointer;
+}
+.puntaje > label { 
+  color: #ddd; 
+ float: right; 
+}
+/***** CSS Magic to Highlight Stars on Hover *****/
+.puntaje > input:checked ~ label, /* show gold star when clicked */
+.puntaje:not(:checked) > label:hover, /* hover current star */
+.puntaje:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+.puntaje > input:checked + label:hover, /* hover current star when changing rating */
+.puntaje > input:checked ~ label:hover,
+.puntaje > label:hover ~ input:checked ~ label, /* lighten current selection */
+.puntaje > input:checked ~ label:hover ~ label { color: #FFED85;  } 

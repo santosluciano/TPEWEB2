@@ -35,8 +35,9 @@ class ComentariosApiController extends ApiSecuredController
   {
     $id_comentario = $params[":id"];
     $comentario = $this->model->getComentario($id_comentario);
-    if ($comentario)
+    if ($comentario){
       return $this->json_response($comentario, 200);
+    }  
     else
       return $this->json_response(false, 404);
   }
@@ -81,10 +82,12 @@ class ComentariosApiController extends ApiSecuredController
         $id_usuario = $body->id_usuario;
         $texto_comentario = $body->texto_comentario;
         $nota_comentario = $body->nota_comentario;
-        if (($nota_comentario <=10)&&($nota_comentario>=0)){
+        if (($nota_comentario <=5)&&($nota_comentario>=1)){
           $comentario = $this->model->guardarComentario($id_celular,$id_usuario,$texto_comentario,$nota_comentario);
           $response = new stdClass();
           $response->comentarios = $comentario;
+          $response->login = $this->isActive();
+          $response->admin = $this->isAdmin();
           $response->status = 200;
         }
         else
