@@ -1,15 +1,15 @@
 {{#comentarios}}
 <div class="row" id="comentario{{id_comentario}}">
-  <div class="col-md-1">
+  <div class="col-md-1 col-xs-2">
     <div class="thumbnail">
       <img class="img-responsive user-photo" src="{{imagen_perfil}}">
     </div><!-- /thumbnail -->
   </div><!-- /col-sm-1 -->
-  <div class="col-md-5">
+  <div class="col-md-10 col-sm-9 col-xs-10">
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>{{nombre}}</strong> <span class="text-muted">publicado el {{fecha_comentario}} </span>
-        <span class="label label-info nota-user">NOTA {{nota_comentario}} </span>
+        <span class="label label-info nota-user">PUNTAJE {{nota_comentario}} <i class="fa fa-star" aria-hidden="true"></i></span>
       </div>
       <div class="panel-body">
       {{texto_comentario}}

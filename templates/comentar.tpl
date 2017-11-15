@@ -1,11 +1,11 @@
 <!--Agregar Review --> 
 <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-2">
     <div class="thumbnail">
         <img class="img-responsive user-photo" src="{$usuario.imagen_perfil}">
     </div><!-- /thumbnail -->
     </div><!-- /col-sm-1 -->
-    <div class="col-md-10">
+    <div class="col-md-10 col-xs-10 col-sm-9">
     <div class="panel panel-default">
         <div class="panel-heading">
         <strong>{$usuario.nombre}</strong>
