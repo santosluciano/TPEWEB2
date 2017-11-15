@@ -1,36 +1,28 @@
 <div class="container tarjeta-celular">
   <div class="thumbnail">
     <div class="row">
-      <div class="col-xs-12 col-md-4">
+      <div class="col-xs-12 col-md-5">
        <img class="img-responsive img-celular" src="{$celular.imagenes.0.ruta}" />
        <div class="row">
-       {assign var="activo" value="active"}        
-          {foreach $celular.imagenes item=imagen}
-          <div class="col-md-4">
+        {assign var="activo" value="active"}        
+        {foreach $celular.imagenes item=imagen}
+          <div class="col-md-4 col-xs-4">
               <a href="" class="thumbnail minicelular {$activo}"><img class="img-responsive" src="{$imagen.ruta}" /></a>
           </div>
-          {assign var="activo" value=""}
-          {/foreach}
+        {assign var="activo" value=""}
+        {/foreach}
        </div>
       </div>
-      <div class="col-xs-12 col-md-4">
+      <div class="col-xs-12 col-md-6">
         <h3><a class="partialContain" href="celulares" data-value="{$marca.id_marca}">{$marca.nombre|upper}</a> {$celular.nombre|upper}</h3>
         <img src="{$marca.url_img}" alt="">
         <h3>CARACTERISTICAS</h3>
         <p>{$celular.caracteristicas}</p>
         <h4><span class="label label-default">PRECIO ${$celular.precio}</span></h4>
-       </div>
-       <div class="col-md-4 estadisticasCelular">
-         <h4 class="nota"><span class="label label-primary">NOTA MUNDO CELULAR: <span class="nota-celular"></span></span></h4>
-         <div id="antutu">
-          <span class="label label-danger">ANTUTU V6</span><img src="images/antutu.png" alt=""><span class="badge puntaje-antutu"></span>
-         </div>
-         <div class="graficoCelular">
-         </div>
-       </div>
-     </div>
-   </div>
-   <div>
+      </div>
+    </div>
+  </div>
+  <div>
     <!-- Nav tabs -->
     <div class="thumbnail">
       <ul class="nav nav-tabs" role="tablist">

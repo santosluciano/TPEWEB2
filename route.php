@@ -49,6 +49,7 @@
     $router->AddRoute("crearEspecificacion/:id", "GET", "CelularesController", "createEspecificacion");
     $router->AddRoute("guardarEspecificacion/:id", "POST", "CelularesController", "storeEspecificacion");
     $router->AddRoute("borrarEspecificacion/:id", "GET", "CelularesController", "destroyEspecificacion");
+    //Control imagenes celulares
     $router->AddRoute("modificarImagenes/:id", "GET", "ImagenesController", "index");
     $router->AddRoute("subirImagenes/:id", "POST", "ImagenesController", "cargarImagenes");
     $router->AddRoute("cambiarImagen/:id", "POST", "ImagenesController", "setImagen");
@@ -68,7 +69,7 @@
     $array = $router->Route($route);
 
     if(sizeof($array) == 0)
-        echo "404";
+        echo (new NavigationController())->index();
     else
     {
         $controller = $array[0];

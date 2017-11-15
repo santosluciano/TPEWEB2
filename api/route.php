@@ -9,8 +9,6 @@ require_once '../config/db-config.php';
 
 $router = new Router();
 //url, verb, controller, method
-//Api estaditicas
-$router->AddRoute("estadisticas/:id", "GET", "CelularesApiController", "getEstadisticas");
 //Api comentarios
 $router->AddRoute("comentarios", "GET", "ComentariosApiController", "getComentarios");
 $router->AddRoute("comentarios/:id", "GET", "ComentariosApiController", "getComentario");
