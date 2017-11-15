@@ -3,6 +3,7 @@ $(document).ready(function(){
     let templateComentarios;
     //template para la carga del comentario del usuario
     let templateComentario;
+    let fecha_ultimo_comentario;
     //variable en donde se carga el intervalo de carga de comentarios
     let recarga;
     //asignando template de comentarios
@@ -11,9 +12,12 @@ $(document).ready(function(){
     $.ajax({ url: 'js/templates/comentarios.mst'}).done( template => templateComentario = template);
     //cuano se hace click para ver los comentarios, llama la carga y a la funcion para carga automatica de comentarios
     $('body').on('click','.btnComentarios',function(){
+        fecha_ultimo_comentario = 0;
+        $('.user_coment').remove();
+        cargando();
         clearInterval(recarga);
         let idCelular = $(this).data('idcelular');
-        cargarComentarios(idCelular,"api/comentarios?id_celular="+idCelular);
+        cargarComentarios(idCelular);
         cargaAutomatica(idCelular);
     });
     //se establece un timer de 2 segundos para llamar a la funcion cargarComentarios
@@ -22,10 +26,16 @@ $(document).ready(function(){
     };
     //llama con ajax a la api, la cual le devuelve los comentarios, y los carga en la pagina
     function cargarComentarios(idCelular) {
-        $.ajax("api/comentarios?id_celular="+idCelular)
+        let action = "api/comentarios?id_celular="+idCelular;
+        if (fecha_ultimo_comentario != 0)
+            action+="&fecha_ultimo_comentario="+fecha_ultimo_comentario;
+        $.ajax(action)
            .done(function(comentarios) {
+                $('.carga').remove();
+                if (comentarios.fecha_ultimo_comentario != 0)
+                    fecha_ultimo_comentario = comentarios.fecha_ultimo_comentario; 
                 let rendered = Mustache.render(templateComentarios , comentarios);  
-                $('.comentarios').html(rendered);
+                $('.comentarios').prepend(rendered);
             })
             .fail(function() {
                 $('.comentarios').html('No se pudieron cargar los comentarios');
@@ -33,6 +43,7 @@ $(document).ready(function(){
     }
     //Crear un comentario y lo manda a la api con ajax, la cual le devuelve el comentario y lo inserta en la pagina 
     function crearComentario(id_usuario,id_celular) {
+        cargarComentarios(idCelular);
         let comentario ={
              "id_celular": id_celular,
              "id_usuario": id_usuario,
@@ -44,14 +55,18 @@ $(document).ready(function(){
                url: "api/comentarios",
                data: JSON.stringify(comentario)
              })
-           .done(function(comentarios) {                 
-             let rendered = Mustache.render(templateComentario , comentarios);
-             $('.comentarios').prepend(rendered);
-           })
+           .done(function(comentarios) {
+                if (comentarios != false)
+                {
+                    fecha_ultimo_comentario = comentarios.fecha_ultimo_comentario;
+                }
+                let rendered = Mustache.render(templateComentario , comentarios);
+                $('.comentarios').prepend(rendered);
+            })
            .fail(function(data) {
                console.log(data);
                alert('Imposible comentar');
-           });
+           });                   
     }
     //elimina un comentario
     function borrarComentario(idComentario) {
@@ -97,5 +112,9 @@ $(document).ready(function(){
             $(this).parent('.rating').removeClass('fa-star-o');
             $(this).addClass('fa-star');
     });
+    function cargando() {
+        let load = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw carga"></i>';
+        $(".comentarios").html(load);
+      }
 });
   

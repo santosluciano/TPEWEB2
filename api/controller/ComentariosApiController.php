@@ -17,7 +17,12 @@ class ComentariosApiController extends ApiSecuredController
   {
     if (isset($_GET['id_celular'])){
       $id_celular = $_GET['id_celular'];
-      $comentarios = $this->model->getAllForCelular($id_celular);
+      if (isset($_GET['fecha_ultimo_comentario'])){
+        $fecha = $_GET['fecha_ultimo_comentario'];
+        $comentarios = $this->model->getAllForCelularFecha($id_celular,$fecha);
+      }else{
+        $comentarios = $this->model->getAllForCelular($id_celular);
+      }  
     } else if (isset($_GET['id_usuario'])){
       $id_usuario = $_GET['id_usuario']; 
       $comentarios = $this->model->getAllForUsuario($id_usuario);  
@@ -27,7 +32,11 @@ class ComentariosApiController extends ApiSecuredController
     $response = new stdClass();
     $response->login = $this->isActive();
     $response->admin = $this->isAdmin();
-    $response->status = 200; 
+    $response->status = 200;
+    if ($comentarios)
+      $response->fecha_ultimo_comentario = $comentarios[0]['fecha_comentario'];
+    else
+      $response->fecha_ultimo_comentario = 0;
     $response->comentarios = $comentarios;
     return $this->json_response($response, 200);
   }
@@ -85,10 +94,14 @@ class ComentariosApiController extends ApiSecuredController
         if (($nota_comentario <=5)&&($nota_comentario>=1)){
           $comentario = $this->model->guardarComentario($id_celular,$id_usuario,$texto_comentario,$nota_comentario);
           $response = new stdClass();
-          $response->comentarios = $comentario;
           $response->login = $this->isActive();
           $response->admin = $this->isAdmin();
+          if ($comentario)
+            $response->fecha_ultimo_comentario = $comentario[0]['fecha_comentario'];
+          else
+            $response->fecha_ultimo_comentario = 0;
           $response->status = 200;
+          $response->comentarios = $comentario;
         }
         else
           return $this->json_response(false, 404);
