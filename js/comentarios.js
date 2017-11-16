@@ -43,7 +43,7 @@ $(document).ready(function(){
     }
     //Crear un comentario y lo manda a la api con ajax, la cual le devuelve el comentario y lo inserta en la pagina 
     function crearComentario(id_usuario,id_celular) {
-        cargarComentarios(idCelular);
+        cargarComentarios(id_celular);
         let comentario ={
              "id_celular": id_celular,
              "id_usuario": id_usuario,
